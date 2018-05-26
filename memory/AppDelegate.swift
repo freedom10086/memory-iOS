@@ -72,8 +72,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate {
         print("tencentDidLogin")
         loginDelegate?(true)
         
-        // 登录成功后要调用一下这个方法, 才能获取到个人信息
-        self.tencentAuth.getUserInfo()
+        if Settings.user == nil {
+            // 登录成功后要调用一下这个方法, 才能获取到个人信息
+            self.tencentAuth.getUserInfo()
+        }
     }
     
     func tencentDidNotLogin(_ cancelled: Bool) {

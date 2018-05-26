@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,21 +34,42 @@
                                     <action selector="cancelClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yfl-TK-TYH"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ePA-DN-t9m">
+                                <rect key="frame" x="162.5" y="109" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="lS2-0z-8Bk"/>
+                                    <constraint firstAttribute="height" constant="50" id="uFs-du-Dk0"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3A-0t-IQK">
+                                <rect key="frame" x="149.5" y="169" width="76" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="XFE-ca-Tnb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="F3M-xP-4eJ"/>
+                            <constraint firstItem="ePA-DN-t9m" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J5I-hp-Cy0"/>
+                            <constraint firstItem="y3A-0t-IQK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OYc-n5-BbB"/>
+                            <constraint firstItem="ePA-DN-t9m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="RXS-wd-EOO"/>
                             <constraint firstItem="XFE-ca-Tnb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Shy-YG-Hbb"/>
+                            <constraint firstItem="y3A-0t-IQK" firstAttribute="top" secondItem="ePA-DN-t9m" secondAttribute="bottom" constant="10" id="aDr-MC-DgZ"/>
                             <constraint firstItem="Zyt-Vf-9d6" firstAttribute="top" secondItem="XFE-ca-Tnb" secondAttribute="bottom" constant="10" id="aZV-0U-3y9"/>
                             <constraint firstItem="Zyt-Vf-9d6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ywG-fL-pKI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="登陆" id="QZa-vv-fW4"/>
+                    <connections>
+                        <outlet property="avatarImage" destination="ePA-DN-t9m" id="cjc-qG-mNj"/>
+                        <outlet property="usernameLabel" destination="y3A-0t-IQK" id="4WB-tn-5rx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="-1273"/>
+            <point key="canvasLocation" x="1180" y="-1273.313343328336"/>
         </scene>
         <!--登陆-->
         <scene sceneID="3V7-DP-20n">
@@ -124,12 +146,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HGi-lK-REe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="233"/>
+            <point key="canvasLocation" x="1180" y="116"/>
         </scene>
         <!--详情页-->
         <scene sceneID="O5q-rC-weL">
             <objects>
-                <viewController title="详情页" id="Uln-qO-5M4" userLabel="详情页" sceneMemberID="viewController">
+                <viewController title="照片详情页" id="Uln-qO-5M4" userLabel="详情页" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Z2-ie-CgU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ifg-uQ-4y5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2078" y="233"/>
+            <point key="canvasLocation" x="2078" y="116"/>
         </scene>
         <!--我的-->
         <scene sceneID="kzd-Zv-Daz">
@@ -266,6 +288,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="veV-tL-9wa" kind="show" id="QHx-Sw-3Om"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -280,7 +305,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6d-dl-Igd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="365.60000000000002" y="801.0494752623689"/>
+            <point key="canvasLocation" x="388" y="887"/>
         </scene>
         <!--设置-->
         <scene sceneID="Z2N-oh-ctA">
@@ -308,7 +333,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldi-g2-HIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2078" y="1711"/>
+            <point key="canvasLocation" x="1180" y="887"/>
         </scene>
         <!--相册列表-->
         <scene sceneID="Sh8-fP-qkY">
@@ -328,12 +353,18 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFy-pb-oAQ">
                                             <rect key="frame" x="10" y="5" width="355" height="130"/>
                                             <state key="normal" backgroundImage="创建相册"/>
+                                            <connections>
+                                                <segue destination="B1y-Ox-aWk" kind="show" id="jjZ-oN-LDc"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNJ-So-3KY">
                                             <rect key="frame" x="191" y="58" width="107" height="24"/>
                                             <state key="normal" title="  创建相册" image="加号">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="B1y-Ox-aWk" kind="show" id="4e3-qo-85N"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -416,19 +447,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q9a-K9-6n0"/>
                     </view>
-                    <navigationItem key="navigationItem" id="zTP-TF-Z5j"/>
+                    <navigationItem key="navigationItem" title="印迹" id="zTP-TF-Z5j"/>
                     <connections>
                         <outlet property="tableView" destination="Qd6-tt-do0" id="w4z-ai-EpL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Osf-V9-bIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="-600.44977511244383"/>
+            <point key="canvasLocation" x="1180" y="-600"/>
         </scene>
         <!--相册图片列表-->
         <scene sceneID="8T6-bo-M49">
             <objects>
-                <viewController title="相册图片列表" id="9Hw-cD-XOZ" userLabel="相册图片列表" customClass="GalleryViewController" customModule="memory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="相册详情页" id="9Hw-cD-XOZ" userLabel="相册图片列表" customClass="GalleryViewController" customModule="memory" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aWE-Ow-2bB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -488,7 +519,22 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxM-8F-7Ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="116"/>
+            <point key="canvasLocation" x="294" y="116"/>
+        </scene>
+        <!--创建相册-->
+        <scene sceneID="llg-fh-8Il">
+            <objects>
+                <viewController title="创建相册" id="B1y-Ox-aWk" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dEF-TU-FDW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="4W0-v0-cPc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A25-Fp-YQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2078" y="-1284"/>
         </scene>
         <!--印迹-->
         <scene sceneID="S5E-wN-QP0">
@@ -496,7 +542,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mvP-zc-tRc" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="印迹" id="Bvl-s8-F4S"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RyZ-Si-4tZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RyZ-Si-4tZ" userLabel="印迹">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -509,24 +555,14 @@
             </objects>
             <point key="canvasLocation" x="294" y="-600"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="LNV-Ph-NkS">
-            <objects>
-                <viewController id="pYT-K3-QoZ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xPX-0E-YoO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="yyY-6r-tsj"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lMY-40-oEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
+        <image name="image_placeholder" width="256" height="256"/>
         <image name="mask" width="342" height="160"/>
         <image name="创建相册" width="354" height="139"/>
         <image name="加号" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="4e3-qo-85N"/>
+    </inferredMetricsTieBreakers>
 </document>

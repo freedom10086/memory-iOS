@@ -153,7 +153,6 @@
 				2FD45A8F20B9923900B1DACF /* controller */,
 				2FCAD98F20B9600600482CD5 /* model */,
 				2FD0DE5B20B85F3200A98500 /* Main.storyboard */,
-				0460D14220B985EC00699608 /* GalleryViewController.swift */,
 				2FD0DE5E20B85F3300A98500 /* Assets.xcassets */,
 				2FD0DE8D20B86DF500A98500 /* Support Files */,
 				2FD45A8920B96DD500B1DACF /* Constant.swift */,
@@ -210,6 +209,7 @@
 				2FFDCBDA20B902C7000D6C4E /* MainViewController.swift */,
 				2FD0DE5920B85F3200A98500 /* LoginViewController.swift */,
 				2FFDCBDC20B90711000D6C4E /* GalleriesViewController.swift */,
+				0460D14220B985EC00699608 /* GalleryViewController.swift */,
 				2FFDCBDE20B90963000D6C4E /* NewsViewController.swift */,
 				2FFDCBE020B9096F000D6C4E /* MyViewController.swift */,
 			);

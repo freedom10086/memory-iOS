@@ -7,22 +7,44 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
+import Kingfisher
 
 class LoginViewController: UIViewController {
+    
+    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let app = UIApplication.shared.delegate as! AppDelegate
         app.loginDelegate = { success in
             if success {
-                Api.login(openId: app.tencentAuth.getUserOpenID(), accessToken: app.tencentAuth.accessToken, callback: { (user, err) in
+                print("qq login success")
+                Api.login(openId: app.tencentAuth.getUserOpenID(), accessToken: app.tencentAuth.accessToken,
+                          callback: { [weak self] (user, err)  in
                     if let u = user {
-                        print("login success: \(u.id) \(u.name)")
+                        print("login server success")
+                        Settings.user = u
+                        if u.token != nil {
+                            Settings.token = u.token
+                        }
+                        
+                        self?.updateUserInfo(name: u.name, avatar: u.avatar)
+                        
+                        Settings.expiresIn = app.tencentAuth.expirationDate
+                        Settings.openId = app.tencentAuth.getUserOpenID()
+                        Settings.accessToken = app.tencentAuth.accessToken
+                        
+                        let alert = UIAlertController(title: "登陆成功", message: "欢迎👏 \(u.name)", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
+                            self?.presentingViewController?.dismiss(animated: true)
+                        })
+                        self?.present(alert, animated: true)
                     } else {
                         let alert = UIAlertController(title: "错误", message: err, preferredStyle: .alert)
-                        self.present(alert, animated: true)
+                        alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+                        self?.present(alert, animated: true)
                     }
                 })
             }
@@ -33,33 +55,8 @@ class LoginViewController: UIViewController {
             if response.retCode == 0 {
                 print("get user info success")
                 if let res = response.jsonResponse {
-                    if let uid = app.tencentAuth.getUserOpenID() {
-                        // 获取uid
-                        print("openId:\(uid)")
-                    }
-                    
-                    if let token = app.tencentAuth.accessToken {
-                        // 获取token
-                        print("token:\(token)")
-                    }
-                    
-                    if let name = res["nickname"] {
-                        // 获取nickname
-                        print("name:\(name)")
-                    }
-                    
-                    if let sex = res["gender"] {
-                        // 获取性别
-                        print("sex:\(sex)")
-                    }
-                    
-                    if let img = res["figureurl_qq_2"] {
-                        // 获取头像
-                        print("avatar:\(img)")
-                    }
-                    
-                    
-                    
+                    self.updateUserInfo(name: ((res["nickname"] as? String) ?? "unknown"),
+                                   avatar: res["figureurl_qq_2"] as? String)
                 }
             } else {
                 // 获取授权信息异常
@@ -69,10 +66,12 @@ class LoginViewController: UIViewController {
         }
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func updateUserInfo(name: String, avatar: String?) {
+        usernameLabel.text = name
+        if let url = avatar {
+            avatarImage.kf.setImage(with: URL(string: url), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        }
     }
 
     @IBAction func loginClick(_ sender: Any) {

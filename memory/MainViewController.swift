@@ -18,10 +18,10 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let openId = Settings.openId {
-            //ok login state
-            print("登陆状态 openId:\(openId)")
-        } else if !isShowLogin{
+        if let accessToken = Settings.accessToken {
+            print("认证有效 过期:\(Settings.expiresIn)")
+        } else if !isShowLogin {
+            print("认证无效 过期:\(Settings.expiresIn)")
             //login
             let dest = self.storyboard?.instantiateViewController(withIdentifier: "loginNavViewController")
             self.present(dest!, animated: true, completion: nil)

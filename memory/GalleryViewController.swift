@@ -8,6 +8,7 @@
 
 import UIKit
 
+// 单个相册页面
 class GalleryViewController: UIViewController {
 
     override func viewDidLoad() {

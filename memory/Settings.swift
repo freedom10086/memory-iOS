@@ -10,39 +10,21 @@ import Foundation
 
 // 首选项管理类
 public class Settings {
-    private static let key_avater = "key_avater"
-    private static let key_uid = "key_uid"
-    private static let key_username = "key_username"
+    private static let key_user = "key_user"
     private static let key_open_id = "key_open_id"
-    private static let key_sex = "key_sex"
     private static let key_access_token = "key_access_token"
     private static let key_expires_in = "key_expires_in"
     private static let key_token = "key_token"
     
-    
-    // 用户id
-    public static var uid: Int? {
+    public static var user: User? {
         get {
-            let uid = UserDefaults.standard.integer(forKey: key_uid)
-            return uid > 0 ? uid : nil
+            return UserDefaults.standard.value(forKey: key_user) as? User
         }
         
         set {
-            UserDefaults.standard.set(newValue, forKey: key_uid)
+            UserDefaults.standard.set(newValue, forKey: key_user)
         }
     }
-
-    //用户名
-    public static var username: String? {
-        get {
-            return UserDefaults.standard.string(forKey: key_username)
-        }
-
-        set {
-            UserDefaults.standard.set(newValue, forKey: key_username)
-        }
-    }
-    
     
     //openId
     public static var openId: String? {
@@ -58,7 +40,11 @@ public class Settings {
     //access_token
     public static var accessToken: String? {
         get {
-            return UserDefaults.standard.string(forKey: key_access_token)
+            if let expiresIn =  Settings.expiresIn, (expiresIn.timeIntervalSince1970 - Date().timeIntervalSince1970 - 60) > 0 {
+                return UserDefaults.standard.string(forKey: key_access_token)
+            }
+            
+            return nil
         }
 
         set {
@@ -66,9 +52,9 @@ public class Settings {
         }
     }
     
-    public static var expiresIn: Int {
+    public static var expiresIn: Date? {
         get {
-            return UserDefaults.standard.integer(forKey: key_expires_in)
+            return (UserDefaults.standard.value(forKey: key_expires_in)) as? Date
         }
         
         set {

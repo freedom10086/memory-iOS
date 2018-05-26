@@ -30,6 +30,11 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
         //self.automaticallyAdjustsScrollViewInsets = false //修复collectionView头部空白
         collectionView.collectionViewLayout = layout
         
+        // 大标题栏
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.title = "最新"
+        self.navigationItem.largeTitleDisplayMode = .automatic
+        
         loadData()
     }
     

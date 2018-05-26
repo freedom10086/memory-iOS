@@ -17,13 +17,46 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     //数据
     private var datas = [Gallery]()
     private var testImage = "http://img4.duitang.com/uploads/item/201311/06/20131106211748_WrwS3.jpeg"
-    
+    private var searchBar: UISearchBar!
+    private var searchButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        // 在标题栏添加搜索框
+        let buttonWidth: CGFloat = 64
+        let gap: CGFloat = 8
+        let margin: CGFloat = 12
+        
+        self.title = nil
+        let bounds = self.navigationController!.view.bounds
+        searchBar = UISearchBar(frame: CGRect(x: 0, y: 0,
+                                width: bounds.width - margin * 2 - gap - buttonWidth, height: 40))
+        searchBar.searchBarStyle = .minimal
+        searchBar.placeholder = "搜索相册"
+        //searchBar.delegate = self //TODO
+        searchBar.showsCancelButton = false
+        //self.navigationController?.view.addSubview(searchBar)
+        
+        self.navigationItem.titleView = UIView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 50))
+        self.navigationItem.titleView?.addSubview(searchBar)
+        
+        // 在标题栏添加搜索按钮
+        let textColor = UIColor.blue
+        searchButton = UIButton(frame: CGRect(x: bounds.width - margin * 2 - buttonWidth, y: 4,
+                                                  width: buttonWidth, height: 33))
+        searchButton.setTitleColor(textColor, for: .normal)
+        searchButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        searchButton.setTitle("上传照片", for: .normal)
+        // set border
+        searchButton.layer.masksToBounds = true
+        searchButton.layer.cornerRadius = 6
+        searchButton.layer.borderWidth = 1.0
+        searchButton.layer.borderColor = textColor.cgColor
+        self.navigationItem.titleView?.addSubview(searchButton)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,7 +68,7 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(170)
+        return CGFloat(180)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
