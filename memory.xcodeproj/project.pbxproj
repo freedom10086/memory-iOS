@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0460D13B20B93B8700699608 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D13A20B93B8700699608 /* User.swift */; };
+		0460D14320B985EC00699608 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D14220B985EC00699608 /* GalleryViewController.swift */; };
 		2FCAD99220B9601400482CD5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99020B9601400482CD5 /* Image.swift */; };
 		2FCAD99320B9601400482CD5 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99120B9601400482CD5 /* Gallery.swift */; };
 		2FCAD99520B9603600482CD5 /* WaterFallCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99420B9603600482CD5 /* WaterFallCollectionViewLayout.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		0460D13A20B93B8700699608 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0460D14220B985EC00699608 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		28915CBAF37BA15A4B507C8E /* Pods-memory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memory.release.xcconfig"; path = "Pods/Target Support Files/Pods-memory/Pods-memory.release.xcconfig"; sourceTree = "<group>"; };
 		2FCAD99020B9601400482CD5 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		2FCAD99120B9601400482CD5 /* Gallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				2FFDCBE020B9096F000D6C4E /* MyViewController.swift */,
 				2FCAD99420B9603600482CD5 /* WaterFallCollectionViewLayout.swift */,
 				2FD0DE5B20B85F3200A98500 /* Main.storyboard */,
+				0460D14220B985EC00699608 /* GalleryViewController.swift */,
 				2FD0DE5E20B85F3300A98500 /* Assets.xcassets */,
 				2FD0DE8D20B86DF500A98500 /* Support Files */,
 			);
@@ -376,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0460D14320B985EC00699608 /* GalleryViewController.swift in Sources */,
 				2FFDCBDB20B902C7000D6C4E /* MainViewController.swift in Sources */,
 				2FCAD99320B9601400482CD5 /* Gallery.swift in Sources */,
 				2FCAD99220B9601400482CD5 /* Image.swift in Sources */,

@@ -1,19 +1,18 @@
 //
-//  MyViewController.swift
+//  GalleryViewController.swift
 //  memory
 //
-//  Created by yang on 2018/5/26.
+//  Created by mac on 2018/5/26.
 //  Copyright © 2018年 tencent. All rights reserved.
 //
 
 import UIKit
 
-// 我的页面
-class MyViewController: UITableViewController {
+class GalleryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
 
