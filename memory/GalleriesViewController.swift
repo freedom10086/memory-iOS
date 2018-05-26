@@ -35,21 +35,20 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(120)
+        return CGFloat(170)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let d = datas[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        let backgroundImage = cell.viewWithTag(1) as! UIImageView
-        let name = cell.viewWithTag(2) as! UILabel
-        let share = cell.viewWithTag(3) as! UILabel
-        let avatarImage = cell.viewWithTag(4) as! UIImageView
-        let username = cell.viewWithTag(5) as! UILabel
-        let comments = cell.viewWithTag(6) as! UILabel
+        let backgroundImage = cell.viewWithTag(4) as! UIImageView
+        let name = cell.viewWithTag(1) as! UILabel
+        let comment = cell.viewWithTag(2) as! UILabel
+        let username = cell.viewWithTag(3) as! UILabel
         
         backgroundImage.kf.setImage(with: URL(string: testImage), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        backgroundImage.clipsToBounds = true
+        backgroundImage.layer.cornerRadius = 8.0
         //forceTouch
         //if traitCollection.forceTouchCapability == .available {
         //    registerForPreviewing(with: self, sourceView: cell)
