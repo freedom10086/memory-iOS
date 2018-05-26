@@ -40,7 +40,7 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
             var subDatas = [Image]()
             
             for i in 0..<20 {
-                subDatas.append(Image(id: Int64(i), url: self.testImage))
+                subDatas.append(Image(id: i, url: self.testImage))
             }
             
             if self.currentPage == 1 {

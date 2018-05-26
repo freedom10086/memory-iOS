@@ -17,22 +17,14 @@ class LoginViewController: UIViewController {
         let app = UIApplication.shared.delegate as! AppDelegate
         app.loginDelegate = { success in
             if success {
-                let parameters: Parameters = ["openid": app.tencentAuth.getUserOpenID(),
-                                              "access_token": app.tencentAuth.accessToken];
-                Alamofire.request("https://www.baidu.com", method: .post, parameters: parameters).responseJSON { response in
-                    if (response.result.isSuccess) {
-                        let value = response.result.value;
-                        let json = JSON(value as Any)
-                        let name = json["data"]["name"]
-                        let gender = json["data"]["gender"]
-                        let created = json["data"]["created"]
-                        let token = json["data"]["token"]
-                        
-                        
+                Api.login(openId: app.tencentAuth.getUserOpenID(), accessToken: app.tencentAuth.accessToken, callback: { (user, err) in
+                    if let u = user {
+                        print("login success: \(u.id) \(u.name)")
                     } else {
-                        
+                        let alert = UIAlertController(title: "错误", message: err, preferredStyle: .alert)
+                        self.present(alert, animated: true)
                     }
-                }
+                })
             }
         }
         

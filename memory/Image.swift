@@ -8,7 +8,8 @@
 
 import Foundation
 
+// 单张图片实体类
 public struct Image {
-    var id: Int64
+    var id: Int
     var url: String
 }

@@ -8,7 +8,10 @@
 
 import Foundation
 
-public class Gallery: Codable {
+// 相册实体类
+public struct Gallery: Codable {
+    var id: Int
     var name: String
     
+    // TODO 稍后补充
 }
