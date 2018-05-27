@@ -120,7 +120,7 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         comment.text = "100"
         username.text = "创建人:\(d.creater.name)"
         
-        backgroundImage.kf.setImage(with: URL(string: d.cover), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        backgroundImage.kf.setImage(with: URL(string: d.cover ?? ""), placeholder: #imageLiteral(resourceName: "image_placeholder"))
         backgroundImage.clipsToBounds = true
         backgroundImage.layer.cornerRadius = 8.0
         

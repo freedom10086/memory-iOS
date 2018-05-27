@@ -14,7 +14,7 @@ public struct Gallery: Codable {
     var name: String
     var description: String
     var creater: User
-    var cover: String
+    var cover: String?
     
     // TODO 稍后补充
 }

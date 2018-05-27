@@ -36,7 +36,15 @@ class HttpUtil {
     // get 请求方法
     public static func GET<T>(_ type: T.Type, url: String, params: [String: String]?, callback: @escaping (T? , String) -> Void) where T : Codable {
         var url = getUrl(url: url)
-        if let p = encodeParameters(params) {
+        var ps  = params
+        if let token = Settings.token {
+            if ps != nil {
+                ps!["token"] = token
+            } else {
+                ps = ["token": token]
+            }
+        }
+        if let p = encodeParameters(ps) {
             if url.contains("?") {
                 url = url + "&" + p
             } else {
@@ -129,14 +137,12 @@ class HttpUtil {
                     callback(nil, res.message)
                     return
                 }
-                
                 if let d = res.data {
                     callback(d, res.message)
                     return
                 }
-                
-                callback(nil, "未知错误")
             } else {
+                print("decode error")
                 // decode error
                 if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                     callback(nil, "Http Status: \(httpStatus.statusCode) error: \(String(data: data, encoding: .utf8) ?? "未知错误")")

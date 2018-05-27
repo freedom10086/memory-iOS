@@ -12,9 +12,9 @@ import Foundation
 // Api的请求地址放到这儿
 class Constant {
     
-    public static let host = "localhost"
+    public static let host = "192.168.137.1"
     
-    public static let baseUrl = "https://\(host)"
+    public static let baseUrl = "http://\(host)"
     
     // 登陆
     public static let loginUrl = "\(baseUrl)/login"

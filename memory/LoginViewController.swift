@@ -20,32 +20,35 @@ class LoginViewController: UIViewController {
         let app = UIApplication.shared.delegate as! AppDelegate
         app.loginDelegate = { success in
             if success {
-                print("qq login success")
+                print("qq login success openId:\(app.tencentAuth.getUserOpenID()) access_token: \(app.tencentAuth.accessToken)")
                 Api.login(openId: app.tencentAuth.getUserOpenID(), accessToken: app.tencentAuth.accessToken,
                           callback: { [weak self] (user, err)  in
-                    if let u = user {
-                        print("login server success")
-                        Settings.user = u
-                        if u.token != nil {
-                            Settings.token = u.token
-                        }
-                        
-                        self?.updateUserInfo(name: u.name, avatar: u.avatar)
-                        
-                        Settings.expiresIn = app.tencentAuth.expirationDate
-                        Settings.openId = app.tencentAuth.getUserOpenID()
-                        Settings.accessToken = app.tencentAuth.accessToken
-                        
-                        let alert = UIAlertController(title: "登陆成功", message: "欢迎👏 \(u.name)", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
-                            self?.presentingViewController?.dismiss(animated: true)
-                        })
-                        self?.present(alert, animated: true)
-                    } else {
-                        let alert = UIAlertController(title: "错误", message: err, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
-                        self?.present(alert, animated: true)
-                    }
+                            DispatchQueue.main.async {
+                                if let u = user {
+                                    print("login server success")
+                                    //Settings.user = u
+                                    if u.token != nil {
+                                        Settings.token = u.token
+                                    }
+                                    
+                                    self?.updateUserInfo(name: u.name, avatar: u.avatar)
+                                    
+                                    Settings.expiresIn = app.tencentAuth.expirationDate
+                                    Settings.openId = app.tencentAuth.getUserOpenID()
+                                    Settings.accessToken = app.tencentAuth.accessToken
+                                    
+                                    let alert = UIAlertController(title: "登陆成功", message: "欢迎👏 \(u.name)", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
+                                        self?.presentingViewController?.dismiss(animated: true)
+                                    })
+                                    self?.present(alert, animated: true)
+                                } else {
+                                    let alert = UIAlertController(title: "错误", message: err, preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+                                    self?.present(alert, animated: true)
+                                }
+                            }
+                    
                 })
             }
         }
