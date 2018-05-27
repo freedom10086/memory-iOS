@@ -1,0 +1,76 @@
+返回数据结构：
+{
+    "status": 200,
+    "message": "success",
+    "data": null //不同接口不一样
+}
+
+status = 200 成功 
+其余失败 错误见message
+
+## 登陆接口：
+post /login
+openid qq登陆后的openid
+access_token qq登陆后的access_token
+
+返回样例：
+{
+    "status": 200,
+    "message": "success",
+    "data": {
+        "id": 1,
+        "name": "管理员",
+        "avatar": "http://thirdqq.qlogo.cn/qqapp/1106924490/55EAE8EDA1A6762EF99EB31AF96C59AA/100",
+        "gender": "男",
+        "created": "2018-05-26T02:52:21",
+        "token": "eyJ1IjoxLCJzIjoiNTE5OTU1IiwiZSI6MTUyNzI4MzA2NDY5MX1iOTZhMWM4ZmNiMzE3MDAzMTEzOGYyMzQ1MTRiZTgxZTlkMmIwZWUwMGZiYmFjMmIzMDcyM2NkNjMwMjg1ZjM0"
+    }
+}
+
+解释：
+1.id用户id
+2.name用户昵称
+3.avatar用户头像
+4.gender性别
+5.created注册时间
+6.token 请保存 认真用
+
+## 查询我的相册列表
+get /search/galleries/
+token 必选 登陆返回的
+page  分页可选 默认0第几页
+size    页大小 可选默认30
+
+返回样例：
+data 字段 gallery数组
+
+## 搜索我的相册
+token 必选 登陆返回的
+page  可选 分页 默认0第几页
+size    可选 页大小 默认30
+query 必选 查询关键字 
+
+返回同上查询我的所有相册
+
+## 创建相册
+post /galleries/
+token 必选
+name 名字
+description 描述
+type int 必选 类型 未定自己指定
+
+返回样例：
+data 字段 gallery
+
+## 删除相册
+delete /galleries/{galleryId}
+galleryId url参数
+keep 可选true or false 是否保留默认true，为true的时候退出相册相册仍然保留，为false相册删除
+
+返回样例：
+data 字段 gallery
+
+## 接受邀请添加相册
+post&get  /galleries/join
+token
+invitecode 邀请码
