@@ -10,6 +10,8 @@
 		0460D13B20B93B8700699608 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D13A20B93B8700699608 /* User.swift */; };
 		0460D14320B985EC00699608 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D14220B985EC00699608 /* GalleryViewController.swift */; };
 		2FA3455F20BA9DAE00A84E54 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3455E20BA9DAE00A84E54 /* Extension.swift */; };
+		2FBB32D320BB07D700A86D16 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB32D220BB07D700A86D16 /* SettingViewController.swift */; };
+		2FBB32D520BB0DEC00A86D16 /* CreateGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */; };
 		2FCAD99220B9601400482CD5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99020B9601400482CD5 /* Image.swift */; };
 		2FCAD99320B9601400482CD5 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99120B9601400482CD5 /* Gallery.swift */; };
 		2FCAD99520B9603600482CD5 /* WaterFallCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99420B9603600482CD5 /* WaterFallCollectionViewLayout.swift */; };
@@ -56,6 +58,8 @@
 		0460D14220B985EC00699608 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		28915CBAF37BA15A4B507C8E /* Pods-memory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memory.release.xcconfig"; path = "Pods/Target Support Files/Pods-memory/Pods-memory.release.xcconfig"; sourceTree = "<group>"; };
 		2FA3455E20BA9DAE00A84E54 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		2FBB32D220BB07D700A86D16 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGalleryViewController.swift; sourceTree = "<group>"; };
 		2FCAD99020B9601400482CD5 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		2FCAD99120B9601400482CD5 /* Gallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		2FCAD99420B9603600482CD5 /* WaterFallCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFallCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 				0460D14220B985EC00699608 /* GalleryViewController.swift */,
 				2FFDCBDE20B90963000D6C4E /* NewsViewController.swift */,
 				2FFDCBE020B9096F000D6C4E /* MyViewController.swift */,
+				2FBB32D220BB07D700A86D16 /* SettingViewController.swift */,
+				2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -402,10 +408,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0460D14320B985EC00699608 /* GalleryViewController.swift in Sources */,
+				2FBB32D520BB0DEC00A86D16 /* CreateGalleryViewController.swift in Sources */,
 				2FFDCBDB20B902C7000D6C4E /* MainViewController.swift in Sources */,
 				2FCAD99320B9601400482CD5 /* Gallery.swift in Sources */,
 				2FCAD99220B9601400482CD5 /* Image.swift in Sources */,
 				2FD45A8E20B97AD500B1DACF /* Api.swift in Sources */,
+				2FBB32D320BB07D700A86D16 /* SettingViewController.swift in Sources */,
 				2FD0DE5A20B85F3200A98500 /* LoginViewController.swift in Sources */,
 				2FD0DE5820B85F3200A98500 /* AppDelegate.swift in Sources */,
 				2FFDCBDF20B90963000D6C4E /* NewsViewController.swift in Sources */,

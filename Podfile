@@ -4,4 +4,5 @@ use_frameworks!
 
 target 'memory' do
   pod 'Kingfisher', '~> 4.0'
+  pod 'ImageViewer'
 end
