@@ -12,6 +12,9 @@ import Foundation
 public struct Gallery: Codable {
     var id: Int
     var name: String
+    var description: String
+    var creater: User
+    var cover: String
     
     // TODO 稍后补充
 }

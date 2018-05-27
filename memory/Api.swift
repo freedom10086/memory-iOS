@@ -37,7 +37,7 @@ class Api {
     public static func loadGalleries(page: Int, pageSize: Int = defaultPageSize, order: Order = .newerFirst,
                                      callback: @escaping ([Gallery]?, String) -> Void){
         
-        let params = ["page":"\(page)", "pageSize": "\(pageSize)", "order": ((order == .newerFirst) ? "newerFirst" : "newerLast")]
+        let params = ["page":"\(page)", "size": "\(pageSize)", "order": ((order == .newerFirst) ? "newerFirst" : "newerLast")]
         HttpUtil.GET([Gallery].self, url: Constant.galleriesUrl, params: params, callback: callback)
     }
     

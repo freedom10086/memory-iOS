@@ -16,9 +16,12 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     
     //数据
     private var datas = [Gallery]()
-    private var testImage = "http://img4.duitang.com/uploads/item/201311/06/20131106211748_WrwS3.jpeg"
     private var searchBar: UISearchBar!
     private var searchButton: UIButton!
+    
+    private var currentPage = 1
+    private var pageSize = 1
+    private var isLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +60,40 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         searchButton.layer.borderWidth = 1.0
         searchButton.layer.borderColor = textColor.cgColor
         self.navigationItem.titleView?.addSubview(searchButton)
+        
+        loadData()
+    }
+    
+    private func loadData() {
+        if isLoading { return }
+        isLoading = true
+        
+        Api.loadGalleries(page: currentPage) { (galleries, err) in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                if let gs = galleries {
+                    if self.currentPage == 1 {
+                        self.datas = gs
+                        self.tableView.reloadData()
+                    } else {
+                        var indexs = [IndexPath]()
+                        for i in 0..<gs.count {
+                            indexs.append(IndexPath(row: self.datas.count + i, section: 0))
+                        }
+                        self.datas.append(contentsOf: gs)
+                        self.tableView.beginUpdates()
+                        self.tableView.insertRows(at: indexs, with: .automatic)
+                        self.tableView.endUpdates()
+                    }
+                    
+                    self.currentPage = self.currentPage + 1
+                    self.isLoading = false
+                } else {
+                    self.showAlert(title: "加载错误", message: err)
+                }
+                
+                self.isLoading = false
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -64,7 +101,7 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return datas.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -72,21 +109,29 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let d = datas[indexPath.row]
+        let d = datas[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let backgroundImage = cell.viewWithTag(4) as! UIImageView
         let name = cell.viewWithTag(1) as! UILabel
         let comment = cell.viewWithTag(2) as! UILabel
         let username = cell.viewWithTag(3) as! UILabel
         
-        backgroundImage.kf.setImage(with: URL(string: testImage), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        name.text = d.name
+        comment.text = "100"
+        username.text = "创建人:\(d.creater.name)"
+        
+        backgroundImage.kf.setImage(with: URL(string: d.cover), placeholder: #imageLiteral(resourceName: "image_placeholder"))
         backgroundImage.clipsToBounds = true
         backgroundImage.layer.cornerRadius = 8.0
-        //forceTouch
-        //if traitCollection.forceTouchCapability == .available {
-        //    registerForPreviewing(with: self, sourceView: cell)
-        //}
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = datas.count - 1
+        if !isLoading && indexPath.row == lastElement {
+            print("load more next page is:\(currentPage)")
+            loadData()
+        }
     }
 }

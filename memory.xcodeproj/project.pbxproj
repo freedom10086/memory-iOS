@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0460D13B20B93B8700699608 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D13A20B93B8700699608 /* User.swift */; };
 		0460D14320B985EC00699608 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D14220B985EC00699608 /* GalleryViewController.swift */; };
+		2FA3455F20BA9DAE00A84E54 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3455E20BA9DAE00A84E54 /* Extension.swift */; };
 		2FCAD99220B9601400482CD5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99020B9601400482CD5 /* Image.swift */; };
 		2FCAD99320B9601400482CD5 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99120B9601400482CD5 /* Gallery.swift */; };
 		2FCAD99520B9603600482CD5 /* WaterFallCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99420B9603600482CD5 /* WaterFallCollectionViewLayout.swift */; };
@@ -54,6 +55,7 @@
 		0460D13A20B93B8700699608 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0460D14220B985EC00699608 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		28915CBAF37BA15A4B507C8E /* Pods-memory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memory.release.xcconfig"; path = "Pods/Target Support Files/Pods-memory/Pods-memory.release.xcconfig"; sourceTree = "<group>"; };
+		2FA3455E20BA9DAE00A84E54 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		2FCAD99020B9601400482CD5 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		2FCAD99120B9601400482CD5 /* Gallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		2FCAD99420B9603600482CD5 /* WaterFallCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFallCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				2FD45A8D20B97AD500B1DACF /* Api.swift */,
 				2FD45A8B20B971A700B1DACF /* HttpUtil.swift */,
 				2FCAD99420B9603600482CD5 /* WaterFallCollectionViewLayout.swift */,
+				2FA3455E20BA9DAE00A84E54 /* Extension.swift */,
 			);
 			path = memory;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				2FFDCBDF20B90963000D6C4E /* NewsViewController.swift in Sources */,
 				2FCAD99920B9699A00482CD5 /* Settings.swift in Sources */,
 				2FFDCBE120B9096F000D6C4E /* MyViewController.swift in Sources */,
+				2FA3455F20BA9DAE00A84E54 /* Extension.swift in Sources */,
 				2FFDCBDD20B90711000D6C4E /* GalleriesViewController.swift in Sources */,
 				2FD45A8A20B96DD500B1DACF /* Constant.swift in Sources */,
 				0460D13B20B93B8700699608 /* User.swift in Sources */,
@@ -595,7 +599,10 @@
 					"$(PROJECT_DIR)/memory",
 				);
 				INFOPLIST_FILE = memory/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "memory/memory-Bridging-Header.h";
@@ -618,7 +625,10 @@
 					"$(PROJECT_DIR)/memory",
 				);
 				INFOPLIST_FILE = memory/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "memory/memory-Bridging-Header.h";
@@ -634,7 +644,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = memoryTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memoryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -650,7 +664,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = memoryTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memoryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -665,7 +683,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = memoryUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memoryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -680,7 +702,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = memoryUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memoryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

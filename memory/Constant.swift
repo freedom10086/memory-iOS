@@ -14,7 +14,7 @@ class Constant {
     
     public static let host = "localhost"
     
-    public static let baseUrl = "https://localhost"
+    public static let baseUrl = "https://\(host)"
     
     // 登陆
     public static let loginUrl = "\(baseUrl)/login"
