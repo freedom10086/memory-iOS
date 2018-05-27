@@ -487,7 +487,7 @@
         <scene sceneID="aEA-CI-Kcu">
             <objects>
                 <tabBarController id="nyZ-mL-lc8" customClass="MainViewController" customModule="memory" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DRs-rD-Y9q">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" id="DRs-rD-Y9q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -540,7 +540,9 @@
         <scene sceneID="S5E-wN-QP0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mvP-zc-tRc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="印迹" id="Bvl-s8-F4S"/>
+                    <tabBarItem key="tabBarItem" title="印迹" id="Bvl-s8-F4S">
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="1"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RyZ-Si-4tZ" userLabel="印迹">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
