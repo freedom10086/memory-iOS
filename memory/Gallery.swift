@@ -13,8 +13,15 @@ public struct Gallery: Codable {
     var id: Int
     var name: String
     var description: String
-    var creater: User
-    var cover: String?
+    var type: Int
     
-    // TODO 稍后补充
+    var creater: User? //创建人
+    var cover: String? //封面
+    
+    var images: Int //图片数
+    var users: Int //用户数
+    
+    var groups: [ImageGroup]?
+    var created: String
+    var updated: String
 }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0460D13B20B93B8700699608 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D13A20B93B8700699608 /* User.swift */; };
 		0460D14320B985EC00699608 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D14220B985EC00699608 /* GalleryViewController.swift */; };
+		2F128E1D20BC3FE800FB02A9 /* ImageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */; };
+		2F128E1F20BC40C800FB02A9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F128E1E20BC40C800FB02A9 /* Comment.swift */; };
 		2FA3455F20BA9DAE00A84E54 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3455E20BA9DAE00A84E54 /* Extension.swift */; };
 		2FBB32D320BB07D700A86D16 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB32D220BB07D700A86D16 /* SettingViewController.swift */; };
 		2FBB32D520BB0DEC00A86D16 /* CreateGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */; };
@@ -33,6 +35,7 @@
 		2FFDCBDD20B90711000D6C4E /* GalleriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFDCBDC20B90711000D6C4E /* GalleriesViewController.swift */; };
 		2FFDCBDF20B90963000D6C4E /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFDCBDE20B90963000D6C4E /* NewsViewController.swift */; };
 		2FFDCBE120B9096F000D6C4E /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFDCBE020B9096F000D6C4E /* MyViewController.swift */; };
+		387AC5CFCBC7A5FC65ED5BD0 /* UploadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AC096A3ED2A8FF50F9081 /* UploadResult.swift */; };
 		67008016047255ADE6521321 /* Pods_memory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788E289556C66B83E09CF4F3 /* Pods_memory.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +60,8 @@
 		0460D13A20B93B8700699608 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0460D14220B985EC00699608 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		28915CBAF37BA15A4B507C8E /* Pods-memory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memory.release.xcconfig"; path = "Pods/Target Support Files/Pods-memory/Pods-memory.release.xcconfig"; sourceTree = "<group>"; };
+		2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGroup.swift; sourceTree = "<group>"; };
+		2F128E1E20BC40C800FB02A9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		2FA3455E20BA9DAE00A84E54 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		2FBB32D220BB07D700A86D16 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGalleryViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +93,7 @@
 		2FFDCBDC20B90711000D6C4E /* GalleriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleriesViewController.swift; sourceTree = "<group>"; };
 		2FFDCBDE20B90963000D6C4E /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		2FFDCBE020B9096F000D6C4E /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
+		387AC096A3ED2A8FF50F9081 /* UploadResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadResult.swift; sourceTree = "<group>"; };
 		788E289556C66B83E09CF4F3 /* Pods_memory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_memory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F77CB1F111145E60F33606 /* Pods-memory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-memory/Pods-memory.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +133,9 @@
 				0460D13A20B93B8700699608 /* User.swift */,
 				2FCAD99020B9601400482CD5 /* Image.swift */,
 				2FCAD99620B9676F00482CD5 /* ApiResult.swift */,
+				2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */,
+				2F128E1E20BC40C800FB02A9 /* Comment.swift */,
+				387AC096A3ED2A8FF50F9081 /* UploadResult.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -371,10 +380,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-memory/Pods-memory-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ImageViewer/ImageViewer.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageViewer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,7 +428,9 @@
 				2FD0DE5A20B85F3200A98500 /* LoginViewController.swift in Sources */,
 				2FD0DE5820B85F3200A98500 /* AppDelegate.swift in Sources */,
 				2FFDCBDF20B90963000D6C4E /* NewsViewController.swift in Sources */,
+				2F128E1F20BC40C800FB02A9 /* Comment.swift in Sources */,
 				2FCAD99920B9699A00482CD5 /* Settings.swift in Sources */,
+				2F128E1D20BC3FE800FB02A9 /* ImageGroup.swift in Sources */,
 				2FFDCBE120B9096F000D6C4E /* MyViewController.swift in Sources */,
 				2FA3455F20BA9DAE00A84E54 /* Extension.swift in Sources */,
 				2FFDCBDD20B90711000D6C4E /* GalleriesViewController.swift in Sources */,
@@ -426,6 +439,7 @@
 				2FCAD99720B9676F00482CD5 /* ApiResult.swift in Sources */,
 				2FD45A8C20B971A700B1DACF /* HttpUtil.swift in Sources */,
 				2FCAD99520B9603600482CD5 /* WaterFallCollectionViewLayout.swift in Sources */,
+				387AC5CFCBC7A5FC65ED5BD0 /* UploadResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

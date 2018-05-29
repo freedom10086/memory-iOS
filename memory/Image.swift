@@ -9,7 +9,14 @@
 import Foundation
 
 // 单张图片实体类
-public struct Image {
+public struct Image: Codable {
     var id: Int
+    
+    var galleryId: Int
     var url: String
+    var creater: User
+    var description: String?
+    var likes: Int
+    var comments: Int
+    var created: String
 }
