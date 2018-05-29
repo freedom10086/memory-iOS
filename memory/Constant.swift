@@ -28,4 +28,8 @@ class Constant {
     }
     
     public static var newImagesUrl = "\(baseUrl)/galleries/new-image-groups/"
+    
+    public static var uploadImageUrl = "\(baseUrl)/files/"
+    
+    public static var uploadRawImageUrl = "\(baseUrl)/files/raw/"
 }

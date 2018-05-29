@@ -29,7 +29,8 @@ public class Api {
         }
         
         // 调用http的post请求
-        HttpUtil.POST(User.self, url: Constant.loginUrl, params: params, callback: callback)
+        HttpUtil.REQUEST(User.self, url: Constant.loginUrl, method:"POST",
+                         params: params, callback: callback)
     }
     
     // 获得我的相册列表
@@ -38,20 +39,25 @@ public class Api {
                                      callback: @escaping ([Gallery]?, String) -> Void){
         
         let params = ["page":"\(page)", "size": "\(pageSize)", "order": ((order == .newerFirst) ? "newerFirst" : "newerLast")]
-        HttpUtil.GET([Gallery].self, url: Constant.galleriesUrl, params: params, callback: callback)
+        HttpUtil.REQUEST([Gallery].self, url: Constant.galleriesUrl, params: params, callback: callback)
     }
     
     // 查询单个相册信息并返回图片列表的指定页
     public static func loadGallery(id: Int, page: Int, pageSize: Int = defaultPageSize, order: Order = .newerFirst,
                                    callback: @escaping (Gallery?, String) -> Void) {
         let params = ["page":"\(page)", "pageSize": "\(pageSize)", "order": ((order == .newerFirst) ? "newerFirst" : "newerLast")]
-        HttpUtil.GET(Gallery.self, url: Constant.galleryUrl(id: id), params: params, callback: callback)
+        HttpUtil.REQUEST(Gallery.self, url: Constant.galleryUrl(id: id), params: params, callback: callback)
     }
     
     // 最新页面
     public static func loadNewsImages(page: Int, pageSize: Int = defaultPageSize,callback: @escaping ([ImageGroup]?, String) -> Void) {
         let params = ["page":"\(page)", "pageSize": "\(pageSize)"]
-        HttpUtil.GET([ImageGroup].self, url: Constant.newImagesUrl, params: params, callback: callback)
+        HttpUtil.REQUEST([ImageGroup].self, url: Constant.newImagesUrl, params: params, callback: callback)
+    }
+    
+    // 上传图片
+    public static func uploadImage(data: Data, callback: @escaping (UploadResult? , String) -> Void) {
+        HttpUtil.UPLOAD(url: Constant.uploadRawImageUrl, data: data, callback: callback)
     }
     
     // TODO

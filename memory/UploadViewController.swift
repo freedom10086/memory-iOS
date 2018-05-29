@@ -31,6 +31,39 @@ class UploadViewController: UITableViewController, UICollectionViewDataSource, U
     
     }
     
+    private func upload(position: Int, imageData: Data) {
+        Api.uploadImage(data: imageData) { (res, err) in
+            if position > (self.images.count - 1) || self.images[position].data != imageData {
+                print("upload done but not match may canceled before")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                if let r = res {
+                    print("upload success \(r)")
+                    self.images[position].state = .success
+                    self.images[position].etag = r.etag
+                    self.images[position].url = r.url
+                } else {
+                    print("upload error \(err)")
+                    self.images[position].state = .failed
+                    
+                    let alert = UIAlertController(title: "图片上传失败", message:  "\(err)\n请选择要执行的操作", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "删除", style: .destructive, handler: { (action) in
+                        self.images.remove(at: position)
+                        self.imagesCollectionView.deleteItems(at: [IndexPath(item: position, section: 0)])
+                    }))
+                    alert.addAction(UIAlertAction(title: "重试", style: .default, handler: { (action) in
+                        self.upload(position: position, imageData: imageData)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
+                self.imagesCollectionView.reloadItems(at: [IndexPath(item: position, section: 0)])
+            }
+        }
+    }
+    
     // 点击触发选择图片
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == images.count {
@@ -66,13 +99,10 @@ class UploadViewController: UITableViewController, UICollectionViewDataSource, U
         picker.dismiss(animated: true, completion: nil)
         
         if let imageData = pickedImageData {
-            images.append(UploadResult(url: "1", etag: "2", data: imageData))
+            images.append(UploadResult(url: "url", etag: "etag", data: imageData))
             let indexPath = IndexPath(item: images.count - 1, section: 0)
             self.imagesCollectionView.insertItems(at: [indexPath])
-            
-            //uploadImage(position: indexPath.row, imageData: imageData)
-            
-            // TODO 真正的上传
+            upload(position: indexPath.row, imageData: imageData)
         } else {
             let alert = UIAlertController(title: "无法解析的图片,请换一张试试", message: "请选择适合的图片", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
@@ -128,68 +158,32 @@ class UploadViewController: UITableViewController, UICollectionViewDataSource, U
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 3
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+
+        let image = cell.viewWithTag(1) as! UIImageView
+        let galleryName = cell.viewWithTag(2) as! UILabel
 
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if cell.accessoryType == .checkmark {
+                cell.accessoryType = .none
+            } else {
+                cell.accessoryType = .checkmark
+            }
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

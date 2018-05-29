@@ -13,15 +13,133 @@ import Foundation
 //自动加入token参数 自动json解析，自动错误处理
 class HttpUtil {
     
+    public static var enableStatusProgress = true
+    
     //当前正在执行的网络请求数目用于控制小菊花
-    private static var  workingSize = 0 {
+    private static var workingSize = 0 {
         didSet {
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = workingSize > 0
+            if (workingSize == 0 || workingSize == 1) && enableStatusProgress {
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = workingSize > 0
+                }
             }
         }
     }
+
+    public static func REQUEST<T>(_ type: T.Type, url: String,
+                                  method:String = "GET", params: [String: Any]?,
+                                  callback: @escaping (T? , String) -> Void) where T : Codable {
+        
+        var url = getUrl(url: url)
+        
+        var ps  = params
+        if let token = Settings.token {
+            if ps != nil {
+                ps!["token"] = token
+            } else {
+                ps = ["token": token]
+            }
+        }
+        
+        let p = encodeParameters(ps)
+        if let q = p, method == "GET" {
+            if url.contains("?") {
+                url = url + "&" + q
+            } else {
+                url = url + "?" + q
+            }
+        }
+        
+        let u: URL?
+        if method == "GET" {
+            u = URL(string: url)
+        } else {
+            u = URLComponents(string: url)?.url
+        }
+        
+        if u == nil {
+            callback(nil, "请求链接不合法:\(url)")
+            return
+        }
+        
+        var request = URLRequest(url: u!)
+        request.httpMethod = method
+        request.timeoutInterval = 8
+        
+        if let q = p, method != "GET" {
+            request.httpBody = q.data(using: .utf8)
+        }
+        
+        print("start http \(method) url:\(url)")
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            HttpUtil.workingSize -= 1
+            handleResponse(type, data: data, response: response, error: error, callback: callback)
+        }
+        
+        HttpUtil.workingSize += 1
+        task.resume()
+    }
     
+    // 上传文件
+    public static func UPLOAD(url: String, data: Data, callback: @escaping (UploadResult? , String) -> Void) {
+        let u: String
+        if let token = Settings.token {
+            if url.contains("?") {
+                u = getUrl(url: "\(url)&token=\(token)")
+            } else {
+                u = getUrl(url: "\(url)?token=\(token)")
+            }
+        } else {
+            u = getUrl(url: url)
+        }
+        
+        var request = URLRequest(url: URL(string: u)!, cachePolicy: .reloadIgnoringCacheData)
+        request.httpMethod = "POST"
+        let uploadTask = URLSession.shared.uploadTask(with: request, from: data) {
+            (data:Data?, response:URLResponse?, error:Error?) -> Void in
+            HttpUtil.workingSize -= 1
+            handleResponse(UploadResult.self, data: data, response: response, error: error, callback: callback)
+        }
+        
+        HttpUtil.workingSize += 1
+        uploadTask.resume()
+    }
+    
+    private static func handleResponse<T>(_ type: T.Type,
+                                          data:Data?, response:URLResponse?, error:Error?, callback: @escaping (T? , String) -> Void) where T : Codable {
+        if let error = error {
+            callback(nil, error.localizedDescription)
+            return
+        }
+        
+        guard let response = response as? HTTPURLResponse else {
+            callback(nil, "not a HTTPURLResponse")
+            return
+        }
+        
+        // check code 200-300
+        if let mimeType = response.mimeType,mimeType == "application/json", let data = data {
+            do {
+                let res = try JSONDecoder().decode(ApiResult<T>.self, from: data)
+                if res.status == 200 {
+                    callback(res.data, res.message ?? "success")
+                } else {
+                    callback(nil, res.message ?? "success")
+                }
+                return
+            } catch let err {
+                callback(nil, err.localizedDescription)
+                return
+            }
+        } else {
+            if let d = data, let errstring = String(data: d, encoding: .utf8) {
+                callback(nil, errstring)
+                return
+            } else {
+                callback(nil, "empty or unknown response")
+            }
+        }
+    }
     
     public static func encodeUrl(url: Any) -> String? {
         return encodeURIComponent(string: String(describing: url))
@@ -31,129 +149,6 @@ class HttpUtil {
     
     public static func decodeUrl(url: String) -> String {
         return url.replacingOccurrences(of: "&amp;", with: "&")
-    }
-
-    // get 请求方法
-    public static func GET<T>(_ type: T.Type, url: String, params: [String: String]?, callback: @escaping (T? , String) -> Void) where T : Codable {
-        var url = getUrl(url: url)
-        var ps  = params
-        if let token = Settings.token {
-            if ps != nil {
-                ps!["token"] = token
-            } else {
-                ps = ["token": token]
-            }
-        }
-        if let p = encodeParameters(ps) {
-            if url.contains("?") {
-                url = url + "&" + p
-            } else {
-                url = url + "?" + p
-            }
-        }
-        
-        guard let u = URL(string: url) else {
-            callback(nil, "错误的请求地址:\(url)")
-            return
-        }
-        
-        var request = URLRequest(url: u)
-        request.httpMethod = "GET"
-        request.timeoutInterval = 8
-        
-        print("start http get url:\(request.url?.absoluteString ?? "")")
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            HttpUtil.workingSize -= 1
-            guard let data = data, error == nil else {
-                print("error=\(String(describing: error))")
-                callback(nil, error?.localizedDescription ?? "似乎已断开与互联网的连接")
-                return
-            }
-            
-            // data != nil && error = nil
-            if let res = try? JSONDecoder().decode(ApiResult<T>.self, from: data) {
-                if res.status != 200 {
-                    callback(nil, res.message)
-                    return
-                }
-                
-                if let d = res.data {
-                    callback(d, res.message)
-                    return
-                }
-                callback(nil, "未知错误")
-            } else {
-                // decode error
-                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                    callback(nil, "Http Status: \(httpStatus.statusCode) error: \(String(data: data, encoding: .utf8) ?? "未知错误")")
-                } else {
-                    callback(nil, "error: \(String(data: data, encoding: .utf8) ?? "未知错误")")
-                }
-            }
-        }
-        
-        HttpUtil.workingSize += 1
-        task.resume()
-    }
-    
-    // post 请求
-    public static func POST<T>(_ type: T.Type, url: String, params: [String: Any]?, callback: @escaping (T? , String) -> Void) where T : Codable {
-        let url = getUrl(url: url)
-        let components = URLComponents(string: url)
-        guard let u = components?.url else {
-            callback(nil, "请求链接不合法:\(url)");
-            return
-        }
-        
-        var ps = params
-        if let token = Settings.token {
-            if ps != nil {
-                ps!["token"] = token
-            } else {
-                ps = ["token": token]
-            }
-        }
-        
-        var request = URLRequest(url: u)
-        request.httpMethod = "POST"
-        request.timeoutInterval = 10
-        
-        if let p = encodeParameters(ps) {
-            request.httpBody = p.data(using: .utf8)
-        }
-        
-        print("start http post url:\(url)")
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            HttpUtil.workingSize -= 1
-            guard let data = data, error == nil else {
-                print("error=\(String(describing: error))")
-                callback(nil, error?.localizedDescription ?? "似乎已断开与互联网的连接")
-                return
-            }
-            
-            // data != nil && error = nil
-            if let res = try? JSONDecoder().decode(ApiResult<T>.self, from: data) {
-                if res.status != 200 {
-                    callback(nil, res.message)
-                    return
-                }
-                if let d = res.data {
-                    callback(d, res.message)
-                    return
-                }
-            } else {
-                print("decode error")
-                // decode error
-                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                    callback(nil, "Http Status: \(httpStatus.statusCode) error: \(String(data: data, encoding: .utf8) ?? "未知错误")")
-                } else {
-                    callback(nil, "error: \(String(data: data, encoding: .utf8) ?? "未知错误")")
-                }
-            }
-        }
-        
-        HttpUtil.workingSize += 1
-        task.resume()
     }
     
     private static func encodeParameters(_ params: [String: Any]?) -> String? {
