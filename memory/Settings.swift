@@ -10,19 +10,33 @@ import Foundation
 
 // 首选项管理类
 public class Settings {
-    private static let key_user = "key_user"
+    private static let key_user_name = "key_user_name"
+    private static let key_user_avatar = "key_user_avatar"
+    
     private static let key_open_id = "key_open_id"
     private static let key_access_token = "key_access_token"
     private static let key_expires_in = "key_expires_in"
     private static let key_token = "key_token"
     
-    public static var user: User? {
+    //username
+    public static var username: String? {
         get {
-            return UserDefaults.standard.value(forKey: key_user) as? User
+            return UserDefaults.standard.string(forKey: key_user_name)
         }
         
         set {
-            UserDefaults.standard.set(newValue, forKey: key_user)
+            UserDefaults.standard.set(newValue, forKey: key_user_name)
+        }
+    }
+    
+    //useravatar
+    public static var avatar: String? {
+        get {
+            return UserDefaults.standard.string(forKey: key_user_avatar)
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: key_user_avatar)
         }
     }
     

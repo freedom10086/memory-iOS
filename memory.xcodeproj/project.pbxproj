@@ -11,6 +11,10 @@
 		0460D14320B985EC00699608 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D14220B985EC00699608 /* GalleryViewController.swift */; };
 		2F128E1D20BC3FE800FB02A9 /* ImageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */; };
 		2F128E1F20BC40C800FB02A9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F128E1E20BC40C800FB02A9 /* Comment.swift */; };
+		2F36D85920BD15A100CC8515 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F36D85820BD15A000CC8515 /* LoadMoreView.swift */; };
+		2F36D85B20BD1A8800CC8515 /* LoadMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F36D85A20BD1A8800CC8515 /* LoadMoreView.xib */; };
+		2F36D85D20BD22A500CC8515 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F36D85C20BD22A400CC8515 /* MessageViewController.swift */; };
+		2F36D85F20BD24A600CC8515 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F36D85E20BD24A600CC8515 /* FeedbackViewController.swift */; };
 		2FA3455F20BA9DAE00A84E54 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3455E20BA9DAE00A84E54 /* Extension.swift */; };
 		2FBB32D320BB07D700A86D16 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB32D220BB07D700A86D16 /* SettingViewController.swift */; };
 		2FBB32D520BB0DEC00A86D16 /* CreateGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */; };
@@ -31,6 +35,8 @@
 		2FD45A8A20B96DD500B1DACF /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD45A8920B96DD500B1DACF /* Constant.swift */; };
 		2FD45A8C20B971A700B1DACF /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD45A8B20B971A700B1DACF /* HttpUtil.swift */; };
 		2FD45A8E20B97AD500B1DACF /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD45A8D20B97AD500B1DACF /* Api.swift */; };
+		2FE3025120BD093500CE392C /* RSRefreshState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3024F20BD093500CE392C /* RSRefreshState.swift */; };
+		2FE3025220BD093500CE392C /* RSRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3025020BD093500CE392C /* RSRefreshControl.swift */; };
 		2FFDCBDB20B902C7000D6C4E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFDCBDA20B902C7000D6C4E /* MainViewController.swift */; };
 		2FFDCBDD20B90711000D6C4E /* GalleriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFDCBDC20B90711000D6C4E /* GalleriesViewController.swift */; };
 		2FFDCBDF20B90963000D6C4E /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFDCBDE20B90963000D6C4E /* NewsViewController.swift */; };
@@ -62,6 +68,10 @@
 		28915CBAF37BA15A4B507C8E /* Pods-memory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memory.release.xcconfig"; path = "Pods/Target Support Files/Pods-memory/Pods-memory.release.xcconfig"; sourceTree = "<group>"; };
 		2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGroup.swift; sourceTree = "<group>"; };
 		2F128E1E20BC40C800FB02A9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		2F36D85820BD15A000CC8515 /* LoadMoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
+		2F36D85A20BD1A8800CC8515 /* LoadMoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreView.xib; sourceTree = "<group>"; };
+		2F36D85C20BD22A400CC8515 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		2F36D85E20BD24A600CC8515 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		2FA3455E20BA9DAE00A84E54 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		2FBB32D220BB07D700A86D16 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGalleryViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +99,8 @@
 		2FD45A8920B96DD500B1DACF /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		2FD45A8B20B971A700B1DACF /* HttpUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		2FD45A8D20B97AD500B1DACF /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		2FE3024F20BD093500CE392C /* RSRefreshState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSRefreshState.swift; sourceTree = "<group>"; };
+		2FE3025020BD093500CE392C /* RSRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSRefreshControl.swift; sourceTree = "<group>"; };
 		2FFDCBDA20B902C7000D6C4E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2FFDCBDC20B90711000D6C4E /* GalleriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleriesViewController.swift; sourceTree = "<group>"; };
 		2FFDCBDE20B90963000D6C4E /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +138,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F03D45920BD090700449B57 /* widget */ = {
+			isa = PBXGroup;
+			children = (
+				2F36D85820BD15A000CC8515 /* LoadMoreView.swift */,
+				2F36D85A20BD1A8800CC8515 /* LoadMoreView.xib */,
+				2FE3025020BD093500CE392C /* RSRefreshControl.swift */,
+				2FE3024F20BD093500CE392C /* RSRefreshState.swift */,
+			);
+			name = widget;
+			path = memory;
+			sourceTree = "<group>";
+		};
 		2FCAD98F20B9600600482CD5 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				2FD0DE5620B85F3200A98500 /* memory */,
+				2F03D45920BD090700449B57 /* widget */,
 				2FD0DE6B20B85F3400A98500 /* memoryTests */,
 				2FD0DE7620B85F3400A98500 /* memoryUITests */,
 				2FD0DE5520B85F3200A98500 /* Products */,
@@ -230,6 +255,8 @@
 				2FFDCBE020B9096F000D6C4E /* MyViewController.swift */,
 				2FBB32D220BB07D700A86D16 /* SettingViewController.swift */,
 				2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */,
+				2F36D85C20BD22A400CC8515 /* MessageViewController.swift */,
+				2F36D85E20BD24A600CC8515 /* FeedbackViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -353,6 +380,7 @@
 				2FD0DE6220B85F3300A98500 /* LaunchScreen.storyboard in Resources */,
 				2FD0DE5F20B85F3300A98500 /* Assets.xcassets in Resources */,
 				2FD0DE5D20B85F3200A98500 /* Main.storyboard in Resources */,
+				2F36D85B20BD1A8800CC8515 /* LoadMoreView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,12 +452,16 @@
 				2FCAD99320B9601400482CD5 /* Gallery.swift in Sources */,
 				2FCAD99220B9601400482CD5 /* Image.swift in Sources */,
 				2FD45A8E20B97AD500B1DACF /* Api.swift in Sources */,
+				2FE3025220BD093500CE392C /* RSRefreshControl.swift in Sources */,
+				2F36D85F20BD24A600CC8515 /* FeedbackViewController.swift in Sources */,
 				2FBB32D320BB07D700A86D16 /* SettingViewController.swift in Sources */,
 				2FD0DE5A20B85F3200A98500 /* LoginViewController.swift in Sources */,
 				2FD0DE5820B85F3200A98500 /* AppDelegate.swift in Sources */,
 				2FFDCBDF20B90963000D6C4E /* NewsViewController.swift in Sources */,
 				2F128E1F20BC40C800FB02A9 /* Comment.swift in Sources */,
 				2FCAD99920B9699A00482CD5 /* Settings.swift in Sources */,
+				2F36D85920BD15A100CC8515 /* LoadMoreView.swift in Sources */,
+				2F36D85D20BD22A500CC8515 /* MessageViewController.swift in Sources */,
 				2F128E1D20BC3FE800FB02A9 /* ImageGroup.swift in Sources */,
 				2FFDCBE120B9096F000D6C4E /* MyViewController.swift in Sources */,
 				2FA3455F20BA9DAE00A84E54 /* Extension.swift in Sources */,
@@ -439,6 +471,7 @@
 				2FCAD99720B9676F00482CD5 /* ApiResult.swift in Sources */,
 				2FD45A8C20B971A700B1DACF /* HttpUtil.swift in Sources */,
 				2FCAD99520B9603600482CD5 /* WaterFallCollectionViewLayout.swift in Sources */,
+				2FE3025120BD093500CE392C /* RSRefreshState.swift in Sources */,
 				387AC5CFCBC7A5FC65ED5BD0 /* UploadResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,7 +654,10 @@
 					"$(PROJECT_DIR)/memory",
 				);
 				INFOPLIST_FILE = memory/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "memory/memory-Bridging-Header.h";
@@ -644,7 +680,10 @@
 					"$(PROJECT_DIR)/memory",
 				);
 				INFOPLIST_FILE = memory/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "memory/memory-Bridging-Header.h";
@@ -660,7 +699,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = memoryTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memoryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -676,7 +719,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = memoryTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memoryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -691,7 +738,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = memoryUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memoryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -706,7 +757,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = memoryUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.memoryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

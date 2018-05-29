@@ -13,13 +13,17 @@ import Kingfisher
 class NewsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
+
+    private var datas = [ImageGroup]()
+    
     private var currentPage = 1
-    private var totalPage = Int.max
+    private var pageSize = 30
+    private var haveMore = false
+    
+    var rsRefreshControl: RSRefreshControl!
     private var isLoading = false
-    private var datas = [Image]()
-    
-    var testImage = "http://img4.duitang.com/uploads/item/201311/06/20131106211748_WrwS3.jpeg"
-    
+
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +34,13 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
         //self.automaticallyAdjustsScrollViewInsets = false //修复collectionView头部空白
         collectionView.collectionViewLayout = layout
         
+        //init refresh control
+        rsRefreshControl = RSRefreshControl()
+        rsRefreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        collectionView.addSubview(rsRefreshControl!)
+        
         self.navigationItem.title = "最新"
+        rsRefreshControl?.beginRefreshing()
         loadData()
     }
     
@@ -40,32 +50,46 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.navigationItem.largeTitleDisplayMode = .automatic
     }
     
+    @objc private func reloadData() {
+        currentPage = 1
+        loadData()
+    }
+    
     func loadData() {
         isLoading = true
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-            var subDatas = [Image]()
-            
-            for i in 0..<20 {
-                subDatas.append(Image(id: i, url: self.testImage))
-            }
-            
-            if self.currentPage == 1 {
-                self.datas = subDatas
-                self.collectionView.reloadData()
-            } else {
-                var indexs = [IndexPath]()
-                for i in 0..<subDatas.count {
-                    indexs.append(IndexPath(row: self.datas.count + i, section: 0))
+        Api.loadNewsImages(page: currentPage, pageSize: pageSize) { (imageGroups, err) in
+            DispatchQueue.main.async {
+                self.rsRefreshControl?.endRefreshing(message: imageGroups != nil ? "刷新成功...":"刷新失败...")
+                if let subDatas = imageGroups {
+                    if self.currentPage == 1 {
+                        self.datas = subDatas
+                        self.collectionView.reloadData()
+                    } else {
+                        var indexs = [IndexPath]()
+                        for i in 0..<subDatas.count {
+                            indexs.append(IndexPath(row: self.datas.count + i, section: 0))
+                        }
+                        self.datas.append(contentsOf: subDatas)
+                        self.collectionView.insertItems(at: indexs)
+                    }
+                    
+                    if subDatas.count < self.pageSize {
+                        self.haveMore = true
+                        self.currentPage = self.currentPage + 1
+                    } else {
+                        self.haveMore = false
+                    }
+                } else {
+                    if self.currentPage == 1 {
+                        self.datas = []
+                        self.collectionView.reloadData()
+                    }
+                    self.showAlert(title: "加载错误", message: err)
                 }
-                self.datas.append(contentsOf: subDatas)
-                print("here :\(subDatas.count)")
-                self.collectionView.insertItems(at: indexs)
+                
+                self.isLoading = false
             }
-            
-            self.currentPage = self.currentPage + 1
-            self.isLoading = false
-        })
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -92,19 +116,25 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         let d = datas[indexPath.row]
         let image = cell.viewWithTag(1) as! UIImageView
-        //let title = cell.viewWithTag(2) as! UILabel
-        //let author = cell.viewWithTag(3) as! UILabel
-        //let likes = cell.viewWithTag(4) as! UILabel
+        let uploader = cell.viewWithTag(2) as! UILabel
+        let count = cell.viewWithTag(3) as! UILabel
         
-        image.kf.setImage(with: URL(string: d.url), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        if let url = d.images?[0].url {
+            image.kf.setImage(with: URL(string: url), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        } else {
+            image.image = #imageLiteral(resourceName: "image_placeholder")
+        }
         
-        //title.text = d.title
-        //author.text = d.author
-        //likes.text = d.views
+        if let username = d.creater?.name {
+            uploader.text = username
+        } else {
+            uploader.text = nil
+        }
         
+        count.text = "\(d.images?.count ?? 0)张"
+
         return cell
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("did select \(indexPath.row)")
@@ -112,8 +142,8 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let lastElement = datas.count - 1
-        if !isLoading && indexPath.row == lastElement && currentPage < totalPage {
-            print("load more next page is:\(currentPage) sum is:\(totalPage)")
+        if !isLoading && indexPath.row == lastElement && haveMore {
+            print("load more next page is:\(currentPage)")
             loadData()
         }
     }
@@ -122,13 +152,12 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
-    
 }
 
 extension NewsViewController: WaterFallLayoutDelegate {
     func itemHeightFor(indexPath: IndexPath, itemWidth: CGFloat) -> CGFloat {
-        if datas[indexPath.row] != nil {
-            return itemWidth + CGFloat(arc4random_uniform(UInt32(itemWidth))) + 30
+        if datas[indexPath.row].images != nil && datas[indexPath.row].images!.count > 0 {
+            return itemWidth + CGFloat(arc4random_uniform(UInt32(itemWidth)))
         } else {
             return itemWidth
         }

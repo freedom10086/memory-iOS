@@ -6,7 +6,7 @@
 import Foundation
 
 
-public struct Comment: Codable {
+public struct UploadResult: Codable {
     var url: String
     var etag: String
 }

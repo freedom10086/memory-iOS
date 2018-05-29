@@ -12,9 +12,9 @@ import Foundation
 // 要添加Api支持添加新的函数在Constant.swift中添加url
 // callback的第一个返回类型为此Api返回的data的类型，如果类型没有请在model包里面新建，字段名称要和json名称对应
 // 第一个参数为类型.self 如 User.self [User].self 分别表示单个用户 和 用户列表
-class Api {
+public class Api {
     
-    private static let defaultPageSize = 30
+    public static let defaultPageSize = 30
     
     public enum Order {
         case newerFirst //新的在前
@@ -46,6 +46,12 @@ class Api {
                                    callback: @escaping (Gallery?, String) -> Void) {
         let params = ["page":"\(page)", "pageSize": "\(pageSize)", "order": ((order == .newerFirst) ? "newerFirst" : "newerLast")]
         HttpUtil.GET(Gallery.self, url: Constant.galleryUrl(id: id), params: params, callback: callback)
+    }
+    
+    // 最新页面
+    public static func loadNewsImages(page: Int, pageSize: Int = defaultPageSize,callback: @escaping ([ImageGroup]?, String) -> Void) {
+        let params = ["page":"\(page)", "pageSize": "\(pageSize)"]
+        HttpUtil.GET([ImageGroup].self, url: Constant.newImagesUrl, params: params, callback: callback)
     }
     
     // TODO

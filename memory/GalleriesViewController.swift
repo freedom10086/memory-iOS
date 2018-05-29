@@ -20,14 +20,43 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     private var searchButton: UIButton!
     
     private var currentPage = 1
-    private var pageSize = 1
-    private var isLoading = false
+    private var pageSize = 30
+    private var haveMore = false
+    var rsRefreshControl: RSRefreshControl!
+    
+    private var loading = false
+    open var isLoading: Bool {
+        get {
+            return loading
+        }
+        set {
+            loading = newValue
+            let footer = tableView.tableFooterView as? LoadMoreView
+            if self.currentPage == 1 {
+                footer?.isHidden = true
+            } else {
+                footer?.isHidden = false
+                if !loading {
+                    footer?.endLoading(haveMore: haveMore)
+                } else {
+                    footer?.startLoading()
+                }
+            }
+        }
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        //init refresh control
+        rsRefreshControl = RSRefreshControl()
+        rsRefreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        self.tableView.addSubview(rsRefreshControl!)
+        tableView.tableFooterView = LoadMoreView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 44))
         
         // 在标题栏添加搜索框
         let margin: CGFloat = 12
@@ -37,12 +66,16 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         searchBar.searchBarStyle = .minimal
         searchBar.placeholder = "搜索相册"
         //searchBar.delegate = self //TODO
-        searchBar.showsCancelButton = false
-        //self.navigationController?.view.addSubview(searchBar)
-        
+        //searchBar.showsCancelButton = true
         self.navigationItem.titleView = UIView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 50))
         self.navigationItem.titleView?.addSubview(searchBar)
         
+        rsRefreshControl?.beginRefreshing()
+        loadData()
+    }
+    
+    @objc private func reloadData() {
+        currentPage = 1
         loadData()
     }
     
@@ -50,8 +83,9 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         if isLoading { return }
         isLoading = true
         
-        Api.loadGalleries(page: currentPage) { (galleries, err) in
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+        Api.loadGalleries(page: currentPage, pageSize: pageSize) { (galleries, err) in
+            DispatchQueue.main.async {
+                self.rsRefreshControl?.endRefreshing(message: galleries != nil ? "刷新成功...":"刷新失败...")
                 if let gs = galleries {
                     if self.currentPage == 1 {
                         self.datas = gs
@@ -67,9 +101,17 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
                         self.tableView.endUpdates()
                     }
                     
-                    self.currentPage = self.currentPage + 1
-                    self.isLoading = false
+                    if gs.count < self.pageSize {
+                        self.haveMore = true
+                        self.currentPage = self.currentPage + 1
+                    } else {
+                        self.haveMore = false
+                    }
                 } else {
+                    if self.currentPage == 1 {
+                        self.datas = []
+                        self.tableView.reloadData()
+                    }
                     self.showAlert(title: "加载错误", message: err)
                 }
                 
@@ -95,14 +137,24 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let backgroundImage = cell.viewWithTag(4) as! UIImageView
         let name = cell.viewWithTag(1) as! UILabel
-        let comment = cell.viewWithTag(2) as! UILabel
+        let peoples = cell.viewWithTag(2) as! UILabel
         let username = cell.viewWithTag(3) as! UILabel
         
         name.text = d.name
-        comment.text = "100"
-        username.text = "创建人:\(d.creater.name)"
+        peoples.text = d.users > 0 ? "\(d.users)人" : nil
+        username.text = "创建人:\(d.creater?.name ?? "Unknown")"
         
-        backgroundImage.kf.setImage(with: URL(string: d.cover ?? ""), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        var cover = d.cover
+        if cover == nil {
+            cover = d.groups?[0].images?[0].url
+        }
+        
+        if let c = cover {
+            backgroundImage.kf.setImage(with: URL(string: c), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        } else {
+            backgroundImage.image = #imageLiteral(resourceName: "image_placeholder")
+        }
+        
         backgroundImage.clipsToBounds = true
         backgroundImage.layer.cornerRadius = 8.0
         
@@ -111,7 +163,7 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = datas.count - 1
-        if !isLoading && indexPath.row == lastElement {
+        if !isLoading && indexPath.row == lastElement && haveMore {
             print("load more next page is:\(currentPage)")
             loadData()
         }

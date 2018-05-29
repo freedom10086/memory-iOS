@@ -25,11 +25,12 @@ class LoginViewController: UIViewController {
                           callback: { [weak self] (user, err)  in
                             DispatchQueue.main.async {
                                 if let u = user {
-                                    print("login server success")
-                                    //Settings.user = u
                                     if u.token != nil {
                                         Settings.token = u.token
                                     }
+                                    
+                                    Settings.username = u.name
+                                    Settings.avatar = u.avatar
                                     
                                     self?.updateUserInfo(name: u.name, avatar: u.avatar)
                                     
@@ -60,6 +61,14 @@ class LoginViewController: UIViewController {
                 if let res = response.jsonResponse {
                     self.updateUserInfo(name: ((res["nickname"] as? String) ?? "unknown"),
                                    avatar: res["figureurl_qq_2"] as? String)
+                    
+                    if Settings.username == nil, let name = res["nickname"] as? String {
+                        Settings.username = name
+                    }
+                    
+                    if Settings.avatar == nil, let avatar = res["figureurl_qq_2"] as? String {
+                        Settings.avatar = avatar
+                    }
                 }
             } else {
                 // 获取授权信息异常

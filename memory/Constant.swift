@@ -26,4 +26,6 @@ class Constant {
     public static func galleryUrl(id: Int) -> String {
         return "\(baseUrl)/galleries/\(id)"
     }
+    
+    public static var newImagesUrl = "\(baseUrl)/galleries/new-image-groups/"
 }
