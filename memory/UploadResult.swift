@@ -9,4 +9,5 @@ import Foundation
 public struct UploadResult: Codable {
     var url: String
     var etag: String
+    var data: Data?
 }

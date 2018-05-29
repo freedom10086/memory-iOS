@@ -9,8 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate, QQApiInterfaceDelegate {
     var window: UIWindow?
     var tencentAuth: TencentOAuth!
     
@@ -59,6 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate {
             return true
         }
         
+        // 分享到qq好友部分
+        QQApiInterface.handleOpen(url, delegate: self)
+        
         let urlKey: String = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
         if urlKey == "com.tencent.mqq" {
             // QQ 的回调
@@ -90,6 +92,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate {
     
     func getUserInfoResponse(_ response: APIResponse!) {
         getUserInfoDelegate?(response)
+    }
+    
+    
+    // 以下为分享到qq好友回掉
+    func onReq(_ req: QQBaseReq!) {
+        print("qq share onReq \(req)")
+    }
+    
+    func onResp(_ resp: QQBaseResp!) {
+        print("qq share onResp \(resp)")
+    }
+    
+    func isOnlineResponse(_ response: [AnyHashable : Any]!) {
+        print("qq share isOnlineResponse \(response)")
     }
 
 }
