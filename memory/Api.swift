@@ -14,7 +14,7 @@ import Foundation
 // 第一个参数为类型.self 如 User.self [User].self 分别表示单个用户 和 用户列表
 public class Api {
     
-    public static let host = "127.0.0.1:8080"
+    public static let host = "101.132.43.60:8080"
     
     public static let baseUrl = "http://\(host)"
     
