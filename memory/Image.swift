@@ -19,4 +19,6 @@ public struct Image: Codable {
     var likes: Int
     var comments: Int
     var created: String
+    
+    var isLike: Bool? = false
 }

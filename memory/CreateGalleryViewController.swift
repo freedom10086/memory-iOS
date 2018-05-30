@@ -15,8 +15,11 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
     public var gallery: Gallery?
     
     @IBOutlet weak var titleInput: UITextField!
-    @IBOutlet weak var descriptionInput: UITextView!
+    @IBOutlet weak var descriptionInput: RitchTextView!
     @IBOutlet weak var usersCollectionView: UICollectionView!
+    
+    // 新建的相册类型
+    private var type = 0
     
     private var users = [User]()
     
@@ -34,7 +37,7 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
             usersCollectionView.delegate = self
         }
 
-        users.append(User(id: 1, name: "", avatar: "", gender: "", created: "", token: ""))
+        descriptionInput.placeholder = "相册描述"
     
     }
 
@@ -46,6 +49,45 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
         if title == nil || title!.count == 0 || des == nil || des!.count == 0 {
             showAlert(title: "提示", message: "请输入必要信息")
             return
+        }
+        
+        titleInput.resignFirstResponder()
+        descriptionInput.resignFirstResponder()
+        
+        showLoadingView(title: "提交中", message: "请稍后...")
+        Api.createGallery(name: title!, description: des!, type: type) { [weak self] (gallery, err) in
+            DispatchQueue.main.async {
+                let alertVc: UIAlertController
+                if let g = gallery {
+                    print(g)
+                    alertVc = UIAlertController(title: "提示", message: "创建相册成功", preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
+                        self?.navigationController?.popViewController(animated: true)
+                    })
+                } else {
+                    alertVc = UIAlertController(title: "错误", message: err, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+                }
+                
+                // 取消loading
+                self?.dismiss(animated: true, completion: {
+                    self?.present(alertVc, animated: true)
+                })
+            }
+        }
+    }
+    
+    @IBAction func tagButtonClick(_ sender: UIButton) {
+        let p = sender.superview as! UIStackView
+        for (k,item) in p.subviews.enumerated() {
+            if item == sender {
+                (item as! UIButton).setBackgroundImage(#imageLiteral(resourceName: "chuangjianxiangce_biaoqian"), for: .normal)
+                (item as! UIButton).setTitleColor(UIColor.white, for: .normal)
+                self.type = k + 1
+            } else {
+                (item as! UIButton).setBackgroundImage(#imageLiteral(resourceName: "chuangjianxiangce_biaoqian2"), for: .normal)
+                (item as! UIButton).setTitleColor(self.view.tintColor, for: .normal)
+            }
         }
     }
     

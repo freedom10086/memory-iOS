@@ -79,7 +79,6 @@
 		2FD2A89E20BD95EC00E70C85 /* CAShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A88F20BD95EC00E70C85 /* CAShapeLayer.swift */; };
 		2FD2A89F20BD95EC00E70C85 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A89020BD95EC00E70C85 /* Bool.swift */; };
 		2FD2A8A020BD95EC00E70C85 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A89120BD95EC00E70C85 /* CALayer.swift */; };
-		2FD45A8A20B96DD500B1DACF /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD45A8920B96DD500B1DACF /* Constant.swift */; };
 		2FD45A8C20B971A700B1DACF /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD45A8B20B971A700B1DACF /* HttpUtil.swift */; };
 		2FD45A8E20B97AD500B1DACF /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD45A8D20B97AD500B1DACF /* Api.swift */; };
 		2FE3025120BD093500CE392C /* RSRefreshState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3024F20BD093500CE392C /* RSRefreshState.swift */; };
@@ -190,7 +189,6 @@
 		2FD2A88F20BD95EC00E70C85 /* CAShapeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CAShapeLayer.swift; path = memory/ImageViewer/Ext/CAShapeLayer.swift; sourceTree = SOURCE_ROOT; };
 		2FD2A89020BD95EC00E70C85 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bool.swift; path = memory/ImageViewer/Ext/Bool.swift; sourceTree = SOURCE_ROOT; };
 		2FD2A89120BD95EC00E70C85 /* CALayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CALayer.swift; path = memory/ImageViewer/Ext/CALayer.swift; sourceTree = SOURCE_ROOT; };
-		2FD45A8920B96DD500B1DACF /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		2FD45A8B20B971A700B1DACF /* HttpUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		2FD45A8D20B97AD500B1DACF /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		2FE3024F20BD093500CE392C /* RSRefreshState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSRefreshState.swift; sourceTree = "<group>"; };
@@ -235,6 +233,7 @@
 		2F03D45920BD090700449B57 /* widget */ = {
 			isa = PBXGroup;
 			children = (
+				2FD2A83220BD94EC00E70C85 /* ImageViewer */,
 				2FD2A83020BD8D0900E70C85 /* ImageAttachment.swift */,
 				2FD2A82E20BD8C7300E70C85 /* RitchTextView.swift */,
 				2FD2A82C20BD8C2C00E70C85 /* AboveKeyboardView.swift */,
@@ -318,9 +317,7 @@
 				2FCAD98F20B9600600482CD5 /* model */,
 				2FD0DE5B20B85F3200A98500 /* Main.storyboard */,
 				2FD0DE5E20B85F3300A98500 /* Assets.xcassets */,
-				2FD2A83220BD94EC00E70C85 /* ImageViewer */,
 				2FD0DE8D20B86DF500A98500 /* Support Files */,
-				2FD45A8920B96DD500B1DACF /* Constant.swift */,
 				2FCAD99820B9699A00482CD5 /* Settings.swift */,
 				2FD45A8D20B97AD500B1DACF /* Api.swift */,
 				2FD45A8B20B971A700B1DACF /* HttpUtil.swift */,
@@ -413,11 +410,11 @@
 				2FFDCBDA20B902C7000D6C4E /* MainViewController.swift */,
 				2FD0DE5920B85F3200A98500 /* LoginViewController.swift */,
 				2FFDCBDC20B90711000D6C4E /* GalleriesViewController.swift */,
+				2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */,
 				0460D14220B985EC00699608 /* MyGalleryViewController.swift */,
 				2FFDCBDE20B90963000D6C4E /* NewsViewController.swift */,
 				2FFDCBE020B9096F000D6C4E /* MyViewController.swift */,
 				2FBB32D220BB07D700A86D16 /* SettingViewController.swift */,
-				2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */,
 				2F36D85C20BD22A400CC8515 /* MessageViewController.swift */,
 				2F36D85E20BD24A600CC8515 /* FeedbackViewController.swift */,
 				2F36D86020BD37BF00CC8515 /* UploadViewController.swift */,
@@ -672,7 +669,6 @@
 				2FFDCBDD20B90711000D6C4E /* GalleriesViewController.swift in Sources */,
 				2FD2A85920BD950B00E70C85 /* VideoScrubber.swift in Sources */,
 				2FD2A89220BD95EC00E70C85 /* UIColor.swift in Sources */,
-				2FD45A8A20B96DD500B1DACF /* Constant.swift in Sources */,
 				2FD2A84920BD950B00E70C85 /* ItemControllerDelegate.swift in Sources */,
 				2FD2A85E20BD950B00E70C85 /* GalleryItemsDelegate.swift in Sources */,
 				2FD2A85320BD950B00E70C85 /* ItemBaseController.swift in Sources */,

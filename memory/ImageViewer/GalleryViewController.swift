@@ -15,6 +15,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     fileprivate let overlayView = BlurView()
     open var headerView: UILabel?
     open var footerView: ImageDetailFooterView?
+    public var updateLikeBlock: ((_ image: Image)->Void)?
     
     fileprivate var closeButton: UIButton? = UIButton.closeButton()
     fileprivate var seeAllCloseButton: UIButton? = nil
@@ -232,6 +233,16 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             break
         }
         
+        footerView?.commentClickBlock = { image in
+
+            if let vcc = self.parentVc?.storyboard?.instantiateViewController(withIdentifier: "commentNavViewController") as? UINavigationController {
+                let commentVc = vcc.childViewControllers[0] as! CommentViewController
+                commentVc.image = image
+                self.present(vcc, animated: true, completion: nil)
+            }
+        }
+        
+        footerView?.updateLikeBlock = self.updateLikeBlock
         self.view.addSubview(footerView!)
     }
 
@@ -424,9 +435,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     //ThumbnailsimageBlock
 
     @objc fileprivate func showThumbnails() {
-
         let thumbnailsController = ThumbnailsViewController(itemsDataSource: self.itemsDataSource)
-
         if let closeButton = seeAllCloseButton {
             thumbnailsController.closeButton = closeButton
             thumbnailsController.closeLayout = seeAllCloseLayout

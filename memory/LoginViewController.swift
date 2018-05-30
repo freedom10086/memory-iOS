@@ -21,9 +21,11 @@ class LoginViewController: UIViewController {
         app.loginDelegate = { success in
             if success {
                 print("qq login success openId:\(app.tencentAuth.getUserOpenID()) access_token: \(app.tencentAuth.accessToken)")
+                self.showLoadingView(title: "登陆中", message: "请稍后...")
                 Api.login(openId: app.tencentAuth.getUserOpenID(), accessToken: app.tencentAuth.accessToken,
                           callback: { [weak self] (user, err)  in
                             DispatchQueue.main.async {
+                                let alertVc: UIAlertController
                                 if let u = user {
                                     if u.token != nil {
                                         Settings.token = u.token
@@ -32,22 +34,25 @@ class LoginViewController: UIViewController {
                                     Settings.username = u.name
                                     Settings.avatar = u.avatar
                                     
-                                    self?.updateUserInfo(name: u.name, avatar: u.avatar)
+                                    self?.updateUserInfo(name: u.name!, avatar: u.avatar)
                                     
                                     Settings.expiresIn = app.tencentAuth.expirationDate
                                     Settings.openId = app.tencentAuth.getUserOpenID()
                                     Settings.accessToken = app.tencentAuth.accessToken
                                     
-                                    let alert = UIAlertController(title: "登陆成功", message: "欢迎👏 \(u.name)", preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
+                                    alertVc = UIAlertController(title: "登陆成功", message: "欢迎👏 \(u.name)", preferredStyle: .alert)
+                                    alertVc.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
                                         self?.presentingViewController?.dismiss(animated: true)
                                     })
-                                    self?.present(alert, animated: true)
                                 } else {
-                                    let alert = UIAlertController(title: "错误", message: err, preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
-                                    self?.present(alert, animated: true)
+                                    alertVc = UIAlertController(title: "错误", message: err, preferredStyle: .alert)
+                                    alertVc.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
                                 }
+                                
+                                // 取消loading
+                                self?.dismiss(animated: true, completion: {
+                                    self?.present(alertVc, animated: true)
+                                })
                             }
                     
                 })
@@ -97,37 +102,4 @@ class LoginViewController: UIViewController {
         // self.dismiss(animated: true, completion: nil)
         presentingViewController?.dismiss(animated: true)
     }
-    
-    
-    private var items = [GalleryItem]()
-    
-    @IBAction func testShowImageDetial(_ sender: Any) {
-        if items.count == 0 {
-            for i in 0..<10 {
-                items.append(GalleryItem.image(fetchImageBlock: { (compete) in
-                    ImageDownloader.default.downloadImage(with: URL(string: "http://a.hiphotos.baidu.com/image/pic/item/730e0cf3d7ca7bcb6a172486b2096b63f624a82f.jpg")!, options: [], progressBlock: nil) {
-                        (image, error, url, data) in
-                        compete(image)
-                    }
-                }, image: Image(id: 1, galleryId: 1, url: "1", creater: nil, description: "", likes: 0, comments: 0, created: "1")))
-            }
-        }
-
-        // Show the ImageViewer with with the first item
-        self.presentImageGallery(GalleryViewController(startIndex: 0, itemsDataSource: self, vc: self))
-        
-        
-    }
 }
-
-// The GalleryItemsDataSource provides the items to show
-extension LoginViewController: GalleryItemsDataSource {
-    func itemCount() -> Int {
-        return items.count
-    }
-    
-    func provideGalleryItem(_ index: Int) -> GalleryItem {
-        return items[index]
-    }
-}
-

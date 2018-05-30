@@ -26,6 +26,17 @@ extension UIViewController {
         alert.addAction(action)
         self.present(alert, animated: true)
     }
+    
+
+    func showLoadingView(title: String, message: String) {
+        let loadingView = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = .gray
+        loadingIndicator.startAnimating()
+        loadingView.view.addSubview(loadingIndicator)
+        present(loadingView, animated: true)
+    }
 }
 
 extension UIImage {

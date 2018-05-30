@@ -20,12 +20,13 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
     private var pageSize = 30
     private var haveMore = false
     
-    var rsRefreshControl: RSRefreshControl!
     private var isLoading = false
 
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadData))
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -33,14 +34,8 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
         layout.delegate = self
         //self.automaticallyAdjustsScrollViewInsets = false //修复collectionView头部空白
         collectionView.collectionViewLayout = layout
-        
-        //init refresh control
-        rsRefreshControl = RSRefreshControl()
-        rsRefreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
-        collectionView.addSubview(rsRefreshControl!)
-        
+    
         self.navigationItem.title = "最新"
-        rsRefreshControl?.beginRefreshing()
         loadData()
     }
     
@@ -59,7 +54,6 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
         isLoading = true
         Api.loadNewsImages(page: currentPage, pageSize: pageSize) { (imageGroups, err) in
             DispatchQueue.main.async {
-                self.rsRefreshControl?.endRefreshing(message: imageGroups != nil ? "刷新成功...":"刷新失败...")
                 if let subDatas = imageGroups {
                     if self.currentPage == 1 {
                         self.datas = subDatas

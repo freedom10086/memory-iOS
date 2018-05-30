@@ -29,7 +29,62 @@ class UploadViewController: UITableViewController, UICollectionViewDataSource, U
     }
     
     @objc func uploadClick() {
-    
+        
+        if images.count == 0 {
+            showAlert(title: "提示", message: "你还没有上传图片")
+            return
+        }
+        
+        let des = deescriptionInput.text
+        if des == nil || des!.count == 0 {
+            showAlert(title: "提示", message: "请输入描述")
+            return
+        }
+        
+        for item in images {
+            switch item.state {
+            case .uploading(_):
+                showAlert(title: "提示", message: "还有正在上传的图片.")
+                return
+            default:
+                break
+            }
+        }
+        
+
+        var imageStr: String
+        do {
+            imageStr = String(data: try JSONEncoder().encode(images), encoding: .utf8)!
+        } catch let err {
+            showAlert(title: "编码错误", message: err.localizedDescription)
+            return
+        }
+        
+        deescriptionInput.resignFirstResponder()
+        showLoadingView(title: "上传中", message: "请稍后...")
+        Api.addImageToGallery(galleryId: gallery.id, images: imageStr, description: deescriptionInput.text!) { [weak self](count,err) in
+            DispatchQueue.main.async {
+                let alertVc: UIAlertController
+                if let c = count {
+                    print("success count \(c)")
+                    alertVc = UIAlertController(title: "上传成功", message: "成功上传图片到相册:\(self?.gallery.name ?? "")", preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
+                        self?.presentingViewController?.dismiss(animated: true)
+                    })
+                } else {
+                    alertVc = UIAlertController(title: "错误", message: err, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+                }
+                
+                // 取消loading
+                self?.dismiss(animated: true, completion: {
+                    self?.present(alertVc, animated: true)
+                })
+            }
+        }
+    }
+    @IBAction func cancelClick(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func upload(position: Int, imageData: Data) {
@@ -125,7 +180,15 @@ class UploadViewController: UITableViewController, UICollectionViewDataSource, U
             
             if let d = images[indexPath.row].data {
                 image.image = UIImage(data: d)
+            }
+            
+            switch images[indexPath.row].state {
+            case.uploading(_) :
                 progress.startAnimating()
+            case.failed:
+                progress.stopAnimating()
+            case.success:
+                progress.stopAnimating()
             }
         }
         
@@ -172,7 +235,14 @@ class UploadViewController: UITableViewController, UICollectionViewDataSource, U
 
         let image = cell.viewWithTag(1) as! UIImageView
         let galleryName = cell.viewWithTag(2) as! UILabel
-
+        
+        if let cover = gallery.cover {
+            image.kf.setImage(with: URL(string: cover), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        } else {
+            image.image = #imageLiteral(resourceName: "image_placeholder")
+        }
+        
+        galleryName.text = gallery.name
         return cell
     }
     

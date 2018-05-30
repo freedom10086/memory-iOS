@@ -44,6 +44,8 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
+    
+    private var haveLoaded = false
 
     
     override func viewDidLoad() {
@@ -69,9 +71,16 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         //searchBar.showsCancelButton = true
         self.navigationItem.titleView = UIView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 50))
         self.navigationItem.titleView?.addSubview(searchBar)
-        
-        rsRefreshControl?.beginRefreshing()
-        loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear")
+        if Settings.accessToken != nil && !haveLoaded {
+            haveLoaded = true
+            rsRefreshControl?.beginRefreshing()
+            loadData()
+        }
     }
     
     @objc private func reloadData() {
@@ -172,5 +181,14 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     @objc func goToUploadImage() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "uploadImageNavVc")
         self.present(vc!, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? MyGalleryViewController,
+            let cell = sender as? UITableViewCell {
+            let index = tableView.indexPath(for: cell)!
+            dest.title = datas[index.row].name
+            dest.gallery = datas[index.row]
+        }
     }
 }

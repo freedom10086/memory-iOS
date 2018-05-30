@@ -12,6 +12,7 @@ import Kingfisher
 public class ImageDetailFooterView: UIView {
     
     public var commentClickBlock: ((_ image: Image)-> Void)?
+    public var updateLikeBlock: ((_ image: Image)->Void)?
     
     private var contentView: UIView!
     
@@ -63,23 +64,47 @@ public class ImageDetailFooterView: UIView {
     }
     
     @objc private func likeClick(_ button: UIButton) {
+        let imageId = image!.id
+        if image!.isLike ?? false {
+            return
+        }
         
+        if button.image(for: .normal) == #imageLiteral(resourceName: "xiangcexiangqing_dianzan") {
+            Api.doLike(imageId: imageId) { (count, err) in
+                if imageId != self.image?.id ?? 0 {
+                    print("do like back image changed ignore")
+                    return
+                }
+                DispatchQueue.main.async {
+                    if let c = count {
+                        button.setImage(#imageLiteral(resourceName: "xiangcexiangqing_dianzan2"), for: .normal)
+                        button.setTitle(" \(c)", for: .normal)
+                        self.image?.likes = c
+                        self.image?.isLike = true
+                        self.updateLikeBlock?(self.image!)
+                    } else {
+                        if err.contains("不要重复点赞") {
+                            button.setImage(#imageLiteral(resourceName: "xiangcexiangqing_dianzan2"), for: .normal)
+                            self.image?.isLike = true
+                            self.updateLikeBlock?(self.image!)
+                        }
+                        print(err)
+                        //TODO Warning: Attempt to present <UIAlertController: 0x7ffd578b3a00>  on <memory.MyGalleryViewController: 0x7ffd57900600> which is already presenting (null)
+                        let ac = UIAlertController(title: "点赞错误", message: err, preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+                        self.vc?.present(ac, animated: true, completion: nil)
+                    }
+                }
+            }
+        } else {
+            // already like ignore
+            print("already like ignore")
+        }
     }
     
     @objc private func commentClick() {
         print("commentClick")
         commentClickBlock?(self.image!)
-        print(self.storyboard)
-       
-        if let vcc = self.storyboard?.instantiateViewController(withIdentifier: "commentNavViewController") as? UINavigationController {
-            self.vc?.dismiss(animated: true, completion: {
-                print(vcc.childViewControllers[0])
-                let cvc = vcc.childViewControllers[0] as! CommentViewController
-                cvc.image = self.image
-                self.vc?.present(cvc, animated: true, completion: nil)
-            })
-            
-        }
     }
     
     func loadViewFromNib() -> UIView! {
@@ -107,6 +132,11 @@ public class ImageDetailFooterView: UIView {
         
         likeBtn.setTitle(" \(image.likes)", for: .normal)
         commentBtn.setTitle(" \(image.comments)", for: .normal)
+        if image.isLike ?? false {
+            likeBtn.setImage(#imageLiteral(resourceName: "xiangcexiangqing_dianzan2"), for: .normal)
+        } else {
+            likeBtn.setImage(#imageLiteral(resourceName: "xiangcexiangqing_dianzan"), for: .normal)
+        }
     }
 
 }

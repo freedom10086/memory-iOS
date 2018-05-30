@@ -108,6 +108,7 @@ class HttpUtil {
     private static func handleResponse<T>(_ type: T.Type,
                                           data:Data?, response:URLResponse?, error:Error?, callback: @escaping (T? , String) -> Void) where T : Codable {
         if let error = error {
+            print("(1) \(error.localizedDescription)")
             callback(nil, error.localizedDescription)
             return
         }
@@ -118,16 +119,20 @@ class HttpUtil {
         }
         
         // check code 200-300
-        if let mimeType = response.mimeType,mimeType == "application/json", let data = data {
+        if let mimeType = response.mimeType,mimeType == "application/json", let d = data {
             do {
-                let res = try JSONDecoder().decode(ApiResult<T>.self, from: data)
+                let res = try JSONDecoder().decode(ApiResult<T>.self, from: d)
                 if res.status == 200 {
+                    print("status = 200")
                     callback(res.data, res.message ?? "success")
                 } else {
+                    print("status = \(res.status)")
                     callback(nil, res.message ?? "success")
                 }
                 return
             } catch let err {
+                let dataStr = String(data: d, encoding: .utf8)
+                print("json parse error \(err.localizedDescription) \(dataStr)")
                 callback(nil, err.localizedDescription)
                 return
             }
@@ -189,7 +194,7 @@ class HttpUtil {
             return decodeUrl(url: url)
         }
         
-        return Constant.baseUrl + decodeUrl(url: url)
+        return Api.baseUrl + decodeUrl(url: url)
     }
     
     // url编码
