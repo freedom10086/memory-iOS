@@ -1,5 +1,5 @@
 //
-//  GalleryViewController.swift
+//  MyGalleryViewController.swift
 //  memory
 //
 //  Created by mac on 2018/5/26.
@@ -9,7 +9,7 @@
 import UIKit
 
 // 单个相册页面
-class GalleryViewController: UIViewController {
+class MyGalleryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

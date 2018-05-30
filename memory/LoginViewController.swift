@@ -99,6 +99,35 @@ class LoginViewController: UIViewController {
     }
     
     
+    private var items = [GalleryItem]()
     
+    @IBAction func testShowImageDetial(_ sender: Any) {
+        if items.count == 0 {
+            for i in 0..<10 {
+                items.append(GalleryItem.image(fetchImageBlock: { (compete) in
+                    ImageDownloader.default.downloadImage(with: URL(string: "http://a.hiphotos.baidu.com/image/pic/item/730e0cf3d7ca7bcb6a172486b2096b63f624a82f.jpg")!, options: [], progressBlock: nil) {
+                        (image, error, url, data) in
+                        compete(image)
+                    }
+                }))
+            }
+        }
+
+        // Show the ImageViewer with with the first item
+        self.presentImageGallery(GalleryViewController(startIndex: 0, itemsDataSource: self))
+        
+        
+    }
+}
+
+// The GalleryItemsDataSource provides the items to show
+extension LoginViewController: GalleryItemsDataSource {
+    func itemCount() -> Int {
+        return items.count
+    }
+    
+    func provideGalleryItem(_ index: Int) -> GalleryItem {
+        return items[index]
+    }
 }
 

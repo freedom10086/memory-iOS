@@ -15,6 +15,7 @@ class UploadViewController: UITableViewController, UICollectionViewDataSource, U
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var deescriptionInput: UITextField!
     
+    public var gallery: Gallery!
     private var images = [UploadResult]()
     
     override func viewDidLoad() {
@@ -162,7 +163,7 @@ class UploadViewController: UITableViewController, UICollectionViewDataSource, U
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
 
 
