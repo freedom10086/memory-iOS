@@ -199,5 +199,4 @@ class HttpUtil {
         
         return string.addingPercentEncoding(withAllowedCharacters: characterSet as CharacterSet)
     }
-    
 }

@@ -11,6 +11,8 @@
 		0460D14320B985EC00699608 /* MyGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D14220B985EC00699608 /* MyGalleryViewController.swift */; };
 		2F128E1D20BC3FE800FB02A9 /* ImageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */; };
 		2F128E1F20BC40C800FB02A9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F128E1E20BC40C800FB02A9 /* Comment.swift */; };
+		2F2C9E6D20BE35DC0075CFC3 /* ImageDetailFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9E6C20BE35DC0075CFC3 /* ImageDetailFooterView.xib */; };
+		2F2C9E6F20BE35EC0075CFC3 /* ImageDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2C9E6E20BE35EC0075CFC3 /* ImageDetailFooterView.swift */; };
 		2F36D85920BD15A100CC8515 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F36D85820BD15A000CC8515 /* LoadMoreView.swift */; };
 		2F36D85B20BD1A8800CC8515 /* LoadMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F36D85A20BD1A8800CC8515 /* LoadMoreView.xib */; };
 		2F36D85D20BD22A500CC8515 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F36D85C20BD22A400CC8515 /* MessageViewController.swift */; };
@@ -113,6 +115,8 @@
 		28915CBAF37BA15A4B507C8E /* Pods-memory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memory.release.xcconfig"; path = "Pods/Target Support Files/Pods-memory/Pods-memory.release.xcconfig"; sourceTree = "<group>"; };
 		2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGroup.swift; sourceTree = "<group>"; };
 		2F128E1E20BC40C800FB02A9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		2F2C9E6C20BE35DC0075CFC3 /* ImageDetailFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageDetailFooterView.xib; sourceTree = "<group>"; };
+		2F2C9E6E20BE35EC0075CFC3 /* ImageDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailFooterView.swift; sourceTree = "<group>"; };
 		2F36D85820BD15A000CC8515 /* LoadMoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		2F36D85A20BD1A8800CC8515 /* LoadMoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreView.xib; sourceTree = "<group>"; };
 		2F36D85C20BD22A400CC8515 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
@@ -171,21 +175,21 @@
 		2FD2A84820BD950B00E70C85 /* GalleryItemsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItemsDelegate.swift; sourceTree = "<group>"; };
 		2FD2A87F20BD95A900E70C85 /* ThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailCell.swift; sourceTree = "<group>"; };
 		2FD2A88020BD95A900E70C85 /* ThumbnailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailsViewController.swift; sourceTree = "<group>"; };
-		2FD2A88320BD95EB00E70C85 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = memory/ImageViewer/Extensions/UIColor.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88420BD95EB00E70C85 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageView.swift; path = memory/ImageViewer/Extensions/UIImageView.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88520BD95EB00E70C85 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIButton.swift; path = memory/ImageViewer/Extensions/UIButton.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88620BD95EB00E70C85 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = memory/ImageViewer/Extensions/UIViewController.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88720BD95EB00E70C85 /* UISlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISlider.swift; path = memory/ImageViewer/Extensions/UISlider.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88820BD95EB00E70C85 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGPoint.swift; path = memory/ImageViewer/Extensions/CGPoint.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88920BD95EB00E70C85 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIApplication.swift; path = memory/ImageViewer/Extensions/UIApplication.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88A20BD95EB00E70C85 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = memory/ImageViewer/Extensions/UIView.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88B20BD95EC00E70C85 /* AVPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPlayer.swift; path = memory/ImageViewer/Extensions/AVPlayer.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88C20BD95EC00E70C85 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGRect.swift; path = memory/ImageViewer/Extensions/CGRect.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88D20BD95EC00E70C85 /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGSize.swift; path = memory/ImageViewer/Extensions/CGSize.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88E20BD95EC00E70C85 /* UIBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIBezierPath.swift; path = memory/ImageViewer/Extensions/UIBezierPath.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A88F20BD95EC00E70C85 /* CAShapeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CAShapeLayer.swift; path = memory/ImageViewer/Extensions/CAShapeLayer.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A89020BD95EC00E70C85 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bool.swift; path = memory/ImageViewer/Extensions/Bool.swift; sourceTree = SOURCE_ROOT; };
-		2FD2A89120BD95EC00E70C85 /* CALayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CALayer.swift; path = memory/ImageViewer/Extensions/CALayer.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88320BD95EB00E70C85 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = memory/ImageViewer/Ext/UIColor.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88420BD95EB00E70C85 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageView.swift; path = memory/ImageViewer/Ext/UIImageView.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88520BD95EB00E70C85 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIButton.swift; path = memory/ImageViewer/Ext/UIButton.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88620BD95EB00E70C85 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = memory/ImageViewer/Ext/UIViewController.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88720BD95EB00E70C85 /* UISlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISlider.swift; path = memory/ImageViewer/Ext/UISlider.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88820BD95EB00E70C85 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGPoint.swift; path = memory/ImageViewer/Ext/CGPoint.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88920BD95EB00E70C85 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIApplication.swift; path = memory/ImageViewer/Ext/UIApplication.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88A20BD95EB00E70C85 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = memory/ImageViewer/Ext/UIView.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88B20BD95EC00E70C85 /* AVPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPlayer.swift; path = memory/ImageViewer/Ext/AVPlayer.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88C20BD95EC00E70C85 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGRect.swift; path = memory/ImageViewer/Ext/CGRect.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88D20BD95EC00E70C85 /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGSize.swift; path = memory/ImageViewer/Ext/CGSize.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88E20BD95EC00E70C85 /* UIBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIBezierPath.swift; path = memory/ImageViewer/Ext/UIBezierPath.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A88F20BD95EC00E70C85 /* CAShapeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CAShapeLayer.swift; path = memory/ImageViewer/Ext/CAShapeLayer.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A89020BD95EC00E70C85 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bool.swift; path = memory/ImageViewer/Ext/Bool.swift; sourceTree = SOURCE_ROOT; };
+		2FD2A89120BD95EC00E70C85 /* CALayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CALayer.swift; path = memory/ImageViewer/Ext/CALayer.swift; sourceTree = SOURCE_ROOT; };
 		2FD45A8920B96DD500B1DACF /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		2FD45A8B20B971A700B1DACF /* HttpUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		2FD45A8D20B97AD500B1DACF /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -240,9 +244,33 @@
 				2F36D85A20BD1A8800CC8515 /* LoadMoreView.xib */,
 				2FE3025020BD093500CE392C /* RSRefreshControl.swift */,
 				2FE3024F20BD093500CE392C /* RSRefreshState.swift */,
+				2F2C9E6C20BE35DC0075CFC3 /* ImageDetailFooterView.xib */,
+				2F2C9E6E20BE35EC0075CFC3 /* ImageDetailFooterView.swift */,
 			);
 			name = widget;
 			path = memory;
+			sourceTree = "<group>";
+		};
+		2F2C9E6920BE34AD0075CFC3 /* Ext */ = {
+			isa = PBXGroup;
+			children = (
+				2FD2A88B20BD95EC00E70C85 /* AVPlayer.swift */,
+				2FD2A89020BD95EC00E70C85 /* Bool.swift */,
+				2FD2A89120BD95EC00E70C85 /* CALayer.swift */,
+				2FD2A88F20BD95EC00E70C85 /* CAShapeLayer.swift */,
+				2FD2A88820BD95EB00E70C85 /* CGPoint.swift */,
+				2FD2A88C20BD95EC00E70C85 /* CGRect.swift */,
+				2FD2A88D20BD95EC00E70C85 /* CGSize.swift */,
+				2FD2A88920BD95EB00E70C85 /* UIApplication.swift */,
+				2FD2A88E20BD95EC00E70C85 /* UIBezierPath.swift */,
+				2FD2A88520BD95EB00E70C85 /* UIButton.swift */,
+				2FD2A88320BD95EB00E70C85 /* UIColor.swift */,
+				2FD2A88420BD95EB00E70C85 /* UIImageView.swift */,
+				2FD2A88720BD95EB00E70C85 /* UISlider.swift */,
+				2FD2A88A20BD95EB00E70C85 /* UIView.swift */,
+				2FD2A88620BD95EB00E70C85 /* UIViewController.swift */,
+			);
+			path = Ext;
 			sourceTree = "<group>";
 		};
 		2FCAD98F20B9600600482CD5 /* model */ = {
@@ -344,8 +372,8 @@
 		2FD2A83220BD94EC00E70C85 /* ImageViewer */ = {
 			isa = PBXGroup;
 			children = (
+				2F2C9E6920BE34AD0075CFC3 /* Ext */,
 				2FD2A87E20BD959300E70C85 /* ThumbnailsController */,
-				2FD2A85F20BD954F00E70C85 /* Extensions */,
 				2FD2A83B20BD950A00E70C85 /* BlurView.swift */,
 				2FD2A84420BD950B00E70C85 /* GalleryConfiguration.swift */,
 				2FD2A83A20BD950A00E70C85 /* GalleryDisplacedViewsDataSource.swift */,
@@ -368,29 +396,6 @@
 				2FD2A84720BD950B00E70C85 /* VideoViewController.swift */,
 			);
 			path = ImageViewer;
-			sourceTree = "<group>";
-		};
-		2FD2A85F20BD954F00E70C85 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2FD2A88B20BD95EC00E70C85 /* AVPlayer.swift */,
-				2FD2A89020BD95EC00E70C85 /* Bool.swift */,
-				2FD2A89120BD95EC00E70C85 /* CALayer.swift */,
-				2FD2A88F20BD95EC00E70C85 /* CAShapeLayer.swift */,
-				2FD2A88820BD95EB00E70C85 /* CGPoint.swift */,
-				2FD2A88C20BD95EC00E70C85 /* CGRect.swift */,
-				2FD2A88D20BD95EC00E70C85 /* CGSize.swift */,
-				2FD2A88920BD95EB00E70C85 /* UIApplication.swift */,
-				2FD2A88E20BD95EC00E70C85 /* UIBezierPath.swift */,
-				2FD2A88520BD95EB00E70C85 /* UIButton.swift */,
-				2FD2A88320BD95EB00E70C85 /* UIColor.swift */,
-				2FD2A88420BD95EB00E70C85 /* UIImageView.swift */,
-				2FD2A88720BD95EB00E70C85 /* UISlider.swift */,
-				2FD2A88A20BD95EB00E70C85 /* UIView.swift */,
-				2FD2A88620BD95EB00E70C85 /* UIViewController.swift */,
-			);
-			name = Extensions;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		2FD2A87E20BD959300E70C85 /* ThumbnailsController */ = {
@@ -541,6 +546,7 @@
 				2FD0DE5F20B85F3300A98500 /* Assets.xcassets in Resources */,
 				2FD0DE5D20B85F3200A98500 /* Main.storyboard in Resources */,
 				2FD2A82A20BD8BF900E70C85 /* SimpleReplyView.xib in Resources */,
+				2F2C9E6D20BE35DC0075CFC3 /* ImageDetailFooterView.xib in Resources */,
 				2F36D85B20BD1A8800CC8515 /* LoadMoreView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,6 +641,7 @@
 				2FD2A82D20BD8C2C00E70C85 /* AboveKeyboardView.swift in Sources */,
 				2FD2A89A20BD95EC00E70C85 /* AVPlayer.swift in Sources */,
 				2FD0DE5A20B85F3200A98500 /* LoginViewController.swift in Sources */,
+				2F2C9E6F20BE35EC0075CFC3 /* ImageDetailFooterView.swift in Sources */,
 				2FD2A89C20BD95EC00E70C85 /* CGSize.swift in Sources */,
 				2FD2A88120BD95A900E70C85 /* ThumbnailCell.swift in Sources */,
 				2FD0DE5820B85F3200A98500 /* AppDelegate.swift in Sources */,

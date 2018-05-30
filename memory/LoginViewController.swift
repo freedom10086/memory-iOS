@@ -109,12 +109,12 @@ class LoginViewController: UIViewController {
                         (image, error, url, data) in
                         compete(image)
                     }
-                }))
+                }, image: Image(id: 1, galleryId: 1, url: "1", creater: nil, description: "", likes: 0, comments: 0, created: "1")))
             }
         }
 
         // Show the ImageViewer with with the first item
-        self.presentImageGallery(GalleryViewController(startIndex: 0, itemsDataSource: self))
+        self.presentImageGallery(GalleryViewController(startIndex: 0, itemsDataSource: self, vc: self))
         
         
     }

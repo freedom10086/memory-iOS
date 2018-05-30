@@ -13,10 +13,9 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
     // UI
     fileprivate let overlayView = BlurView()
-    /// A custom view on the top of the gallery with layout using default (or custom) pinning settings for header.
-    open var headerView: UIView?
-    /// A custom view at the bottom of the gallery with layout using default (or custom) pinning settings for footer.
-    open var footerView: UIView?
+    open var headerView: UILabel?
+    open var footerView: ImageDetailFooterView?
+    
     fileprivate var closeButton: UIButton? = UIButton.closeButton()
     fileprivate var seeAllCloseButton: UIButton? = nil
     fileprivate var thumbnailsButton: UIButton? = UIButton.thumbnailsButton()
@@ -24,13 +23,25 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     fileprivate let scrubber = VideoScrubber()
 
     fileprivate weak var initialItemController: ItemController?
-
+    fileprivate weak var currentImageViewController: UIViewController?
+    fileprivate weak var parentVc: UIViewController?
+    
     // LOCAL STATE
     // represents the current page index, updated when the root view of the view controller representing the page stops animating inside visible bounds and stays on screen.
     public var currentIndex: Int {
         didSet {
-            if let counter = headerView as? UILabel {
+            if let counter = headerView {
                 counter.text = "\(currentIndex + 1) / \(self.itemsDataSource.itemCount())"
+                counter.sizeToFit()
+            }
+            
+            if let footer = footerView {
+                switch self.itemsDataSource.provideGalleryItem(currentIndex) {
+                case .image( _, let image) :
+                    footer.updateData(image: image, pvc: self.parentVc, storyboard: self.parentVc?.storyboard)
+                default:
+                    break
+                }
             }
         }
     }
@@ -47,8 +58,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     // CONFIGURATION
     fileprivate var spineDividerWidth:         Float = 10
     fileprivate var galleryPagingMode = GalleryPagingMode.standard
-    fileprivate var headerLayout = HeaderLayout.center(25)
-    fileprivate var footerLayout = FooterLayout.center(25)
     fileprivate var closeLayout = ButtonLayout.pinRight(8, 16)
     fileprivate var seeAllCloseLayout = ButtonLayout.pinRight(8, 16)
     fileprivate var thumbnailsLayout = ButtonLayout.pinLeft(8, 16)
@@ -75,11 +84,12 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     @available(*, unavailable)
     required public init?(coder: NSCoder) { fatalError() }
 
-    public init(startIndex: Int, itemsDataSource: GalleryItemsDataSource, itemsDelegate: GalleryItemsDelegate? = nil, displacedViewsDataSource: GalleryDisplacedViewsDataSource? = nil, configuration: GalleryConfiguration = []) {
+    public init(startIndex: Int, itemsDataSource: GalleryItemsDataSource, itemsDelegate: GalleryItemsDelegate? = nil, displacedViewsDataSource: GalleryDisplacedViewsDataSource? = nil, configuration: GalleryConfiguration = [], vc: UIViewController?) {
 
         self.currentIndex = startIndex
         self.itemsDelegate = itemsDelegate
         self.itemsDataSource = itemsDataSource
+        self.parentVc = vc
         var continueNextVideoOnFinish: Bool = false
 
         ///Only those options relevant to the paging GalleryViewController are explicitly handled here, the rest is handled by ItemViewControllers
@@ -89,8 +99,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
             case .imageDividerWidth(let width):                 spineDividerWidth = Float(width)
             case .pagingMode(let mode):                         galleryPagingMode = mode
-            case .headerViewLayout(let layout):                 headerLayout = layout
-            case .footerViewLayout(let layout):                 footerLayout = layout
             case .closeLayout(let layout):                      closeLayout = layout
             case .thumbnailsLayout(let layout):                 thumbnailsLayout = layout
             case .statusBarHidden(let hidden):                  statusBarHidden = hidden
@@ -164,6 +172,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         ///This feels out of place, one would expect even the first presented(paged) item controller to be provided by the paging dataSource but there is nothing we can do as Apple requires the first controller to be set via this "setViewControllers" method.
         let initialController = pagingDataSource.createItemController(startIndex, isInitial: true)
         self.setViewControllers([initialController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+        self.currentImageViewController = initialController
 
         if let controller = initialController as? ItemController {
 
@@ -203,22 +212,27 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     }
 
     fileprivate func configureHeaderView() {
-        if let header = headerView {
-            header.alpha = 0
-            self.view.addSubview(header)
-        } else {
-            headerView = UILabel(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 120, height: 35)))
-            (headerView as! UILabel).textColor = UIColor.white
-            self.view.addSubview(headerView!)
-        }
+        headerView = UILabel(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 100, height: 35)))
+        //headerView?.textAlignment = .center
+        headerView?.textColor = UIColor.white
+        headerView?.text = "\(currentIndex + 1) / \(self.itemsDataSource.itemCount())"
+        headerView?.sizeToFit()
+        headerView?.alpha = 0
+        self.view.addSubview(headerView!)
     }
 
     fileprivate func configureFooterView() {
-
-        if let footer = footerView {
-            footer.alpha = 0
-            self.view.addSubview(footer)
+        footerView = ImageDetailFooterView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: self.view.bounds.width, height: 130)))
+        
+        footerView?.alpha = 0
+        switch self.itemsDataSource.provideGalleryItem(currentIndex) {
+        case .image( _, let image) :
+            footerView?.updateData(image: image, pvc: self.parentVc, storyboard: self.parentVc?.storyboard)
+        default:
+            break
         }
+        
+        self.view.addSubview(footerView!)
     }
 
     fileprivate func configureCloseButton() {
@@ -352,62 +366,22 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
         guard let header = headerView else { return }
 
-        switch headerLayout {
-
-        case .center(let marginTop):
-
-            header.autoresizingMask = [.flexibleBottomMargin, .flexibleLeftMargin, .flexibleRightMargin]
-            header.center = self.view.boundsCenter
-            header.frame.origin.y = marginTop
-
-        case .pinBoth(let marginTop, let marginLeft,let marginRight):
-
-            header.autoresizingMask = [.flexibleBottomMargin, .flexibleWidth]
-            header.bounds.size.width = self.view.bounds.width - marginLeft - marginRight
-            header.sizeToFit()
-            header.frame.origin = CGPoint(x: marginLeft, y: marginTop)
-
-        case .pinLeft(let marginTop, let marginLeft):
-
-            header.autoresizingMask = [.flexibleBottomMargin, .flexibleRightMargin]
-            header.frame.origin = CGPoint(x: marginLeft, y: marginTop)
-
-        case .pinRight(let marginTop, let marginRight):
-
-            header.autoresizingMask = [.flexibleBottomMargin, .flexibleLeftMargin]
-            header.frame.origin = CGPoint(x: self.view.bounds.width - marginRight - header.bounds.width, y: marginTop)
-        }
+        header.autoresizingMask = [.flexibleBottomMargin, .flexibleLeftMargin, .flexibleRightMargin]
+        header.center = self.view.boundsCenter
+        header.frame.origin.y = CGFloat(25)
     }
 
     fileprivate func layoutFooterView() {
 
         guard let footer = footerView else { return }
 
-        switch footerLayout {
-
-        case .center(let marginBottom):
-
-            footer.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin]
-            footer.center = self.view.boundsCenter
-            footer.frame.origin.y = self.view.bounds.height - footer.bounds.height - marginBottom
-
-        case .pinBoth(let marginBottom, let marginLeft,let marginRight):
-
-            footer.autoresizingMask = [.flexibleTopMargin, .flexibleWidth]
-            footer.frame.size.width = self.view.bounds.width - marginLeft - marginRight
-            footer.sizeToFit()
-            footer.frame.origin = CGPoint(x: marginLeft, y: self.view.bounds.height - footer.bounds.height - marginBottom)
-
-        case .pinLeft(let marginBottom, let marginLeft):
-
-            footer.autoresizingMask = [.flexibleTopMargin, .flexibleRightMargin]
-            footer.frame.origin = CGPoint(x: marginLeft, y: self.view.bounds.height - footer.bounds.height - marginBottom)
-
-        case .pinRight(let marginBottom, let marginRight):
-
-            footer.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin]
-            footer.frame.origin = CGPoint(x: self.view.bounds.width - marginRight - footer.bounds.width, y: self.view.bounds.height - footer.bounds.height - marginBottom)
-        }
+        let marginLeft: CGFloat = 0
+        let marginBottom: CGFloat = 0
+        
+        footer.autoresizingMask = [.flexibleTopMargin, .flexibleWidth]
+        footer.frame.size.width = self.view.bounds.width - marginLeft - marginLeft
+        footer.sizeToFit()
+        footer.frame.origin = CGPoint(x: marginLeft, y: self.view.bounds.height - footer.bounds.height - marginBottom)
     }
 
     fileprivate func layoutScrubber() {
@@ -417,9 +391,35 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         scrubber.frame.origin.y = (footerView?.frame.origin.y ?? self.view.bounds.maxY) - scrubber.bounds.height
     }
 
+    /// Invoked when save image via save button
     @objc fileprivate func saveItem() {
         itemsDelegate?.saveGalleryItem(at: currentIndex)
+        
+        if let vc = currentImageViewController as? ImageViewController, let image = vc.itemView.image {
+            saveButton?.isEnabled = false
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.saveImageResult(_:didFinishSavingWithError:contextInfo:)), nil)
+        } else {
+            let ac = UIAlertController(title: "提示", message: "获取不到图片无法保存!", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "好", style: .default))
+            present(ac, animated: true)
+        }
+        
     }
+    
+    //MARK: - Add image to Library
+    @objc func saveImageResult(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        saveButton?.isEnabled = true
+        if let error = error {
+            let ac = UIAlertController(title: "保存失败", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "好", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "保存成功", message: "图片成功保存到你的图库!", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "好", style: .default))
+            present(ac, animated: true)
+        }
+    }
+
 
     //ThumbnailsimageBlock
 
@@ -449,6 +449,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     open func page(toIndex index: Int) {
         guard currentIndex != index && index >= 0 && index < self.itemsDataSource.itemCount() else { return }
         let imageViewController = self.pagingDataSource.createItemController(index)
+        self.currentImageViewController = imageViewController
         let direction: UIPageViewControllerNavigationDirection = index > currentIndex ? .forward : .reverse
 
         // workaround to make UIPageViewController happy

@@ -10,6 +10,8 @@ import UIKit
 
 // 评论列表页面
 class CommentViewController: UIViewController {
+    
+    public var image: Image?
 
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var username: UILabel!

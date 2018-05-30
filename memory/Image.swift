@@ -14,7 +14,7 @@ public struct Image: Codable {
     
     var galleryId: Int
     var url: String
-    var creater: User
+    var creater: User?
     var description: String?
     var likes: Int
     var comments: Int

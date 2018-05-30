@@ -62,7 +62,7 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
 
     // MARK: - Initializers
 
-    public init(index: Int, itemCount: Int, fetchImageBlock: @escaping FetchImageBlock, configuration: GalleryConfiguration, isInitialController: Bool = false) {
+    public init(index: Int, itemCount: Int, fetchImageBlock: @escaping FetchImageBlock, image: Image? = nil, configuration: GalleryConfiguration, isInitialController: Bool = false) {
 
         self.index = index
         self.itemCount = itemCount

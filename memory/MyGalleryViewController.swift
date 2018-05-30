@@ -10,6 +10,8 @@ import UIKit
 
 // 单个相册页面
 class MyGalleryViewController: UIViewController {
+    
+    public var galleryId: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()

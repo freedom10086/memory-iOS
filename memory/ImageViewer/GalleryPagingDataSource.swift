@@ -77,9 +77,8 @@ final class GalleryPagingDataSource: NSObject, UIPageViewControllerDataSource {
 
         switch item {
 
-        case .image(let fetchImageBlock):
-
-            let imageController = ImageViewController(index: itemIndex, itemCount: itemsDataSource.itemCount(), fetchImageBlock: fetchImageBlock, configuration: configuration, isInitialController: isInitial)
+        case .image(let fetchImageBlock, let image):
+            let imageController = ImageViewController(index: itemIndex, itemCount: itemsDataSource.itemCount(), fetchImageBlock: fetchImageBlock, image: image, configuration: configuration, isInitialController: isInitial)
             imageController.delegate = itemControllerDelegate
             imageController.displacedViewsDataSource = displacedViewsDataSource
 

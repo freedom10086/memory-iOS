@@ -106,7 +106,7 @@ class ThumbnailsViewController: UICollectionViewController, UICollectionViewDele
 
         switch item {
 
-        case .image(let fetchImageBlock):
+        case .image(let fetchImageBlock, _):
 
             fetchImageBlock() { image in
 
