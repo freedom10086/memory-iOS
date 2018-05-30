@@ -9,9 +9,9 @@
 import UIKit
 
 // 评论列表页面
-class CommentViewController: UIViewController {
+class CommentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    public var image: Image?
+    public var image: Image!
 
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var username: UILabel!
@@ -19,24 +19,146 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var mainImageView: UIImageView!
+
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var replyView: SimpleReplyView!
+    private var rsRefreshControl: RSRefreshControl!
     
+    
+    private var currentPage = 1
+    private var pageSize = 1000
+    private var isLoading = false
+    private var haveMore = true
+    
+    
+    private var datas = [Comment]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        replyView.placeholder = "回复"
         
+        self.title = "评论"
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+
+        //init refresh control
+        rsRefreshControl = RSRefreshControl()
+        rsRefreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        self.tableView.addSubview(rsRefreshControl!)
+        
+        replyView.placeholder = "回复"
         replyView.onSubmitClick { content in
             if content.trimmingCharacters(in: CharacterSet.whitespaces).count > 0 {
                 //print("message is:||\(content)||len:\(content.count)")
                 self.replyView.isSending = true
                 
-                //TODO POST API
+                Api.comment(imageId: self.image!.id, content: content, callback: { (comment,err) in
+                    DispatchQueue.main.async {
+                        if var c = comment {
+                            c.creater = self.image.creater!
+                            self.datas.append(c)
+                            print("success")
+                            self.tableView.beginUpdates()
+                            self.tableView.insertRows(at: [IndexPath(row: self.datas.count - 1, section: 0)], with: .automatic)
+                            self.tableView.endUpdates()
+                            self.replyView.clearText(hide: true)
+                        } else {
+                            self.showAlert(title: "错误", message: err)
+                        }
+                        
+                        self.replyView.contentView?.resignFirstResponder()
+                        self.replyView.isSending = false
+                    }
+                })
             }
         }
+        
+        setUpView()
+        rsRefreshControl?.beginRefreshing()
+        loadData()
+    }
+    
+    private func setUpView() {
+        avatarImage.kf.setImage(with: URL(string: image.creater?.avatar ?? ""), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        username.text = image.creater?.name ?? "Unknown"
+        time.text = image.created
+        descriptionLabel.text = image.description ?? ""
+        mainImageView.kf.setImage(with: URL(string: image.url), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+    }
+    
+    @objc private func reloadData() {
+        currentPage = 1
+        loadData()
+    }
+    
+    private func loadData() {
+        Api.getComments(imageId: self.image.id, page: self.currentPage, pageSize: self.pageSize) { comments, err in
+            DispatchQueue.main.async {
+                self.rsRefreshControl?.endRefreshing(message: comments != nil ? "刷新成功...":"刷新失败...")
+                if let cs = comments {
+                    if self.currentPage == 1 {
+                        self.datas = cs
+                        self.tableView.reloadData()
+                    } else {
+                        var indexs = [IndexPath]()
+                        for i in 0..<cs.count {
+                            indexs.append(IndexPath(row: self.datas.count + i, section: 0))
+                        }
+                        self.datas.append(contentsOf: cs)
+                        self.tableView.beginUpdates()
+                        self.tableView.insertRows(at: indexs, with: .automatic)
+                        self.tableView.endUpdates()
+                    }
+                    
+                    if cs.count < self.pageSize {
+                        self.haveMore = true
+                        self.currentPage = self.currentPage + 1
+                    } else {
+                        self.haveMore = false
+                    }
+                } else {
+                    if self.currentPage == 1 {
+                        self.datas = []
+                        self.tableView.reloadData()
+                    }
+                    self.showAlert(title: "加载错误", message: err)
+                }
+                
+                self.isLoading = false
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let d = datas[indexPath.row]
+        let avatar = cell.viewWithTag(1) as! UIImageView
+        let name = cell.viewWithTag(2) as! UILabel
+        let time = cell.viewWithTag(3) as! UILabel
+        let content = cell.viewWithTag(4) as! UILabel
+        
+        avatar.kf.setImage(with: URL(string: d.creater.avatar ?? ""), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        name.text = d.creater.name ?? "Unknown"
+        time.text = d.created
+        content.text = d.content
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return datas.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
 
   
@@ -44,14 +166,4 @@ class CommentViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

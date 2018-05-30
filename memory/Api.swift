@@ -128,6 +128,17 @@ public class Api {
         HttpUtil.REQUEST(Int.self, url: "/likes/\(imageId)", method: "POST", params: nil, callback: callback)
     }
     
+    //评论
+    public static func comment(imageId: Int, content: String, callback: @escaping((Comment?,String))-> Void) {
+        let params = ["content": content]
+        HttpUtil.REQUEST(Comment.self, url: "/images/\(imageId)/comments/", method: "POST", params: params, callback: callback)
+    }
+    
+    //拉取评论列表
+    public static func getComments(imageId: Int, page: Int, pageSize: Int, callback: @escaping(([Comment]?,String))-> Void) {
+        HttpUtil.REQUEST([Comment].self, url: "/images/\(imageId)/comments/", params: nil, callback: callback)
+    }
+    
     // TODO
     // 添加更多的API实现
 }

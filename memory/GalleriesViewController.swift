@@ -22,7 +22,7 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     private var currentPage = 1
     private var pageSize = 30
     private var haveMore = false
-    var rsRefreshControl: RSRefreshControl!
+    private var rsRefreshControl: RSRefreshControl!
     
     private var loading = false
     open var isLoading: Bool {
