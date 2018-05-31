@@ -144,7 +144,7 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     private func setNavView(gallery: Gallery) {
-        Api.setGalleryCover(image: navBgImageView, gallery: gallery)
+        Api.setGalleryCover(image: navBgImageView, url: gallery.cover, type: gallery.type)
         galleryType.text = "\(Api.getGalleryType(type: gallery.type) ?? "未指定")相册"
         galleryName.text = gallery.name
         imagesCount.text = "\(gallery.images) 张图片"

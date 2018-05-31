@@ -13,15 +13,13 @@ import Kingfisher
 class NewsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-
     private var datas = [ImageGroup]()
     
     private var currentPage = 1
     private var pageSize = 30
     private var haveMore = false
-    
-    private var isLoading = false
 
+    private var isLoading = false
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,10 +66,10 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
                     }
                     
                     if subDatas.count < self.pageSize {
+                        self.haveMore = false
+                    } else {
                         self.haveMore = true
                         self.currentPage = self.currentPage + 1
-                    } else {
-                        self.haveMore = false
                     }
                 } else {
                     if self.currentPage == 1 {

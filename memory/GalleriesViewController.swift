@@ -10,20 +10,68 @@ import UIKit
 import Kingfisher
 
 // 相册列表
-class GalleriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class GalleriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
-    //数据
-    private var datas = [Gallery]()
     private var searchBar: UISearchBar!
     private var searchButton: UIButton!
-    
-    private var currentPage = 1
-    private var pageSize = 30
-    private var haveMore = false
     private var rsRefreshControl: RSRefreshControl!
     
+    // 是否在搜索模式
+    private var searchMode = false
+    private var currentPageNormal = 1
+    private var currentPageSerach = 1
+    private var haveMoreNormal = false
+    private var haveMoreSearch = false
+    private var pageSize = 30
+    private var datasNormal = [Gallery]()
+    private var datasSearch = [Gallery]()
+    
+    private var currentPage: Int {
+        get {
+            return searchMode ? currentPageSerach : currentPageNormal
+        }
+        set {
+            if searchMode {
+                currentPageSerach = newValue
+            } else {
+                currentPageNormal = newValue
+            }
+        }
+    }
+    
+    private var haveMore: Bool {
+        get {
+            return searchMode ? haveMoreSearch : haveMoreNormal
+        }
+        set {
+            if searchMode {
+                haveMoreSearch = newValue
+            } else {
+                haveMoreNormal = newValue
+            }
+        }
+    }
+    
+    //数据
+    private var datas: [Gallery] {
+        get {
+            return searchMode ? datasSearch : datasNormal
+        }
+        
+        set {
+            if searchMode {
+                datasSearch = newValue
+            } else {
+                datasNormal = newValue
+            }
+        }
+    }
+    
+    
+    // 是否已经加载过数据
+    private var haveLoaded = false
     private var loading = false
     open var isLoading: Bool {
         get {
@@ -32,21 +80,14 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         set {
             loading = newValue
             let footer = tableView.tableFooterView as? LoadMoreView
-            if self.currentPage == 1 {
-                footer?.isHidden = true
+            if !loading {
+                footer?.endLoading(haveMore: haveMore)
             } else {
-                footer?.isHidden = false
-                if !loading {
-                    footer?.endLoading(haveMore: haveMore)
-                } else {
-                    footer?.startLoading()
-                }
+                footer?.startLoading()
             }
         }
     }
     
-    private var haveLoaded = false
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +108,7 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: bounds.width - margin * 2, height: 40))
         searchBar.searchBarStyle = .minimal
         searchBar.placeholder = "搜索相册"
-        //searchBar.delegate = self //TODO
-        //searchBar.showsCancelButton = true
+        searchBar.delegate = self //TODO
         self.navigationItem.titleView = UIView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 50))
         self.navigationItem.titleView?.addSubview(searchBar)
     }
@@ -91,8 +131,7 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     private func loadData() {
         if isLoading { return }
         isLoading = true
-        
-        Api.loadGalleries(page: currentPage, pageSize: pageSize) { (galleries, err) in
+        Api.loadGalleries(page: currentPage, pageSize: pageSize, query: searchMode ? searchBar.text : nil) { (galleries, err) in
             DispatchQueue.main.async {
                 self.rsRefreshControl?.endRefreshing(message: galleries != nil ? "刷新成功...":"刷新失败...")
                 if let gs = galleries {
@@ -111,12 +150,13 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                     
                     if gs.count < self.pageSize {
+                        self.haveMore = false
+                    } else {
                         self.haveMore = true
                         self.currentPage = self.currentPage + 1
-                    } else {
-                        self.haveMore = false
                     }
                 } else {
+                    self.haveMore = false
                     if self.currentPage == 1 {
                         self.datas = []
                         self.tableView.reloadData()
@@ -153,17 +193,8 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         peoples.text = d.users > 0 ? "\(d.users)人" : nil
         username.text = "创建人:\(d.creater?.name ?? "Unknown")"
         
-        var cover = d.cover
-        if cover == nil {
-            cover = d.groups?[0].images?[0].url
-        }
-        
-        if let c = cover {
-            backgroundImage.kf.setImage(with: URL(string: c), placeholder: #imageLiteral(resourceName: "image_placeholder"))
-        } else {
-            backgroundImage.image = #imageLiteral(resourceName: "image_placeholder")
-        }
-        
+        Api.setGalleryCover(image: backgroundImage,
+                            url: d.groups?[0].images?[0].url ?? d.cover, type: d.type)
         backgroundImage.clipsToBounds = true
         backgroundImage.layer.cornerRadius = 8.0
         
@@ -178,6 +209,41 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    // MARK - serach
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+        searchBar.text = nil
+        
+        searchMode = false
+        //self.tableView.tableHeaderView?.isHidden = false
+        self.tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        print("start search")
+        searchMode = true
+        //self.tableView.tableHeaderView?.isHidden = true
+        self.tableView.reloadData()
+        
+        self.haveMore = true
+        self.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+        print("searchBarTextDidBeginEditing")
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("searchBarTextDidEndEditing")
+        searchBar.showsCancelButton = searchMode
+    }
+    
+    
+    
+    // MARK - segue stuff
     @objc func goToUploadImage() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "uploadImageNavVc")
         self.present(vc!, animated: true, completion: nil)

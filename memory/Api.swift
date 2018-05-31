@@ -14,15 +14,12 @@ import Foundation
 // 第一个参数为类型.self 如 User.self [User].self 分别表示单个用户 和 用户列表
 public class Api {
     
-    public static let host = "101.132.43.60:8080"
+    public static let host = "127.0.0.1:8080"
     
     public static let baseUrl = "http://\(host)"
     
     // 登陆
     public static let loginUrl = "\(baseUrl)/login"
-    
-    // 相册列表
-    public static let galleriesUrl = "\(baseUrl)/galleries/"
 
     
     public static var newImagesUrl = "\(baseUrl)/galleries/new-image-groups/"
@@ -52,16 +49,26 @@ public class Api {
         }
     }
     
-    // 设置相册封面
-    public static func setGalleryCover(image: UIImageView, gallery: Gallery?) {
-        if let g = gallery {
-            if let cover = g.cover {
-                image.kf.setImage(with: URL(string: cover), placeholder: #imageLiteral(resourceName: "image_placeholder"))
-            } else {
-                
-            }
+    public static func getGalleryPlaceholder(type: Int) -> UIImage {
+        if type == 1 {
+            return #imageLiteral(resourceName: "jiaren")
+        } else if type == 2 {
+            return #imageLiteral(resourceName: "qinglv")
+        } else if type == 3 {
+            return #imageLiteral(resourceName: "tongshi")
+        } else if type == 4 {
+            return #imageLiteral(resourceName: "pengyou")
         } else {
-            image.image = #imageLiteral(resourceName: "image_placeholder")
+            return #imageLiteral(resourceName: "qita")
+        }
+    }
+    
+    // 设置相册封面
+    public static func setGalleryCover(image: UIImageView, url: String?,type: Int) {
+        if let url = url {
+            image.kf.setImage(with: URL(string: url), placeholder: getGalleryPlaceholder(type: type))
+        } else {
+            image.image = getGalleryPlaceholder(type: type)
         }
     }
 
@@ -78,12 +85,20 @@ public class Api {
     }
     
     // 获得我的相册列表
+    // query = nil 正常模式
+    // query != nil 搜索模式
     //page 分页第几页; pageSize 每页大小(默认 defaultPageSize); order 排序
-    public static func loadGalleries(page: Int, pageSize: Int = defaultPageSize, order: Order = .newerFirst,
-                                     callback: @escaping ([Gallery]?, String) -> Void){
+    public static func loadGalleries(page: Int, pageSize: Int = defaultPageSize, order: Order = .newerFirst, query: String? = nil, callback: @escaping ([Gallery]?, String) -> Void){
+        var params = ["page":"\(page)", "size": "\(pageSize)", "order": ((order == .newerFirst) ? "newerFirst" : "newerLast")]
+        let url: String
+        if let q = query {
+            params["query"] = q
+            url = "/search/galleries/"
+        } else {
+            url = "/galleries/"
+        }
         
-        let params = ["page":"\(page)", "size": "\(pageSize)", "order": ((order == .newerFirst) ? "newerFirst" : "newerLast")]
-        HttpUtil.REQUEST([Gallery].self, url: galleriesUrl, params: params, callback: callback)
+        HttpUtil.REQUEST([Gallery].self, url: url, params: params, callback: callback)
     }
     
     // 创建相册
