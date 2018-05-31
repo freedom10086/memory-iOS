@@ -603,7 +603,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Osf-V9-bIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="-558"/>
+            <point key="canvasLocation" x="1052" y="-578"/>
         </scene>
         <!--相册图片列表-->
         <scene sceneID="8T6-bo-M49">
@@ -613,71 +613,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="295" estimatedRowHeight="-1" sectionHeaderHeight="295" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Qbo-zM-3I4">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="295" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qbo-zM-3I4">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Nxl-el-37t">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="255"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TDc-Z3-v6F">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pav-eT-gj6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="145"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="165" id="PLr-FP-9tI"/>
+                                                <constraint firstAttribute="height" constant="145" id="oV3-AJ-C5f"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBn-ZI-r8b">
-                                            <rect key="frame" x="10" y="173" width="355" height="31.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18个群成员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCZ-lS-kz4">
-                                            <rect key="frame" x="10" y="230.5" width="62" height="14.5"/>
+                                            <rect key="frame" x="10" y="206.5" width="62" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-1g-wL5">
-                                            <rect key="frame" x="20" y="125" width="42" height="21"/>
+                                            <rect key="frame" x="20" y="100" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ap3-xB-E9E">
-                                            <rect key="frame" x="20" y="92" width="42" height="21"/>
+                                            <rect key="frame" x="20" y="67" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BO1-uh-tPi">
-                                            <rect key="frame" x="316" y="125" width="42" height="21"/>
+                                            <rect key="frame" x="316" y="100" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBn-ZI-r8b">
+                                            <rect key="frame" x="10" y="161" width="355" height="31.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31.5" id="lf1-4u-y8n"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="BJZ-1g-wL5" firstAttribute="top" secondItem="TDc-Z3-v6F" secondAttribute="bottom" constant="-40" id="2Ch-O3-SXt"/>
-                                        <constraint firstAttribute="trailing" secondItem="RBn-ZI-r8b" secondAttribute="trailing" constant="10" id="43a-Uc-lph"/>
-                                        <constraint firstAttribute="trailing" secondItem="BO1-uh-tPi" secondAttribute="trailing" constant="17" id="4Ru-Hk-MmU"/>
-                                        <constraint firstItem="BJZ-1g-wL5" firstAttribute="leading" secondItem="Ap3-xB-E9E" secondAttribute="leading" id="8II-yE-cW7"/>
-                                        <constraint firstItem="RBn-ZI-r8b" firstAttribute="leading" secondItem="Nxl-el-37t" secondAttribute="leading" constant="10" id="AkX-L4-ObM"/>
-                                        <constraint firstItem="BO1-uh-tPi" firstAttribute="top" secondItem="TDc-Z3-v6F" secondAttribute="bottom" constant="-40" id="GHT-A5-rkW"/>
-                                        <constraint firstItem="RBn-ZI-r8b" firstAttribute="top" secondItem="TDc-Z3-v6F" secondAttribute="bottom" constant="8" id="LW8-GU-Vwu"/>
-                                        <constraint firstItem="BJZ-1g-wL5" firstAttribute="top" secondItem="Ap3-xB-E9E" secondAttribute="bottom" constant="12" id="M7S-Gh-6NN"/>
-                                        <constraint firstItem="Ap3-xB-E9E" firstAttribute="leading" secondItem="Nxl-el-37t" secondAttribute="leading" constant="20" id="Zw2-3A-Oxg"/>
-                                        <constraint firstItem="tCZ-lS-kz4" firstAttribute="leading" secondItem="Nxl-el-37t" secondAttribute="leading" constant="10" id="ala-nK-OhL"/>
-                                        <constraint firstItem="TDc-Z3-v6F" firstAttribute="leading" secondItem="Nxl-el-37t" secondAttribute="leading" id="gTq-0i-9Af"/>
-                                        <constraint firstItem="TDc-Z3-v6F" firstAttribute="top" secondItem="Nxl-el-37t" secondAttribute="top" id="jiw-Nf-8Nr"/>
-                                        <constraint firstAttribute="bottom" secondItem="tCZ-lS-kz4" secondAttribute="bottom" constant="10" id="qg6-tW-Drn"/>
-                                        <constraint firstAttribute="trailing" secondItem="TDc-Z3-v6F" secondAttribute="trailing" id="tRI-AO-YcR"/>
+                                        <constraint firstAttribute="trailing" secondItem="BO1-uh-tPi" secondAttribute="trailing" constant="17" id="6AP-iN-wgV"/>
+                                        <constraint firstItem="RBn-ZI-r8b" firstAttribute="top" secondItem="pav-eT-gj6" secondAttribute="bottom" constant="16" id="DnV-eS-pZv"/>
+                                        <constraint firstItem="BJZ-1g-wL5" firstAttribute="top" secondItem="Ap3-xB-E9E" secondAttribute="bottom" constant="12" id="Kik-Ia-pf5"/>
+                                        <constraint firstItem="RBn-ZI-r8b" firstAttribute="leading" secondItem="Nxl-el-37t" secondAttribute="leading" constant="10" id="POy-6l-epS"/>
+                                        <constraint firstAttribute="trailing" secondItem="RBn-ZI-r8b" secondAttribute="trailing" constant="10" id="QQm-Oi-81f"/>
+                                        <constraint firstItem="BO1-uh-tPi" firstAttribute="centerY" secondItem="BJZ-1g-wL5" secondAttribute="centerY" id="UAr-lC-jpS"/>
+                                        <constraint firstAttribute="trailing" secondItem="pav-eT-gj6" secondAttribute="trailing" id="Upy-4Y-4WQ"/>
+                                        <constraint firstItem="pav-eT-gj6" firstAttribute="top" secondItem="Nxl-el-37t" secondAttribute="top" id="ZXH-6a-vKH"/>
+                                        <constraint firstItem="BJZ-1g-wL5" firstAttribute="leading" secondItem="Ap3-xB-E9E" secondAttribute="leading" id="acT-bD-W9V"/>
+                                        <constraint firstItem="tCZ-lS-kz4" firstAttribute="top" secondItem="RBn-ZI-r8b" secondAttribute="bottom" constant="14" id="hqN-Gm-heM"/>
+                                        <constraint firstItem="pav-eT-gj6" firstAttribute="leading" secondItem="Nxl-el-37t" secondAttribute="leading" id="jMh-00-zE9"/>
+                                        <constraint firstItem="tCZ-lS-kz4" firstAttribute="leading" secondItem="RBn-ZI-r8b" secondAttribute="leading" id="mpp-IP-GvZ"/>
+                                        <constraint firstItem="Ap3-xB-E9E" firstAttribute="leading" secondItem="Nxl-el-37t" secondAttribute="leading" constant="20" id="oNn-xQ-8Ru"/>
+                                        <constraint firstItem="Ap3-xB-E9E" firstAttribute="top" secondItem="Nxl-el-37t" secondAttribute="top" constant="67" id="wc4-b8-3sM"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="awk-gn-YBz">
-                                        <rect key="frame" x="0.0" y="310.5" width="375" height="295"/>
+                                        <rect key="frame" x="0.0" y="258" width="375" height="295"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="awk-gn-YBz" id="eNc-66-FLC">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="295"/>
@@ -776,14 +779,14 @@
                         <outlet property="galleryName" destination="BJZ-1g-wL5" id="cmB-Ww-QeW"/>
                         <outlet property="galleryType" destination="Ap3-xB-E9E" id="gCM-dJ-wHS"/>
                         <outlet property="imagesCount" destination="BO1-uh-tPi" id="uST-fL-pSY"/>
-                        <outlet property="navBgImageView" destination="TDc-Z3-v6F" id="emh-3N-ufM"/>
+                        <outlet property="navBgImageView" destination="pav-eT-gj6" id="2xy-LM-3V8"/>
                         <outlet property="peoplesLabel" destination="tCZ-lS-kz4" id="Cs1-gb-wvr"/>
                         <outlet property="tableView" destination="Qbo-zM-3I4" id="huw-U5-hp6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wg0-Cu-VfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096.8000000000002" y="-476.31184407796104"/>
+            <point key="canvasLocation" x="2041" y="-579"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="aEA-CI-Kcu">
@@ -826,7 +829,7 @@
         <!--创建相册-->
         <scene sceneID="llg-fh-8Il">
             <objects>
-                <viewController title="创建相册" hidesBottomBarWhenPushed="YES" id="B1y-Ox-aWk" customClass="CreateGalleryViewController" customModule="memory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createGalleryVc" title="创建相册" hidesBottomBarWhenPushed="YES" id="B1y-Ox-aWk" customClass="CreateGalleryViewController" customModule="memory" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dEF-TU-FDW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1013,6 +1016,10 @@
                         <viewLayoutGuide key="safeArea" id="4W0-v0-cPc"/>
                     </view>
                     <connections>
+                        <outlet property="btn1" destination="HDg-KU-psI" id="JdY-mf-CnC"/>
+                        <outlet property="btn2" destination="szu-Wa-tws" id="SVO-LB-5yp"/>
+                        <outlet property="btn3" destination="bpx-oa-dUK" id="nzW-WX-oHJ"/>
+                        <outlet property="btn4" destination="Zoq-Di-Hjt" id="CVX-Xk-36q"/>
                         <outlet property="descriptionInput" destination="zNt-4T-gN3" id="Xxv-QS-1bI"/>
                         <outlet property="titleInput" destination="sLk-Op-2VG" id="cCX-H1-nGW"/>
                         <outlet property="usersCollectionView" destination="3Oq-C4-GIC" id="Md0-p7-H0V"/>
@@ -1020,7 +1027,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A25-Fp-YQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1881" y="-1307"/>
+            <point key="canvasLocation" x="2041" y="-1307"/>
         </scene>
         <!--上传照片-->
         <scene sceneID="dmi-2u-4RK">
@@ -1221,7 +1228,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5E-oC-LXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2961" y="-528"/>
+            <point key="canvasLocation" x="2881" y="-476"/>
         </scene>
         <!--评论-->
         <scene sceneID="vcN-8S-Gcu">

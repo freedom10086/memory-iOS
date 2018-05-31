@@ -14,6 +14,7 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     
     public var galleryId: Int!
     public var gallery: Gallery?
+    public var membersAndCode: GalleryUsersAndCode?
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navBgImageView: UIImageView!
@@ -39,15 +40,10 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
         set {
             loading = newValue
             let footer = tableView.tableFooterView as? LoadMoreView
-            if self.currentPage == 1 {
-                footer?.isHidden = true
+            if !loading {
+                footer?.endLoading(haveMore: haveMore)
             } else {
-                footer?.isHidden = false
-                if !loading {
-                    footer?.endLoading(haveMore: haveMore)
-                } else {
-                    footer?.startLoading()
-                }
+                footer?.startLoading()
             }
         }
     }
@@ -56,8 +52,19 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //TODO notworking
+        //navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        //navigationController?.navigationBar.backgroundColor = UIColor.clear
+        //navigationController?.navigationBar.shadowImage = UIImage() //remove pesky 1 pixel line
+        //navigationController?.navigationBar.isTranslucent = true
+        
         tableView.dataSource = self
         tableView.delegate = self
+        
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: #imageLiteral(resourceName: "xiangcexiangqing_gengduo"), style: .plain, target: self, action: #selector(moreClick)),
+            UIBarButtonItem(image: #imageLiteral(resourceName: "xiangqingxiangqing_shezhi"), style: .plain, target: self, action: #selector(settingClick))
+        ]
         
         //init refresh control
         rsRefreshControl = RSRefreshControl()
@@ -73,6 +80,7 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
         
         rsRefreshControl?.beginRefreshing()
         loadData()
+        loadMembersAndCode()
     }
     
     @objc private func reloadData() {
@@ -120,10 +128,10 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
                 }
                 
                 if gs.count < self.pageSize {
+                    self.haveMore = false
+                } else {
                     self.haveMore = true
                     self.currentPage = self.currentPage + 1
-                } else {
-                    self.haveMore = false
                 }
             } else {
                 if self.currentPage == 1 {
@@ -136,6 +144,17 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
             self.isLoading = false
         }
     }
+    
+    private func loadMembersAndCode() {
+        Api.getGalleryMembers(galleryId: galleryId) { (memsAndCode, err) in
+            if let res = memsAndCode {
+                print(res)
+                self.membersAndCode = res
+            } else {
+                print("load members error \(err)")
+            }
+        }
+    }
  
     override func viewWillAppear(_ animated: Bool) {
         // 取消大标题栏
@@ -144,7 +163,7 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     private func setNavView(gallery: Gallery) {
-        Api.setGalleryCover(image: navBgImageView, url: gallery.cover, type: gallery.type)
+        Api.setGalleryCover(image: navBgImageView, url: nil, type: gallery.type)
         galleryType.text = "\(Api.getGalleryType(type: gallery.type) ?? "未指定")相册"
         galleryName.text = gallery.name
         imagesCount.text = "\(gallery.images) 张图片"
@@ -215,6 +234,30 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
                 upVc.gallery = self.gallery!
             }
         }
+    }
+    
+    @objc func settingClick() {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "createGalleryVc") as! CreateGalleryViewController
+        vc.memsAndCode = self.membersAndCode
+        vc.title = "编辑相册"
+        vc.gallery = self.gallery
+        self.show(vc, sender: self)
+    }
+    
+    @objc func moreClick() {
+        let sheet = UIAlertController(title: "操作", message: nil, preferredStyle: .actionSheet)
+        sheet.addAction(UIAlertAction(title: "网格视图", style: .default) { action in
+            
+        })
+        
+        if let inviteCode = self.membersAndCode?.inviteCode {
+            sheet.addAction(UIAlertAction(title: "邀请好友", style: .default) { action in
+                //TODO
+            })
+        }
+        
+        sheet.addAction(UIAlertAction(title: "关闭", style: .cancel, handler: nil))
+        self.present(sheet, animated: true, completion: nil)
     }
 }
 

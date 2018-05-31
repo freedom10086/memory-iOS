@@ -154,6 +154,10 @@ public class Api {
         HttpUtil.REQUEST([Comment].self, url: "/images/\(imageId)/comments/", params: nil, callback: callback)
     }
     
+    // 拉取相册成员列表和生成邀请码
+    public static func getGalleryMembers(galleryId: Int, callback: @escaping (GalleryUsersAndCode?,String)-> Void) {
+        HttpUtil.REQUEST(GalleryUsersAndCode.self, url: "/galleries/\(galleryId)/members/", params: nil, callback: callback)
+    }
     // TODO
     // 添加更多的API实现
 }

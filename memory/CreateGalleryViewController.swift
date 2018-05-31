@@ -13,16 +13,19 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
     
     // 为空创建 邀请按钮黑的
     public var gallery: Gallery?
+    // 成员列表和邀请码
+    public var memsAndCode: GalleryUsersAndCode?
     
     @IBOutlet weak var titleInput: UITextField!
     @IBOutlet weak var descriptionInput: RitchTextView!
     @IBOutlet weak var usersCollectionView: UICollectionView!
+    @IBOutlet weak var btn1: UIButton!
+    @IBOutlet weak var btn2: UIButton!
+    @IBOutlet weak var btn3: UIButton!
+    @IBOutlet weak var btn4: UIButton!
     
     // 新建的相册类型
     private var type = 0
-    
-    private var users = [User]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +36,51 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
         if gallery == nil {
             usersCollectionView.isHidden = true
         } else {
+            titleInput.text = gallery!.name
+            descriptionInput.text = gallery!.description
+            type = gallery!.type
+            
+            var btn: UIButton?
+            if type == 1 {
+                btn = btn1
+            } else if type == 2 {
+                btn = btn2
+            } else if type == 3 {
+                btn = btn3
+            } else if type == 4 {
+                btn = btn4
+            }
+            
+            btn?.setBackgroundImage(#imageLiteral(resourceName: "chuangjianxiangce_biaoqian"), for: .normal)
+            btn?.setTitleColor(UIColor.white, for: .normal)
+            
             usersCollectionView.dataSource = self
             usersCollectionView.delegate = self
         }
 
         descriptionInput.placeholder = "相册描述"
+        if self.memsAndCode == nil && gallery != nil {
+            self.usersCollectionView.isHidden = true
+            loadMembersAndCode()
+        }
+    }
     
+    private func loadMembersAndCode() {
+        Api.getGalleryMembers(galleryId: self.gallery!.id) { (memsAndCode, err) in
+            if let res = memsAndCode {
+                print(res)
+                self.memsAndCode = res
+                DispatchQueue.main.async {
+                    self.upadteUsersCollectionView(mems: res.users)
+                }
+            } else {
+                print("load members error \(err)")
+            }
+        }
+    }
+    
+    private func upadteUsersCollectionView(mems: [User]) {
+        self.usersCollectionView.reloadData()
     }
 
     // 保存或者新建相册
@@ -60,7 +102,7 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
                 let alertVc: UIAlertController
                 if let g = gallery {
                     print(g)
-                    alertVc = UIAlertController(title: "提示", message: "创建相册成功", preferredStyle: .alert)
+                    alertVc = UIAlertController(title: "提示", message: gallery == nil ? "创建相册成功" : "保存相册成功", preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
                         self?.navigationController?.popViewController(animated: true)
                     })
@@ -102,18 +144,22 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
     // MARK: UICollectionViewDelegateFlowLayout
     //单元格大小
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let cellSize = (collectionView.frame.width - CGFloat(16)) / CGFloat(10)
         return CGSize(width: cellSize, height: cellSize)
     }
     
+    private var collectionsCount: Int {
+        let add = (self.memsAndCode?.inviteCode == nil) ? 0 : 1
+        return (self.memsAndCode?.users.count ?? 1) + add
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return users.count + 1
+        return collectionsCount
     }
     
     // collectionView的上下左右间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 5)
+        return UIEdgeInsets(top: 10, left: 8, bottom: 5, right: 5)
     }
     
     
@@ -129,33 +175,21 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var isLast = (indexPath.row == users.count)
-        isLast = (indexPath.row == 7)
+        let isLast = (indexPath.row >= (self.memsAndCode?.users.count ?? 1))
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: isLast ? "add_cell" : "cell", for: indexPath)
         if !isLast {
+            let d = (self.memsAndCode?.users[indexPath.row] ?? self.gallery!.creater)
             let image =  cell.viewWithTag(1) as! UIImageView
+            image.kf.setImage(with: URL(string: d!.avatar ?? ""), placeholder: #imageLiteral(resourceName: "image_placeholder"))
             image.layer.cornerRadius = cell.frame.width / 2
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == users.count {
+        let cell = collectionView.cellForItem(at: indexPath)
+        if cell?.reuseIdentifier == "add_cell" {
             invitePeople()
         }
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

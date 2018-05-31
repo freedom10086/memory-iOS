@@ -19,6 +19,7 @@
 		2F36D85F20BD24A600CC8515 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F36D85E20BD24A600CC8515 /* FeedbackViewController.swift */; };
 		2F36D86120BD37C000CC8515 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F36D86020BD37BF00CC8515 /* UploadViewController.swift */; };
 		2F36D86320BD6EC500CC8515 /* UploadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F36D86220BD6EC500CC8515 /* UploadState.swift */; };
+		2F5EA6B120BFB375009C9896 /* GalleryUsersAndCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5EA6B020BFB375009C9896 /* GalleryUsersAndCode.swift */; };
 		2FA3455F20BA9DAE00A84E54 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3455E20BA9DAE00A84E54 /* Extension.swift */; };
 		2FBB32D320BB07D700A86D16 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB32D220BB07D700A86D16 /* SettingViewController.swift */; };
 		2FBB32D520BB0DEC00A86D16 /* CreateGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */; };
@@ -122,6 +123,7 @@
 		2F36D85E20BD24A600CC8515 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		2F36D86020BD37BF00CC8515 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2F36D86220BD6EC500CC8515 /* UploadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadState.swift; sourceTree = "<group>"; };
+		2F5EA6B020BFB375009C9896 /* GalleryUsersAndCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryUsersAndCode.swift; sourceTree = "<group>"; };
 		2FA3455E20BA9DAE00A84E54 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		2FBB32D220BB07D700A86D16 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGalleryViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				2F128E1E20BC40C800FB02A9 /* Comment.swift */,
 				387AC096A3ED2A8FF50F9081 /* UploadResult.swift */,
 				2F36D86220BD6EC500CC8515 /* UploadState.swift */,
+				2F5EA6B020BFB375009C9896 /* GalleryUsersAndCode.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				2F128E1D20BC3FE800FB02A9 /* ImageGroup.swift in Sources */,
 				2FD2A89320BD95EC00E70C85 /* UIImageView.swift in Sources */,
 				2FD2A84D20BD950B00E70C85 /* LayoutEnums.swift in Sources */,
+				2F5EA6B120BFB375009C9896 /* GalleryUsersAndCode.swift in Sources */,
 				2FD2A89820BD95EC00E70C85 /* UIApplication.swift in Sources */,
 				2FD2A85420BD950B00E70C85 /* ItemController.swift in Sources */,
 				2FD2A85820BD950B00E70C85 /* UtilityFunctions.swift in Sources */,
