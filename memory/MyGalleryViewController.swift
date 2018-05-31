@@ -247,7 +247,10 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     @objc func moreClick() {
         let sheet = UIAlertController(title: "操作", message: nil, preferredStyle: .actionSheet)
         sheet.addAction(UIAlertAction(title: "网格视图", style: .default) { action in
-            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "gridGalleryViewController") as! GridGalleryViewController
+            vc.galleryId = self.galleryId
+            vc.title = self.gallery?.name
+            self.show(vc, sender: self)
         })
         
         if let inviteCode = self.membersAndCode?.inviteCode {
@@ -259,6 +262,15 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
         sheet.addAction(UIAlertAction(title: "关闭", style: .cancel, handler: nil))
         self.present(sheet, animated: true, completion: nil)
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = datas.count - 1
+        if !isLoading && indexPath.row == lastElement && haveMore {
+            print("load more next page is:\(currentPage)")
+            loadData()
+        }
+    }
+    
 }
 
 // The GalleryItemsDataSource provides the items to show

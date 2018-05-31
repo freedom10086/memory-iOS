@@ -13,6 +13,5 @@ public struct Comment: Codable {
     var imageId: Int
     var creater: User
     var content: String
-    
     var created: String
 }

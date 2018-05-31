@@ -125,8 +125,9 @@ extension SimpleReplyView: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         if contentView.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count > 0 {
+            sendBtn.setTitleColor(UIColor.white, for: .normal)
             sendBtn.isEnabled = true
-            sendBtn.backgroundColor = UIColor.blue
+            sendBtn.backgroundColor = UIColor(red: CGFloat(0), green: 97 / CGFloat(255), blue: 242 / CGFloat(255), alpha: 1)
         } else {
             sendBtn.isEnabled = false
             sendBtn.backgroundColor = UIColor(white: 0.70, alpha: 1.0)

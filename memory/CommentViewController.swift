@@ -28,8 +28,23 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     private var currentPage = 1
     private var pageSize = 1000
-    private var isLoading = false
     private var haveMore = true
+    
+    private var loading = false
+    open var isLoading: Bool {
+        get {
+            return loading
+        }
+        set {
+            loading = newValue
+            let footer = tableView.tableFooterView as? LoadMoreView
+            if !loading {
+                footer?.endLoading(haveMore: haveMore)
+            } else {
+                footer?.startLoading()
+            }
+        }
+    }
     
     
     private var datas = [Comment]()
@@ -45,6 +60,8 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         rsRefreshControl = RSRefreshControl()
         rsRefreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         self.tableView.addSubview(rsRefreshControl!)
+        self.tableView.tableFooterView = LoadMoreView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 44))
+        
         
         replyView.placeholder = "回复"
         replyView.onSubmitClick { content in
@@ -111,10 +128,10 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                     
                     if cs.count < self.pageSize {
+                        self.haveMore = false
+                    } else {
                         self.haveMore = true
                         self.currentPage = self.currentPage + 1
-                    } else {
-                        self.haveMore = false
                     }
                 } else {
                     if self.currentPage == 1 {
@@ -151,6 +168,14 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         content.text = d.content
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = datas.count - 1
+        if !isLoading && indexPath.row == lastElement && haveMore {
+            print("load more next page is:\(currentPage)")
+            loadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

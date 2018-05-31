@@ -23,6 +23,7 @@
 		2FA3455F20BA9DAE00A84E54 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3455E20BA9DAE00A84E54 /* Extension.swift */; };
 		2FBB32D320BB07D700A86D16 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB32D220BB07D700A86D16 /* SettingViewController.swift */; };
 		2FBB32D520BB0DEC00A86D16 /* CreateGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */; };
+		2FBF696620BFE5AC0098C889 /* GridGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF696520BFE5AC0098C889 /* GridGalleryViewController.swift */; };
 		2FCAD99220B9601400482CD5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99020B9601400482CD5 /* Image.swift */; };
 		2FCAD99320B9601400482CD5 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99120B9601400482CD5 /* Gallery.swift */; };
 		2FCAD99520B9603600482CD5 /* WaterFallCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAD99420B9603600482CD5 /* WaterFallCollectionViewLayout.swift */; };
@@ -63,8 +64,6 @@
 		2FD2A85C20BD950B00E70C85 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A84620BD950B00E70C85 /* VideoView.swift */; };
 		2FD2A85D20BD950B00E70C85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A84720BD950B00E70C85 /* VideoViewController.swift */; };
 		2FD2A85E20BD950B00E70C85 /* GalleryItemsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A84820BD950B00E70C85 /* GalleryItemsDelegate.swift */; };
-		2FD2A88120BD95A900E70C85 /* ThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A87F20BD95A900E70C85 /* ThumbnailCell.swift */; };
-		2FD2A88220BD95A900E70C85 /* ThumbnailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A88020BD95A900E70C85 /* ThumbnailsViewController.swift */; };
 		2FD2A89220BD95EC00E70C85 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A88320BD95EB00E70C85 /* UIColor.swift */; };
 		2FD2A89320BD95EC00E70C85 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A88420BD95EB00E70C85 /* UIImageView.swift */; };
 		2FD2A89420BD95EC00E70C85 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2A88520BD95EB00E70C85 /* UIButton.swift */; };
@@ -127,6 +126,7 @@
 		2FA3455E20BA9DAE00A84E54 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		2FBB32D220BB07D700A86D16 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2FBB32D420BB0DEC00A86D16 /* CreateGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGalleryViewController.swift; sourceTree = "<group>"; };
+		2FBF696520BFE5AC0098C889 /* GridGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGalleryViewController.swift; sourceTree = "<group>"; };
 		2FCAD99020B9601400482CD5 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		2FCAD99120B9601400482CD5 /* Gallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		2FCAD99420B9603600482CD5 /* WaterFallCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterFallCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -174,8 +174,6 @@
 		2FD2A84620BD950B00E70C85 /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		2FD2A84720BD950B00E70C85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		2FD2A84820BD950B00E70C85 /* GalleryItemsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItemsDelegate.swift; sourceTree = "<group>"; };
-		2FD2A87F20BD95A900E70C85 /* ThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailCell.swift; sourceTree = "<group>"; };
-		2FD2A88020BD95A900E70C85 /* ThumbnailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailsViewController.swift; sourceTree = "<group>"; };
 		2FD2A88320BD95EB00E70C85 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = memory/ImageViewer/Ext/UIColor.swift; sourceTree = SOURCE_ROOT; };
 		2FD2A88420BD95EB00E70C85 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageView.swift; path = memory/ImageViewer/Ext/UIImageView.swift; sourceTree = SOURCE_ROOT; };
 		2FD2A88520BD95EB00E70C85 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIButton.swift; path = memory/ImageViewer/Ext/UIButton.swift; sourceTree = SOURCE_ROOT; };
@@ -373,7 +371,6 @@
 			isa = PBXGroup;
 			children = (
 				2F2C9E6920BE34AD0075CFC3 /* Ext */,
-				2FD2A87E20BD959300E70C85 /* ThumbnailsController */,
 				2FD2A83B20BD950A00E70C85 /* BlurView.swift */,
 				2FD2A84420BD950B00E70C85 /* GalleryConfiguration.swift */,
 				2FD2A83A20BD950A00E70C85 /* GalleryDisplacedViewsDataSource.swift */,
@@ -398,15 +395,6 @@
 			path = ImageViewer;
 			sourceTree = "<group>";
 		};
-		2FD2A87E20BD959300E70C85 /* ThumbnailsController */ = {
-			isa = PBXGroup;
-			children = (
-				2FD2A87F20BD95A900E70C85 /* ThumbnailCell.swift */,
-				2FD2A88020BD95A900E70C85 /* ThumbnailsViewController.swift */,
-			);
-			path = ThumbnailsController;
-			sourceTree = "<group>";
-		};
 		2FD45A8F20B9923900B1DACF /* controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +410,7 @@
 				2F36D85E20BD24A600CC8515 /* FeedbackViewController.swift */,
 				2F36D86020BD37BF00CC8515 /* UploadViewController.swift */,
 				2FD2A82620BD8B3E00E70C85 /* CommentViewController.swift */,
+				2FBF696520BFE5AC0098C889 /* GridGalleryViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -630,9 +619,9 @@
 				2FD2A89520BD95EC00E70C85 /* UIViewController.swift in Sources */,
 				2FE3025220BD093500CE392C /* RSRefreshControl.swift in Sources */,
 				2FD2A89D20BD95EC00E70C85 /* UIBezierPath.swift in Sources */,
-				2FD2A88220BD95A900E70C85 /* ThumbnailsViewController.swift in Sources */,
 				2F36D85F20BD24A600CC8515 /* FeedbackViewController.swift in Sources */,
 				2FD2A89620BD95EC00E70C85 /* UISlider.swift in Sources */,
+				2FBF696620BFE5AC0098C889 /* GridGalleryViewController.swift in Sources */,
 				2FD2A89E20BD95EC00E70C85 /* CAShapeLayer.swift in Sources */,
 				2FD2A83120BD8D0900E70C85 /* ImageAttachment.swift in Sources */,
 				2FBB32D320BB07D700A86D16 /* SettingViewController.swift in Sources */,
@@ -643,7 +632,6 @@
 				2FD0DE5A20B85F3200A98500 /* LoginViewController.swift in Sources */,
 				2F2C9E6F20BE35EC0075CFC3 /* ImageDetailFooterView.swift in Sources */,
 				2FD2A89C20BD95EC00E70C85 /* CGSize.swift in Sources */,
-				2FD2A88120BD95A900E70C85 /* ThumbnailCell.swift in Sources */,
 				2FD0DE5820B85F3200A98500 /* AppDelegate.swift in Sources */,
 				2FFDCBDF20B90963000D6C4E /* NewsViewController.swift in Sources */,
 				2FD2A84E20BD950B00E70C85 /* ImageViewController.swift in Sources */,

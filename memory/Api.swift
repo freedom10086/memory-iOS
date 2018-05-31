@@ -158,6 +158,13 @@ public class Api {
     public static func getGalleryMembers(galleryId: Int, callback: @escaping (GalleryUsersAndCode?,String)-> Void) {
         HttpUtil.REQUEST(GalleryUsersAndCode.self, url: "/galleries/\(galleryId)/members/", params: nil, callback: callback)
     }
+    
+    // 拉取相册页网格列表
+    public static func getGalleryGridList(galleryId: Int,page: Int, pageSize: Int, callback: @escaping ([Image]?,String) -> Void) {
+        let params = ["page":"\(page)","size":"\(pageSize)"]
+        HttpUtil.REQUEST([Image].self, url: "/galleries/\(galleryId)/images/", params: params, callback: callback)
+    }
+    
     // TODO
     // 添加更多的API实现
 }

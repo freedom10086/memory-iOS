@@ -19,7 +19,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     
     fileprivate var closeButton: UIButton? = UIButton.closeButton()
     fileprivate var seeAllCloseButton: UIButton? = nil
-    fileprivate var thumbnailsButton: UIButton? = UIButton.thumbnailsButton()
     fileprivate var saveButton: UIButton? = UIButton.saveButton()
     fileprivate let scrubber = VideoScrubber()
 
@@ -61,7 +60,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     fileprivate var galleryPagingMode = GalleryPagingMode.standard
     fileprivate var closeLayout = ButtonLayout.pinRight(8, 16)
     fileprivate var seeAllCloseLayout = ButtonLayout.pinRight(8, 16)
-    fileprivate var thumbnailsLayout = ButtonLayout.pinLeft(8, 16)
     fileprivate var deleteLayout = ButtonLayout.pinRight(8, 66)
     fileprivate var statusBarHidden = true
     fileprivate var overlayAccelerationFactor: CGFloat = 1
@@ -101,7 +99,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             case .imageDividerWidth(let width):                 spineDividerWidth = Float(width)
             case .pagingMode(let mode):                         galleryPagingMode = mode
             case .closeLayout(let layout):                      closeLayout = layout
-            case .thumbnailsLayout(let layout):                 thumbnailsLayout = layout
             case .statusBarHidden(let hidden):                  statusBarHidden = hidden
             case .hideDecorationViewsOnLaunch(let hidden):      decorationViewsHidden = hidden
             case .decorationViewsFadeDuration(let duration):    decorationViewsFadeDuration = duration
@@ -137,15 +134,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
 
                 case .none:                 seeAllCloseButton = nil
                 case .custom(let button):   seeAllCloseButton = button
-                case .builtIn:              break
-                }
-
-            case .thumbnailsButtonMode(let buttonMode):
-
-                switch buttonMode {
-
-                case .none:                 thumbnailsButton = nil
-                case .custom(let button):   thumbnailsButton = button
                 case .builtIn:              break
                 }
 
@@ -234,7 +222,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
         
         footerView?.commentClickBlock = { image in
-
             if let vcc = self.parentVc?.storyboard?.instantiateViewController(withIdentifier: "commentNavViewController") as? UINavigationController {
                 let commentVc = vcc.childViewControllers[0] as! CommentViewController
                 commentVc.image = image
@@ -252,15 +239,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             closeButton.addTarget(self, action: #selector(GalleryViewController.closeInteractively), for: .touchUpInside)
             closeButton.alpha = 0
             self.view.addSubview(closeButton)
-        }
-    }
-
-    fileprivate func configureThumbnailsButton() {
-
-        if let thumbnailsButton = thumbnailsButton {
-            thumbnailsButton.addTarget(self, action: #selector(GalleryViewController.showThumbnails), for: .touchUpInside)
-            thumbnailsButton.alpha = 0
-            self.view.addSubview(thumbnailsButton)
         }
     }
 
@@ -285,7 +263,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         configureHeaderView()
         configureFooterView()
         configureCloseButton()
-        configureThumbnailsButton()
         configureSaveButton()
         configureScrubber()
 
@@ -346,7 +323,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         overlayView.frame = view.bounds.insetBy(dx: -UIScreen.main.bounds.width * 2, dy: -UIScreen.main.bounds.height * 2)
 
         layoutButton(closeButton, layout: closeLayout)
-        layoutButton(thumbnailsButton, layout: thumbnailsLayout)
         layoutButton(saveButton, layout: deleteLayout)
         layoutHeaderView()
         layoutFooterView()
@@ -431,29 +407,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         }
     }
 
-
-    //ThumbnailsimageBlock
-
-    @objc fileprivate func showThumbnails() {
-        let thumbnailsController = ThumbnailsViewController(itemsDataSource: self.itemsDataSource)
-        if let closeButton = seeAllCloseButton {
-            thumbnailsController.closeButton = closeButton
-            thumbnailsController.closeLayout = seeAllCloseLayout
-        } else if let closeButton = closeButton {
-            let seeAllCloseButton = UIButton(frame: CGRect(origin: CGPoint.zero, size: closeButton.bounds.size))
-            seeAllCloseButton.setImage(closeButton.image(for: UIControlState()), for: UIControlState())
-            seeAllCloseButton.setImage(closeButton.image(for: .highlighted), for: .highlighted)
-            thumbnailsController.closeButton = seeAllCloseButton
-            thumbnailsController.closeLayout = closeLayout
-        }
-        
-        thumbnailsController.onItemSelected = { [weak self] index in
-
-            self?.page(toIndex: index)
-        }
-
-        present(thumbnailsController, animated: true, completion: nil)
-    }
 
     open func page(toIndex index: Int) {
         guard currentIndex != index && index >= 0 && index < self.itemsDataSource.itemCount() else { return }
@@ -558,7 +511,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             self?.headerView?.alpha = 0.0
             self?.footerView?.alpha = 0.0
             self?.closeButton?.alpha = 0.0
-            self?.thumbnailsButton?.alpha = 0.0
             self?.saveButton?.alpha = 0.0
             self?.scrubber.alpha = 0.0
 
@@ -602,7 +554,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             self?.headerView?.alpha = targetAlpha
             self?.footerView?.alpha = targetAlpha
             self?.closeButton?.alpha = targetAlpha
-            self?.thumbnailsButton?.alpha = targetAlpha
             self?.saveButton?.alpha = targetAlpha
 
             if let _ = self?.viewControllers?.first as? VideoViewController {
@@ -684,7 +635,6 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
             let alpha = 1 - distance * swipeToDismissFadeOutAccelerationFactor
 
             closeButton?.alpha = alpha
-            thumbnailsButton?.alpha = alpha
             saveButton?.alpha = alpha
             headerView?.alpha = alpha
             footerView?.alpha = alpha
