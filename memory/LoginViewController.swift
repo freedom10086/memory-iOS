@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
                                     
                                     Settings.username = u.name
                                     Settings.avatar = u.avatar
+                                    Settings.uid = u.id
                                     
                                     self?.updateUserInfo(name: u.name!, avatar: u.avatar)
                                     

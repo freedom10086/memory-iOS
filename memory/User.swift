@@ -18,5 +18,11 @@ public struct User: Codable {
     public var created: String?
     
     public var token: String?
+    
+    init(id: Int, name: String?, avatar: String?) {
+        self.id = id
+        self.name = name
+        self.avatar = avatar
+    }
 }
 

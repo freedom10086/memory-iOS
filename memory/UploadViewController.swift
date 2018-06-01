@@ -150,19 +150,30 @@ class UploadViewController: UITableViewController, UICollectionViewDataSource, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         // 最大图片宽度1080像素
         // rs 限制最大1M的附件
-        let pickedImageData = ((info[UIImagePickerControllerEditedImage] ?? info[UIImagePickerControllerOriginalImage]) as? UIImage)?
-            .scaleToSizeAndWidth(width: 2160, maxSize: 4096) //1024 4M
-        picker.dismiss(animated: true, completion: nil)
         
-        if let imageData = pickedImageData {
-            images.append(UploadResult(url: "url", etag: "etag", data: imageData))
-            let indexPath = IndexPath(item: images.count - 1, section: 0)
-            self.imagesCollectionView.insertItems(at: [indexPath])
-            upload(position: indexPath.row, imageData: imageData)
-        } else {
-            let alert = UIAlertController(title: "无法解析的图片,请换一张试试", message: "请选择适合的图片", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
+        picker.dismiss(animated: true, completion: nil)
+        self.images.append(UploadResult(url: "url", etag: "etag", data: nil))
+        
+        let indexPath = IndexPath(item: self.self.images.count - 1, section: 0)
+        self.imagesCollectionView.insertItems(at: [indexPath])
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            let pickedImageData = ((info[UIImagePickerControllerEditedImage] ?? info[UIImagePickerControllerOriginalImage]) as? UIImage)?
+                .scaleToSizeAndWidth(width: 2160, maxSize: 3072) //3072 3M
+            
+            DispatchQueue.main.async {
+                if let imageData = pickedImageData {
+                    //print("will upload image size \((imageData as NSData).length)")
+                    self.images[self.images.count - 1].data = imageData
+                    
+                    self.imagesCollectionView.reloadItems(at: [indexPath])
+                    self.upload(position: indexPath.row, imageData: imageData)
+                } else {
+                    let alert = UIAlertController(title: "无法解析的图片,请换一张试试", message: "请选择适合的图片", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
         }
     }
 

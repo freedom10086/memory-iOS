@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 
 //api http 请求类
@@ -81,6 +82,35 @@ class HttpUtil {
     }
     
     // 上传文件
+    // 有bug服务器接收到0字节数据
+    public static func UPLOAD2(url: String, data: Data, callback: @escaping (UploadResult? , String) -> Void) {
+        let u: String
+        if let token = Settings.token {
+            if url.contains("?") {
+                u = getUrl(url: "\(url)&token=\(token)")
+            } else {
+                u = getUrl(url: "\(url)?token=\(token)")
+            }
+        } else {
+            u = getUrl(url: url)
+        }
+        
+        var request = URLRequest(url: URL(string: u)!)
+        request.httpMethod = "POST"
+        request.setValue("uploadimage.jpg", forHTTPHeaderField: "filename")
+        
+        print("=========")
+        print((data as NSData).length)
+        let uploadTask = URLSession.shared.uploadTask(with: request, from: data) {
+            (data:Data?, response:URLResponse?, error:Error?) -> Void in
+            HttpUtil.workingSize -= 1
+            handleResponse(UploadResult.self, data: data, response: response, error: error, callback: callback)
+        }
+        
+        HttpUtil.workingSize += 1
+        uploadTask.resume()
+    }
+    
     public static func UPLOAD(url: String, data: Data, callback: @escaping (UploadResult? , String) -> Void) {
         let u: String
         if let token = Settings.token {
@@ -93,16 +123,19 @@ class HttpUtil {
             u = getUrl(url: url)
         }
         
-        var request = URLRequest(url: URL(string: u)!, cachePolicy: .reloadIgnoringCacheData)
-        request.httpMethod = "POST"
-        let uploadTask = URLSession.shared.uploadTask(with: request, from: data) {
-            (data:Data?, response:URLResponse?, error:Error?) -> Void in
-            HttpUtil.workingSize -= 1
-            handleResponse(UploadResult.self, data: data, response: response, error: error, callback: callback)
-        }
-        
-        HttpUtil.workingSize += 1
-        uploadTask.resume()
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(data, withName: "file", fileName: "\(Date().timeIntervalSince1970).jpeg", mimeType: "image/jpeg")
+        }, to: u,encodingCompletion: { encodingResult in
+            switch encodingResult {
+                    case .success(let upload, _, _):
+                        upload.responseData(completionHandler: { (response) in
+                            handleResponse(UploadResult.self, data: response.data, response: response.response,
+                                           error: response.error, callback: callback)
+                        })
+                    case .failure(let error):
+                        callback(nil, error.localizedDescription)
+                }
+        })
     }
     
     private static func handleResponse<T>(_ type: T.Type,

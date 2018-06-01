@@ -59,16 +59,23 @@ extension UIImage {
     //调整大小
     func scaleToSizeAndWidth(width: CGFloat, maxSize: Int) -> Data? {
         let image = self.scaleToWidth(width: width) //原始缩放过后的image
+        print("after scale image width to \(width) size is \(image.size)")
         guard var imageData = UIImageJPEGRepresentation(image, 1.0) else {
             return nil
         }
         
         var sizeKb = (imageData as NSData).length / 1024
+
         var resizeRate: CGFloat = 0.9
+        if (sizeKb / maxSize) > 2 {
+            resizeRate = 0.8
+        }
         
         while sizeKb > maxSize && resizeRate > 0.1 {
+            print("bigger than maxsize scale image resize \(resizeRate)")
             imageData = UIImageJPEGRepresentation(image, resizeRate)!
             sizeKb = (imageData as NSData).length / 1024
+            print("after scale size is \(sizeKb)")
             resizeRate -= 0.1
         }
         

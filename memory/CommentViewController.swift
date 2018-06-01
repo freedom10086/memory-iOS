@@ -72,7 +72,7 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
                 Api.comment(imageId: self.image!.id, content: content, callback: { (comment,err) in
                     DispatchQueue.main.async {
                         if var c = comment {
-                            c.creater = self.image.creater!
+                            c.creater = Settings.user!
                             self.datas.append(c)
                             print("success")
                             self.tableView.beginUpdates()

@@ -24,9 +24,6 @@ public class Api {
     
     public static var newImagesUrl = "\(baseUrl)/galleries/new-image-groups/"
     
-    public static var uploadImageUrl = "\(baseUrl)/files/"
-    
-    public static var uploadRawImageUrl = "\(baseUrl)/files/raw/"
     
     public static let defaultPageSize = 30
     
@@ -66,7 +63,7 @@ public class Api {
     // 设置相册封面
     public static func setGalleryCover(image: UIImageView, url: String?,type: Int) {
         if let url = url {
-            image.kf.setImage(with: URL(string: url), placeholder: getGalleryPlaceholder(type: type))
+            image.kf.setImage(with: URL(string: url))
         } else {
             image.image = getGalleryPlaceholder(type: type)
         }
@@ -135,7 +132,7 @@ public class Api {
     
     // 上传图片
     public static func uploadImage(data: Data, callback: @escaping (UploadResult? , String) -> Void) {
-        HttpUtil.UPLOAD(url: uploadRawImageUrl, data: data, callback: callback)
+        HttpUtil.UPLOAD(url: "/files/", data: data, callback: callback)
     }
     
     // 点赞
