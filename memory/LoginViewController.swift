@@ -11,9 +11,6 @@ import Kingfisher
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var avatarImage: UIImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,9 +83,9 @@ class LoginViewController: UIViewController {
     }
     
     private func updateUserInfo(name: String, avatar: String?) {
-        usernameLabel.text = name
+        //usernameLabel.text = name
         if let url = avatar {
-            avatarImage.kf.setImage(with: URL(string: url), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+            //avatarImage.kf.setImage(with: URL(string: url), placeholder: #imageLiteral(resourceName: "image_placeholder"))
         }
     }
 

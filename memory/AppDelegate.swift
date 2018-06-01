@@ -51,8 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate, Q
             if let host = url.host,let query = url.query, host == "invitecode" {
                 for kv in query.split(separator: Character("&")) {
                     if kv.split(separator: "=").count == 2 &&
-                        kv.split(separator: "=")[0] == "invite" &&
+                        kv.split(separator: "=")[0] == "invitecode" &&
                         kv.split(separator: "=")[1].count > 0 {
+                    
+                        print(kv)
                         
                         print("open from invite link inviteCode is \(kv.split(separator: "=")[1])")
                         MainViewController.inviteCode = String(kv.split(separator: "=")[1])
