@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
                                     Settings.openId = app.tencentAuth.getUserOpenID()
                                     Settings.accessToken = app.tencentAuth.accessToken
                                     
-                                    alertVc = UIAlertController(title: "登陆成功", message: "欢迎👏 \(u.name)", preferredStyle: .alert)
+                                    alertVc = UIAlertController(title: "登陆成功", message: "欢迎👏 \(u.name ?? "")", preferredStyle: .alert)
                                     alertVc.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
                                         self?.presentingViewController?.dismiss(animated: true)
                                     })

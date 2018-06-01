@@ -18,6 +18,8 @@ public class Settings {
     private static let key_access_token = "key_access_token"
     private static let key_expires_in = "key_expires_in"
     private static let key_token = "key_token"
+    private static let key_user_message_id = "key_user_message_id"
+    private static let key_check_message_time = "key_check_message_time"
     
     //user
     public static var user: User? {
@@ -26,16 +28,16 @@ public class Settings {
             let avatar = Settings.avatar
             let uid = Settings.uid
             
-            if uid == nil {
+            if uid == 0 {
                 return nil
             } else {
-                return User(id: uid!, name: name, avatar: avatar)
+                return User(id: uid, name: name, avatar: avatar)
             }
         }
     }
     
     //uid
-    public static var uid: Int? {
+    public static var uid: Int {
         get {
             return UserDefaults.standard.integer(forKey: key_user_id)
         }
@@ -90,6 +92,27 @@ public class Settings {
 
         set {
             UserDefaults.standard.set(newValue, forKey: key_access_token)
+        }
+    }
+    
+    // 消息id
+    public static var messageStartId: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: key_user_message_id)
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: key_user_message_id)
+        }
+    }
+    
+    public static var lastCheckMessageTime: Date? {
+        get {
+            return (UserDefaults.standard.value(forKey: key_check_message_time)) as? Date
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: key_check_message_time)
         }
     }
     

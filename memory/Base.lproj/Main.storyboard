@@ -223,25 +223,43 @@
                         <sections>
                             <tableViewSection id="DD6-yI-muB">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="qzQ-sE-vKP" imageView="rtM-vy-xzE" rowHeight="50" style="IBUITableViewCellStyleDefault" id="8gp-6t-rkg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="8gp-6t-rkg">
                                         <rect key="frame" x="0.0" y="152" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8gp-6t-rkg" id="zcz-gs-QSb">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="我收到的通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qzQ-sE-vKP">
-                                                    <rect key="frame" x="51" y="0.0" width="289" height="49.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wode_tongzhi" translatesAutoresizingMaskIntoConstraints="NO" id="mrT-Af-nQ0">
+                                                    <rect key="frame" x="16" y="15" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="BbN-au-gzi"/>
+                                                        <constraint firstAttribute="width" constant="20" id="wai-kO-POi"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我收到的通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqY-Na-jpi">
+                                                    <rect key="frame" x="52" y="15" width="104" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="wode_tongzhi" id="rtM-vy-xzE">
-                                                    <rect key="frame" x="16" y="14" width="20" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xeN-2f-4v4">
+                                                    <rect key="frame" x="161" y="21" width="6" height="6"/>
+                                                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="6" id="Ab3-ur-jD1"/>
+                                                        <constraint firstAttribute="width" constant="6" id="BHQ-Mb-Hsb"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mrT-Af-nQ0" firstAttribute="leading" secondItem="zcz-gs-QSb" secondAttribute="leadingMargin" id="L2f-my-6AH"/>
+                                                <constraint firstItem="PqY-Na-jpi" firstAttribute="leading" secondItem="mrT-Af-nQ0" secondAttribute="trailing" constant="16" id="QKs-fX-Trn"/>
+                                                <constraint firstItem="xeN-2f-4v4" firstAttribute="leading" secondItem="PqY-Na-jpi" secondAttribute="trailing" constant="5" id="UxG-hc-HLh"/>
+                                                <constraint firstItem="mrT-Af-nQ0" firstAttribute="centerY" secondItem="zcz-gs-QSb" secondAttribute="centerY" id="Xm8-gJ-w13"/>
+                                                <constraint firstItem="PqY-Na-jpi" firstAttribute="centerY" secondItem="zcz-gs-QSb" secondAttribute="centerY" id="sv2-oh-Isn"/>
+                                                <constraint firstItem="xeN-2f-4v4" firstAttribute="centerY" secondItem="zcz-gs-QSb" secondAttribute="centerY" id="wLy-cw-VDc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="Njc-bq-qQR" kind="show" id="mnh-S3-Z2o"/>
@@ -327,13 +345,14 @@
                     <navigationItem key="navigationItem" id="7eY-vB-wEx"/>
                     <connections>
                         <outlet property="locationButton" destination="i76-2p-fjv" id="jo5-r1-azD"/>
+                        <outlet property="messageDot" destination="xeN-2f-4v4" id="ZmM-Nd-FZO"/>
                         <outlet property="userAvatarImage" destination="42S-K3-T3n" id="GpY-cy-fSP"/>
                         <outlet property="usernameLabel" destination="zxl-TH-Ea7" id="6kS-tu-sk6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6d-dl-Igd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1158" y="830"/>
+            <point key="canvasLocation" x="1157.5999999999999" y="829.83508245877067"/>
         </scene>
         <!--设置-->
         <scene sceneID="kS5-cu-UYZ">

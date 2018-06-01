@@ -174,7 +174,14 @@ public class Api {
     //拉取评论列表
     public static func getMessages(page: Int, pageSize: Int, callback: @escaping(([Message]?,String))-> Void) {
         let params = ["page":"\(page)","size":"\(pageSize)"]
-        HttpUtil.REQUEST([Message].self, url: "/messages/", params: nil, callback: callback)
+        HttpUtil.REQUEST([Message].self, url: "/messages/", params: params, callback: callback)
+    }
+
+    
+    //我的未读消息
+    public static func getMessagesCount(startId: Int, callback: @escaping((Int?,String))-> Void) {
+        let params = ["startId":"\(startId)"]
+        HttpUtil.REQUEST(Int.self, url: "/messages/unread", params: params, callback: callback)
     }
     
     // TODO

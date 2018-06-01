@@ -10,11 +10,14 @@ import UIKit
 
 class MainViewController: UITabBarController, UITabBarControllerDelegate {
 
+    public static var unReadMessageCout = 0
+    
     var isShowLogin = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        MainViewController.checkMessage()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -26,6 +29,21 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
             let dest = self.storyboard?.instantiateViewController(withIdentifier: "loginNavViewController")
             self.present(dest!, animated: true, completion: nil)
             isShowLogin = true
+        }
+    }
+    
+    public static func checkMessage() {
+        if Settings.accessToken != nil, Settings.uid > 0 {
+            print("start load message count last check \(Settings.lastCheckMessageTime?.timeIntervalSinceNow ?? 0)")
+            Settings.lastCheckMessageTime = Date()
+            Api.getMessagesCount(startId: Settings.messageStartId) { (count, err) in
+                if let c = count {
+                    MainViewController.unReadMessageCout = c
+                    print("have unread message count \(c)")
+                } else {
+                    print("error get message count")
+                }
+            }
         }
     }
 }

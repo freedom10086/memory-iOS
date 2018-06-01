@@ -15,11 +15,13 @@ class MyViewController: UITableViewController {
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userAvatarImage: UIImageView!
+    @IBOutlet weak var messageDot: UIView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        messageDot.layer.cornerRadius = messageDot.frame.width / 2
         usernameLabel.text = Settings.username ?? "Unknown"
         
         userAvatarImage.clipsToBounds = true
@@ -31,6 +33,12 @@ class MyViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        self.messageDot.isHidden = (MainViewController.unReadMessageCout == 0)
+        
+        if (Settings.lastCheckMessageTime?.timeIntervalSince1970 ?? -310) < -300 {
+            print("time goes 300s check message")
+            MainViewController.checkMessage()
+        }
     }
 
     /*

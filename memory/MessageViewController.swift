@@ -71,7 +71,14 @@ class MessageViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.rsRefreshControl?.endRefreshing(message: messages != nil ? "刷新成功...":"刷新失败...")
                 if let ms = messages {
+                    
+                    if let first = ms.first, self.currentPage == 1 {
+                        Settings.messageStartId = first.id
+                        print("refresh curent message id to \(first.id)")
+                    }
+                    
                     if self.currentPage == 1 {
+                        MainViewController.unReadMessageCout = 0
                         self.datas = ms
                         self.tableView.reloadData()
                     } else {
