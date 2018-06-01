@@ -1,0 +1,207 @@
+
+/* Class = "UILabel"; text = "一颗芒果"; ObjectID = "250-7l-lnz"; */
+"250-7l-lnz.text" = "一颗芒果";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3ID-1L-OSc"; */
+"3ID-1L-OSc.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4Ng-Rz-8bu"; */
+"4Ng-Rz-8bu.text" = "Label";
+
+/* Class = "UILabel"; text = "9张"; ObjectID = "5xO-mh-jna"; */
+"5xO-mh-jna.text" = "9张";
+
+/* Class = "UILabel"; text = "2018年5月31日至今"; ObjectID = "8Ar-sP-FtC"; */
+"8Ar-sP-FtC.text" = "2018年5月31日至今";
+
+/* Class = "UIButton"; normalTitle = " 1"; ObjectID = "8NB-9E-m1Z"; */
+"8NB-9E-m1Z.normalTitle" = " 1";
+
+/* Class = "UIViewController"; title = "相册详情页"; ObjectID = "9Hw-cD-XOZ"; */
+"9Hw-cD-XOZ.title" = "相册详情页";
+
+/* Class = "UILabel"; text = "相册标签"; ObjectID = "Ap3-xB-E9E"; */
+"Ap3-xB-E9E.text" = "相册标签";
+
+/* Class = "UIViewController"; title = "创建相册"; ObjectID = "B1y-Ox-aWk"; */
+"B1y-Ox-aWk.title" = "创建相册";
+
+/* Class = "UILabel"; text = "相册名称"; ObjectID = "BJZ-1g-wL5"; */
+"BJZ-1g-wL5.text" = "相册名称";
+
+/* Class = "UILabel"; text = "10张图片"; ObjectID = "BO1-uh-tPi"; */
+"BO1-uh-tPi.text" = "10张图片";
+
+/* Class = "UITabBarItem"; title = "印迹"; ObjectID = "Bvl-s8-F4S"; */
+"Bvl-s8-F4S.title" = "印迹";
+
+/* Class = "UILabel"; text = "人脸识别"; ObjectID = "Fe2-wy-69W"; */
+"Fe2-wy-69W.text" = "人脸识别";
+
+/* Class = "UIButton"; normalTitle = "家人"; ObjectID = "HDg-KU-psI"; */
+"HDg-KU-psI.normalTitle" = "家人";
+
+/* Class = "UIViewController"; title = "评论"; ObjectID = "IIT-Jo-vO2"; */
+"IIT-Jo-vO2.title" = "评论";
+
+/* Class = "UILabel"; text = "上传至"; ObjectID = "Jh9-cE-ZEi"; */
+"Jh9-cE-ZEi.text" = "上传至";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LNa-YQ-Rzv"; */
+"LNa-YQ-Rzv.text" = "Label";
+
+/* Class = "UILabel"; text = "评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论"; ObjectID = "MNV-oC-E3o"; */
+"MNV-oC-E3o.text" = "评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论";
+
+/* Class = "UILabel"; text = "上传人：两个芒果"; ObjectID = "MoB-Du-lwR"; */
+"MoB-Du-lwR.text" = "上传人：两个芒果";
+
+/* Class = "UITableViewController"; title = "消息"; ObjectID = "Njc-bq-qQR"; */
+"Njc-bq-qQR.title" = "消息";
+
+/* Class = "UINavigationItem"; title = "上传照片"; ObjectID = "O3C-Mq-clI"; */
+"O3C-Mq-clI.title" = "上传照片";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "PGe-CD-I4p"; */
+"PGe-CD-I4p.text" = "Label";
+
+/* Class = "UILabel"; text = "我收到的通知"; ObjectID = "PqY-Na-jpi"; */
+"PqY-Na-jpi.text" = "我收到的通知";
+
+/* Class = "UINavigationItem"; title = "登陆"; ObjectID = "QZa-vv-fW4"; */
+"QZa-vv-fW4.title" = "登陆";
+
+/* Class = "UILabel"; text = "相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述"; ObjectID = "RBn-ZI-r8b"; */
+"RBn-ZI-r8b.text" = "相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述相册描述";
+
+/* Class = "UIViewController"; title = "相册页列表视图"; ObjectID = "RLJ-lz-Afu"; */
+"RLJ-lz-Afu.title" = "相册页列表视图";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "RLo-ma-ryi"; */
+"RLo-ma-ryi.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "上传"; ObjectID = "S7q-f7-tqa"; */
+"S7q-f7-tqa.title" = "上传";
+
+/* Class = "UILabel"; text = "印迹"; ObjectID = "SmH-yp-vrY"; */
+"SmH-yp-vrY.text" = "印迹";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Uya-2c-NuG"; */
+"Uya-2c-NuG.text" = "Label";
+
+/* Class = "UILabel"; text = "LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel"; ObjectID = "VHY-fF-bz0"; */
+"VHY-fF-bz0.text" = "LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel";
+
+/* Class = "UILabel"; text = "相册名字"; ObjectID = "WVe-w3-7W3"; */
+"WVe-w3-7W3.text" = "相册名字";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Wh0-da-RgZ"; */
+"Wh0-da-RgZ.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "登陆"; ObjectID = "XFE-ca-Tnb"; */
+"XFE-ca-Tnb.normalTitle" = "登陆";
+
+/* Class = "UILabel"; text = "“这里有一句淡淡的文案”"; ObjectID = "XmZ-ox-hJo"; */
+"XmZ-ox-hJo.text" = "“这里有一句淡淡的文案”";
+
+/* Class = "UITextField"; placeholder = "编辑描述"; ObjectID = "YGS-XB-13T"; */
+"YGS-XB-13T.placeholder" = "编辑描述";
+
+/* Class = "UILabel"; text = "设置"; ObjectID = "YIL-MQ-yoQ"; */
+"YIL-MQ-yoQ.text" = "设置";
+
+/* Class = "UILabel"; text = "建议/反馈"; ObjectID = "ZZn-6D-NZ8"; */
+"ZZn-6D-NZ8.text" = "建议/反馈";
+
+/* Class = "UIButton"; normalTitle = "朋友"; ObjectID = "Zoq-Di-Hjt"; */
+"Zoq-Di-Hjt.normalTitle" = "朋友";
+
+/* Class = "UIButton"; normalTitle = "取消"; ObjectID = "Zyt-Vf-9d6"; */
+"Zyt-Vf-9d6.normalTitle" = "取消";
+
+/* Class = "UIViewController"; title = "最新"; ObjectID = "aBy-eU-WUs"; */
+"aBy-eU-WUs.title" = "最新";
+
+/* Class = "UINavigationController"; title = "登陆"; ObjectID = "axT-20-ASJ"; */
+"axT-20-ASJ.title" = "登陆";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "b8D-Yy-g4z"; */
+"b8D-Yy-g4z.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "同事"; ObjectID = "bpx-oa-dUK"; */
+"bpx-oa-dUK.normalTitle" = "同事";
+
+/* Class = "UILabel"; text = "一颗芒果"; ObjectID = "cg9-Rr-ZiB"; */
+"cg9-Rr-ZiB.text" = "一颗芒果";
+
+/* Class = "UITabBarItem"; title = "我的"; ObjectID = "dQ6-Ab-erT"; */
+"dQ6-Ab-erT.title" = "我的";
+
+/* Class = "UITableViewController"; title = "我的"; ObjectID = "eTy-pQ-qar"; */
+"eTy-pQ-qar.title" = "我的";
+
+/* Class = "UILabel"; text = "199"; ObjectID = "fGc-zr-wge"; */
+"fGc-zr-wge.text" = "199";
+
+/* Class = "UITextField"; placeholder = "标题"; ObjectID = "g4v-m5-QGu"; */
+"g4v-m5-QGu.placeholder" = "标题";
+
+/* Class = "UIButton"; normalTitle = "  深圳市宝安区"; ObjectID = "i76-2p-fjv"; */
+"i76-2p-fjv.normalTitle" = "  深圳市宝安区";
+
+/* Class = "UIViewController"; title = "反馈"; ObjectID = "iKo-i7-PrM"; */
+"iKo-i7-PrM.title" = "反馈";
+
+/* Class = "UILabel"; text = "两天前上传"; ObjectID = "mVq-V9-d4q"; */
+"mVq-V9-d4q.text" = "两天前上传";
+
+/* Class = "UITableViewController"; title = "设置"; ObjectID = "ncG-Ps-qsl"; */
+"ncG-Ps-qsl.title" = "设置";
+
+/* Class = "UIButton"; normalTitle = "  创建相册"; ObjectID = "rNJ-So-3KY"; */
+"rNJ-So-3KY.normalTitle" = "  创建相册";
+
+/* Class = "UILabel"; text = "上传人"; ObjectID = "rlD-wg-PMZ"; */
+"rlD-wg-PMZ.text" = "上传人";
+
+/* Class = "UITabBarItem"; title = "最新"; ObjectID = "rpN-0r-Kt1"; */
+"rpN-0r-Kt1.title" = "最新";
+
+/* Class = "UITextField"; placeholder = "相册名称"; ObjectID = "sLk-Op-2VG"; */
+"sLk-Op-2VG.placeholder" = "相册名称";
+
+/* Class = "UIButton"; normalTitle = "情侣"; ObjectID = "szu-Wa-tws"; */
+"szu-Wa-tws.normalTitle" = "情侣";
+
+/* Class = "UILabel"; text = "xxx相册"; ObjectID = "tBb-hA-y4w"; */
+"tBb-hA-y4w.text" = "xxx相册";
+
+/* Class = "UILabel"; text = "18个群成员"; ObjectID = "tCZ-lS-kz4"; */
+"tCZ-lS-kz4.text" = "18个群成员";
+
+/* Class = "UILabel"; text = "点击编辑个人信息"; ObjectID = "v2f-gJ-HJw"; */
+"v2f-gJ-HJw.text" = "点击编辑个人信息";
+
+/* Class = "UIViewController"; title = "相册列表"; ObjectID = "xvx-iq-KOW"; */
+"xvx-iq-KOW.title" = "相册列表";
+
+/* Class = "UILabel"; text = "username"; ObjectID = "y3A-0t-IQK"; */
+"y3A-0t-IQK.text" = "username";
+
+/* Class = "UIButton"; normalTitle = " 2"; ObjectID = "z2A-rd-NCf"; */
+"z2A-rd-NCf.normalTitle" = " 2";
+
+/* Class = "UILabel"; text = "选择标签"; ObjectID = "z5a-r8-KgQ"; */
+"z5a-r8-KgQ.text" = "选择标签";
+
+/* Class = "UILabel"; text = "多图"; ObjectID = "z9f-jf-XSp"; */
+"z9f-jf-XSp.text" = "多图";
+
+/* Class = "UINavigationItem"; title = "印迹"; ObjectID = "zTP-TF-Z5j"; */
+"zTP-TF-Z5j.title" = "印迹";
+
+/* Class = "UITextView"; text = "请输入你的宝贵建议"; ObjectID = "zYS-DW-G5S"; */
+"zYS-DW-G5S.text" = "请输入你的宝贵建议";
+
+/* Class = "UILabel"; text = "一颗芒果"; ObjectID = "zxl-TH-Ea7"; */
+"zxl-TH-Ea7.text" = "一颗芒果";

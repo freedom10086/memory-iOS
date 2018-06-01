@@ -272,7 +272,7 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
         
         if let inviteCode = self.membersAndCode?.inviteCode {
             sheet.addAction(UIAlertAction(title: "邀请好友", style: .default) { action in
-                //TODO
+                MainViewController.invitePeople(name: self.gallery?.name, inviteCode: inviteCode)
             })
         }
         

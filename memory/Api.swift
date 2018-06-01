@@ -184,6 +184,18 @@ public class Api {
         HttpUtil.REQUEST(Int.self, url: "/messages/unread", params: params, callback: callback)
     }
     
+    // 验证inviteCode
+    public static func checkInviteCode(inviteCode: String, callback: @escaping (Gallery?, String) -> Void) {
+        let params = ["invitecode":"\(inviteCode)"]
+        HttpUtil.REQUEST(Gallery.self, url: "/invite/check", params: params, callback: callback)
+    }
+    
+    // 正式提交邀请
+    public static func joinGallery(inviteCode: String, callback: @escaping (Gallery?, String) -> Void) {
+        let params = ["invitecode":"\(inviteCode)"]
+        HttpUtil.REQUEST(Gallery.self, url: "/invite/join", method: "POST", params: params, callback: callback)
+    }
+    
     // TODO
     // 添加更多的API实现
 }

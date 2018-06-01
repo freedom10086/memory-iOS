@@ -44,14 +44,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate, Q
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        //memory://invite?name=test&password=666
+        //memory://invite?invitecode=%s
         //邀请链接
         print("open app from \(url)")
         if let scheme = url.scheme, scheme == "memory" {
             if let host = url.host,let query = url.query, host == "invite" {
                 for kv in query.split(separator: Character("&")) {
-                    print(kv.split(separator: "=")[0])
-                    print(kv.split(separator: "=")[1])
+                    if kv.split(separator: "=").count == 2 &&
+                        kv.split(separator: "=")[0] == "invite" &&
+                        kv.split(separator: "=")[1].count > 0 {
+                        
+                        print("open from invite link inviteCode is \(kv.split(separator: "=")[1])")
+                        MainViewController.inviteCode = String(kv.split(separator: "=")[1])
+                    }
                 }
             }
             

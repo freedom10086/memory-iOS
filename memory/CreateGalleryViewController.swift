@@ -139,14 +139,7 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
         }
     }
     
-    // 邀请好友
-    private func invitePeople() {
-        let text = QQApiTextObject(text: "印迹相册加入邀请 请点击以下链接接受邀请")
-        let req = SendMessageToQQReq(content: text)
-        let res = QQApiInterface.send(req)
-        print("share response \(res)")
-    }
-    
+
     // MARK: UICollectionViewDelegateFlowLayout
     //单元格大小
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -195,7 +188,7 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         if cell?.reuseIdentifier == "add_cell" {
-            invitePeople()
+            MainViewController.invitePeople(name: gallery?.name, inviteCode: memsAndCode!.inviteCode!)
         }
     }
 }
