@@ -20,6 +20,7 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
     private var haveMore = false
 
     private var isLoading = false
+    private var emptyPlaceholderText = "加载中"
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,47 +46,65 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @objc private func reloadData() {
         currentPage = 1
+        emptyPlaceholderText = "加载中"
         loadData()
     }
     
     func loadData() {
         isLoading = true
         Api.loadNewsImages(page: currentPage, pageSize: pageSize) { (imageGroups, err) in
-            DispatchQueue.main.async {
-                if let subDatas = imageGroups {
-                    if self.currentPage == 1 {
-                        self.datas = subDatas
-                        self.collectionView.reloadData()
-                    } else {
-                        var indexs = [IndexPath]()
-                        for i in 0..<subDatas.count {
-                            indexs.append(IndexPath(row: self.datas.count + i, section: 0))
-                        }
-                        self.datas.append(contentsOf: subDatas)
-                        self.collectionView.insertItems(at: indexs)
-                    }
-                    
-                    if subDatas.count < self.pageSize {
-                        self.haveMore = false
-                    } else {
-                        self.haveMore = true
-                        self.currentPage = self.currentPage + 1
-                    }
+            if let subDatas = imageGroups {
+                if self.currentPage == 1 {
+                    self.datas = subDatas
+                    self.collectionView.reloadData()
                 } else {
-                    if self.currentPage == 1 {
-                        self.datas = []
-                        self.collectionView.reloadData()
+                    var indexs = [IndexPath]()
+                    for i in 0..<subDatas.count {
+                        indexs.append(IndexPath(row: self.datas.count + i, section: 0))
                     }
-                    self.showAlert(title: "加载错误", message: err)
+                    self.datas.append(contentsOf: subDatas)
+                    self.collectionView.insertItems(at: indexs)
                 }
                 
-                self.isLoading = false
+                if subDatas.count < self.pageSize {
+                    self.haveMore = false
+                } else {
+                    self.haveMore = true
+                    self.currentPage = self.currentPage + 1
+                }
+                self.emptyPlaceholderText = "暂无数据"
+            } else {
+                if self.currentPage == 1 {
+                    self.datas = []
+                    self.emptyPlaceholderText = "加载错误，请刷新"
+                    self.collectionView.reloadData()
+                    
+                }
+                self.showAlert(title: "加载错误", message: err)
             }
+            
+            self.isLoading = false
         }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        if datas.count == 0 {//no data avaliable
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: collectionView.bounds.width,
+                                              height: collectionView.bounds.height))
+            label.text = emptyPlaceholderText
+            label.textColor = UIColor.darkGray
+            label.numberOfLines = 0
+            label.textAlignment = .center
+            label.font = UIFont.systemFont(ofSize: 20)
+            label.textColor = UIColor.lightGray
+            label.sizeToFit()
+            
+            collectionView.backgroundView = label
+            return 1
+        } else {
+            collectionView.backgroundView = nil
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

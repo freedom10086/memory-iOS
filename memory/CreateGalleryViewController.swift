@@ -9,8 +9,11 @@
 import UIKit
 
 // 创建 编辑 相册
-class CreateGalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
+        UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    // 回掉函数
+    public var callback: ((Gallery?,Bool) -> Void)?
     // 为空创建 邀请按钮黑的
     public var gallery: Gallery?
     // 成员列表和邀请码
@@ -100,10 +103,13 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
         Api.createGallery(name: title!, description: des!, type: type) { [weak self] (gallery, err) in
             DispatchQueue.main.async {
                 let alertVc: UIAlertController
-                if let g = gallery {
-                    print(g)
-                    alertVc = UIAlertController(title: "提示", message: gallery == nil ? "创建相册成功" : "保存相册成功", preferredStyle: .alert)
+                if var g = gallery {
+                    alertVc = UIAlertController(title: "提示", message: (self?.gallery == nil ? "创建相册成功" : "保存相册成功"), preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
+                        g.images = 0
+                        g.users = 1
+                        g.creater = Settings.user
+                        self?.callback?(g,gallery == nil)
                         self?.navigationController?.popViewController(animated: true)
                     })
                 } else {

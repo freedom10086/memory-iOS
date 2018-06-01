@@ -14,18 +14,12 @@ import Foundation
 // 第一个参数为类型.self 如 User.self [User].self 分别表示单个用户 和 用户列表
 public class Api {
     
-    public static let host = "101.132.43.60:8080"
+    public static let host = "127.0.0.1:8080"
     
     public static let baseUrl = "http://\(host)"
     
     // 登陆
     public static let loginUrl = "\(baseUrl)/login"
-
-    
-    public static var newImagesUrl = "\(baseUrl)/galleries/new-image-groups/"
-    
-    
-    public static let defaultPageSize = 30
     
     public enum Order {
         case newerFirst //新的在前
@@ -85,7 +79,7 @@ public class Api {
     // query = nil 正常模式
     // query != nil 搜索模式
     //page 分页第几页; pageSize 每页大小(默认 defaultPageSize); order 排序
-    public static func loadGalleries(page: Int, pageSize: Int = defaultPageSize, order: Order = .newerFirst, query: String? = nil, callback: @escaping ([Gallery]?, String) -> Void){
+    public static func loadGalleries(page: Int, pageSize: Int, order: Order = .newerFirst, query: String? = nil, callback: @escaping ([Gallery]?, String) -> Void){
         var params = ["page":"\(page)", "size": "\(pageSize)", "order": ((order == .newerFirst) ? "newerFirst" : "newerLast")]
         let url: String
         if let q = query {
@@ -105,14 +99,14 @@ public class Api {
     }
     
     // 查询单个相册信息并返回图片列表的指定页
-    public static func loadGallery(id: Int, page: Int, pageSize: Int = defaultPageSize, order: Order = .newerFirst,
+    public static func loadGallery(id: Int, page: Int, pageSize: Int, order: Order = .newerFirst,
                                    callback: @escaping (Gallery?, String) -> Void) {
         let params = ["page":"\(page)", "pageSize": "\(pageSize)", "order": ((order == .newerFirst) ? "newerFirst" : "newerLast")]
         HttpUtil.REQUEST(Gallery.self, url: "/galleries/\(id)", params: params, callback: callback)
     }
     
     // 查询单个返回图片列表的指定页
-    public static func loadGalleryGroups(id: Int, page: Int, pageSize: Int = defaultPageSize, order: Order = .newerFirst,
+    public static func loadGalleryGroups(id: Int, page: Int, pageSize: Int, order: Order = .newerFirst,
                                    callback: @escaping ([ImageGroup]?, String) -> Void) {
         let params = ["page":"\(page)", "pageSize": "\(pageSize)", "order": ((order == .newerFirst) ? "newerFirst" : "newerLast")]
         HttpUtil.REQUEST([ImageGroup].self, url: "/galleries/\(id)/image-groups/", params: params, callback: callback)
@@ -125,9 +119,23 @@ public class Api {
     }
     
     // 最新页面
-    public static func loadNewsImages(page: Int, pageSize: Int = defaultPageSize,callback: @escaping ([ImageGroup]?, String) -> Void) {
+    public static func loadNewsImages(page: Int, pageSize: Int, minTime: UInt64 = 300, callback: @escaping ([ImageGroup]?, String) -> Void) {
         let params = ["page":"\(page)", "pageSize": "\(pageSize)"]
-        HttpUtil.REQUEST([ImageGroup].self, url: newImagesUrl, params: params, callback: callback)
+        let start = DispatchTime.now()
+        HttpUtil.REQUEST([ImageGroup].self, url: "/galleries/new-image-groups/", params: params) { groups,err in
+            let msTime = (DispatchTime.now().uptimeNanoseconds - start.uptimeNanoseconds) //ms
+            if msTime < (minTime * 1000000) {
+                let deadline = DispatchTime(uptimeNanoseconds: minTime * 1000000 - msTime + DispatchTime.now().uptimeNanoseconds)
+                DispatchQueue.main.asyncAfter(deadline: deadline, execute: {
+                    callback(groups, err)
+                })
+            } else {
+                DispatchQueue.main.async {
+                    callback(groups, err)
+                }
+            }
+            
+        }
     }
     
     // 上传图片
@@ -148,7 +156,8 @@ public class Api {
     
     //拉取评论列表
     public static func getComments(imageId: Int, page: Int, pageSize: Int, callback: @escaping(([Comment]?,String))-> Void) {
-        HttpUtil.REQUEST([Comment].self, url: "/images/\(imageId)/comments/", params: nil, callback: callback)
+        let params = ["page":"\(page)","size":"\(pageSize)"]
+        HttpUtil.REQUEST([Comment].self, url: "/images/\(imageId)/comments/", params: params, callback: callback)
     }
     
     // 拉取相册成员列表和生成邀请码
@@ -160,6 +169,12 @@ public class Api {
     public static func getGalleryGridList(galleryId: Int,page: Int, pageSize: Int, callback: @escaping ([Image]?,String) -> Void) {
         let params = ["page":"\(page)","size":"\(pageSize)"]
         HttpUtil.REQUEST([Image].self, url: "/galleries/\(galleryId)/images/", params: params, callback: callback)
+    }
+    
+    //拉取评论列表
+    public static func getMessages(page: Int, pageSize: Int, callback: @escaping(([Message]?,String))-> Void) {
+        let params = ["page":"\(page)","size":"\(pageSize)"]
+        HttpUtil.REQUEST([Message].self, url: "/messages/", params: nil, callback: callback)
     }
     
     // TODO

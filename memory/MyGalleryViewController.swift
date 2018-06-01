@@ -23,12 +23,11 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var imagesCount: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var peoplesLabel: UILabel!
-    var rsRefreshControl: RSRefreshControl!
+    private var rsRefreshControl: RSRefreshControl!
     
-    
+    private var datas = [ImageGroup]()
     private var pageSize = 1000
     private var currentPage = 1
-    private var datas = [ImageGroup]()
     private var clickPosition = 0
     private var haveMore = true
     
@@ -203,6 +202,10 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
         return datas.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 262
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let d = datas[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -213,6 +216,20 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
         let image = cell.viewWithTag(4) as! UIImageView
         let description = cell.viewWithTag(5) as! UILabel
         let imageCountLabel = cell.viewWithTag(6) as! UILabel
+        
+        let likeBtn = cell.viewWithTag(7) as! UIButton
+        let commentBtn = cell.viewWithTag(8) as! UIButton
+        
+        let likes: Int = (d.images?.reduce(0, { (rs, image) -> Int in
+            return rs + image.likes
+        })) ?? 0
+        
+        let comments: Int = (d.images?.reduce(0, { (rs, image) -> Int in
+            return rs + image.comments
+        })) ?? 0
+        
+        likeBtn.setTitle(" \(likes)", for: .normal)
+        commentBtn.setTitle(" \(comments)", for: .normal)
         
         avatarImage.kf.setImage(with: URL(string: d.creater?.avatar ?? ""), placeholder: #imageLiteral(resourceName: "image_placeholder"))
         username.text = d.creater?.name ?? "Unknown"

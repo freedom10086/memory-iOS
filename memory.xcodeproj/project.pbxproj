@@ -11,6 +11,7 @@
 		0460D14320B985EC00699608 /* MyGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D14220B985EC00699608 /* MyGalleryViewController.swift */; };
 		2F128E1D20BC3FE800FB02A9 /* ImageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */; };
 		2F128E1F20BC40C800FB02A9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F128E1E20BC40C800FB02A9 /* Comment.swift */; };
+		2F1E424920C1351800802D40 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E424820C1351800802D40 /* Message.swift */; };
 		2F2C9E6D20BE35DC0075CFC3 /* ImageDetailFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F2C9E6C20BE35DC0075CFC3 /* ImageDetailFooterView.xib */; };
 		2F2C9E6F20BE35EC0075CFC3 /* ImageDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2C9E6E20BE35EC0075CFC3 /* ImageDetailFooterView.swift */; };
 		2F36D85920BD15A100CC8515 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F36D85820BD15A000CC8515 /* LoadMoreView.swift */; };
@@ -114,6 +115,7 @@
 		28915CBAF37BA15A4B507C8E /* Pods-memory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memory.release.xcconfig"; path = "Pods/Target Support Files/Pods-memory/Pods-memory.release.xcconfig"; sourceTree = "<group>"; };
 		2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGroup.swift; sourceTree = "<group>"; };
 		2F128E1E20BC40C800FB02A9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		2F1E424820C1351800802D40 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2F2C9E6C20BE35DC0075CFC3 /* ImageDetailFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageDetailFooterView.xib; sourceTree = "<group>"; };
 		2F2C9E6E20BE35EC0075CFC3 /* ImageDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailFooterView.swift; sourceTree = "<group>"; };
 		2F36D85820BD15A000CC8515 /* LoadMoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				387AC096A3ED2A8FF50F9081 /* UploadResult.swift */,
 				2F36D86220BD6EC500CC8515 /* UploadState.swift */,
 				2F5EA6B020BFB375009C9896 /* GalleryUsersAndCode.swift */,
+				2F1E424820C1351800802D40 /* Message.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				2FD2A89D20BD95EC00E70C85 /* UIBezierPath.swift in Sources */,
 				2F36D85F20BD24A600CC8515 /* FeedbackViewController.swift in Sources */,
 				2FD2A89620BD95EC00E70C85 /* UISlider.swift in Sources */,
+				2F1E424920C1351800802D40 /* Message.swift in Sources */,
 				2FBF696620BFE5AC0098C889 /* GridGalleryViewController.swift in Sources */,
 				2FD2A89E20BD95EC00E70C85 /* CAShapeLayer.swift in Sources */,
 				2FD2A83120BD8D0900E70C85 /* ImageAttachment.swift in Sources */,

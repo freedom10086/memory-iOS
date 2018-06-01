@@ -81,9 +81,14 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
             loading = newValue
             let footer = tableView.tableFooterView as? LoadMoreView
             if !loading {
+                footer?.isHidden = false
                 footer?.endLoading(haveMore: haveMore)
             } else {
-                footer?.startLoading()
+                if self.datas.count < 5 {
+                    footer?.isHidden = true
+                } else {
+                    footer?.startLoading()
+                }
             }
         }
     }
@@ -192,7 +197,7 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         name.text = d.name
         peoples.text = d.users > 0 ? "\(d.users)人" : nil
         username.text = "创建人:\(d.creater?.name ?? "Unknown")"
-        
+     
         Api.setGalleryCover(image: backgroundImage,
                             url: d.groups?[0].images?[0].url ?? d.cover, type: d.type)
         backgroundImage.clipsToBounds = true
@@ -241,8 +246,6 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         searchBar.showsCancelButton = searchMode
     }
     
-    
-    
     // MARK - segue stuff
     @objc func goToUploadImage() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "uploadImageNavVc")
@@ -255,6 +258,13 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
             let index = tableView.indexPath(for: cell)!
             dest.title = datas[index.row].name
             dest.gallery = datas[index.row]
+        } else if let dest = segue.destination as? CreateGalleryViewController {
+            dest.callback = { gallery,isCreate in
+                if let g = gallery {
+                    self.datas.insert(g, at: 0)
+                    self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                }
+            }
         }
     }
 }
