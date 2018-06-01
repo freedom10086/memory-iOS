@@ -196,6 +196,19 @@ public class Api {
         HttpUtil.REQUEST(Gallery.self, url: "/invite/join", method: "POST", params: params, callback: callback)
     }
     
+    // 删除相册
+    public static func deleteGallery(galleryId: Int, keep: Bool, callback: @escaping((Int?,String))-> Void) {
+        let params = ["keep":"\(keep)"]
+        HttpUtil.REQUEST(Int.self, url: "/galleries/\(galleryId)",method:"DELETE", params: params, callback: callback)
+    }
+    
+    
+    // update userinfo
+    public static func updateUsername(name: String, callback: @escaping((Int?,String)->Void)) {
+        let params = ["name": name]
+        HttpUtil.REQUEST(Int.self, url: "/users/", method: "PUT", params: params, callback: callback)
+    }
+    
     // TODO
     // 添加更多的API实现
 }

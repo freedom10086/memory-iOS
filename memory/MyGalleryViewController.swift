@@ -15,6 +15,7 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     public var galleryId: Int!
     public var gallery: Gallery?
     public var membersAndCode: GalleryUsersAndCode?
+    public var deleteCallback: ((Int)->Void)?
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navBgImageView: UIImageView!
@@ -276,8 +277,45 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
             })
         }
         
+        if Settings.uid == gallery?.creater?.id {
+            sheet.addAction(UIAlertAction(title: "删除相册", style: .default) { action in
+                print("===delete===")
+                //TODO 管理员逻辑
+            })
+        } else {
+            sheet.addAction(UIAlertAction(title: "退出相册", style: .default) { action in
+                let alert2 = UIAlertController(title: "提示", message: "是否保留相册？不保留则删除相册", preferredStyle: .alert)
+                alert2.addAction(UIAlertAction(title: "是", style: .default, handler: { (ac) in
+                    self.deleteGallery(keep: true)
+                }))
+                
+                alert2.addAction(UIAlertAction(title: "删除", style: .destructive, handler: { (ac) in
+                    self.deleteGallery(keep: false)
+                }))
+                
+                self.present(alert2, animated: true, completion: nil)
+            })
+        }
+        
         sheet.addAction(UIAlertAction(title: "关闭", style: .cancel, handler: nil))
         self.present(sheet, animated: true, completion: nil)
+    }
+    
+    private func deleteGallery(keep: Bool) {
+        Api.deleteGallery(galleryId: self.galleryId, keep: keep) { (affets,err) in
+            DispatchQueue.main.async {
+                if let a = affets {
+                    print("=======delete \(a)===")
+                    self.showBackAlert(title: "提示", message: keep ? "已成功退出相册,相册会保持在你退出的状态"
+                        : "已成功删除相册")
+                    if !keep {
+                        self.deleteCallback?(self.galleryId)
+                    }
+                } else {
+                    self.showAlert(title: "错误", message: err)
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

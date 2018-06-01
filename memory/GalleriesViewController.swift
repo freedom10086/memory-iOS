@@ -257,6 +257,15 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
             let index = tableView.indexPath(for: cell)!
             dest.title = datas[index.row].name
             dest.gallery = datas[index.row]
+            dest.deleteCallback = { galleryId in
+                for (k,item) in self.datas.enumerated() {
+                    if item.id == galleryId {
+                        self.datas.remove(at: k)
+                        self.tableView.deleteRows(at: [IndexPath(row: k, section: 0)], with: .automatic)
+                        break
+                    }
+                }
+            }
         } else if let dest = segue.destination as? CreateGalleryViewController {
             dest.callback = { gallery,isCreate in
                 if let g = gallery {

@@ -40,15 +40,35 @@ class MyViewController: UITableViewController {
             MainViewController.checkMessage()
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    private func updateClick() {
+        let alert = UIAlertController(title: "修改资料", message: "请出入你的新昵称", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { (text) in
+            text.placeholder = ""
+        })
+        alert.addAction(UIAlertAction(title: "确认", style: .default, handler: { (ac) in
+            let textField = alert.textFields![0] // Force unwrapping because we know it exists.
+            if (textField.text?.count  ?? 0) > 0 {
+                self.updateInfo(name: textField.text!)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
-    */
+    
+    
+    private func updateInfo(name: String) {
+        Api.updateUsername(name: name) { (count, err) in
+            DispatchQueue.main.async {
+                if let c = count {
+                    print("===\(c)===")
+                    self.usernameLabel.text = name
+                } else {
+                    self.showAlert(title: "错误", message: err)
+                }
+            }
+        }
+    }
 
 }
