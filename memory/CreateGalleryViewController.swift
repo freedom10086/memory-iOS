@@ -26,6 +26,7 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var btn2: UIButton!
     @IBOutlet weak var btn3: UIButton!
     @IBOutlet weak var btn4: UIButton!
+    @IBOutlet weak var btn5: UIButton!
     
     // 新建的相册类型
     private var type = 0
@@ -52,6 +53,8 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
                 btn = btn3
             } else if type == 4 {
                 btn = btn4
+            } else if type == 5 {
+                btn = btn5
             }
             
             btn?.setBackgroundImage(#imageLiteral(resourceName: "chuangjianxiangce_biaoqian"), for: .normal)

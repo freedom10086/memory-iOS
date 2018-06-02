@@ -2,14 +2,20 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "xiangcexiangqing_gengduo.pdf"
+      "filename" : "更多.pdf",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
-  },
-  "properties" : {
-    "template-rendering-intent" : "original"
   }
 }

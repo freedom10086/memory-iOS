@@ -91,23 +91,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="144" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gbq-M8-fwB">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gbq-M8-fwB">
                                                     <rect key="frame" x="0.0" y="0.0" width="144" height="123"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="瀑布流遮罩左" translatesAutoresizingMaskIntoConstraints="NO" id="iPZ-NY-Axt">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="瀑布流遮罩" translatesAutoresizingMaskIntoConstraints="NO" id="iPZ-NY-Axt">
                                                     <rect key="frame" x="0.0" y="0.0" width="144" height="123"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="瀑布流遮罩右" translatesAutoresizingMaskIntoConstraints="NO" id="pJC-B9-DRN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="123"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlD-wg-PMZ">
-                                                    <rect key="frame" x="5" y="97" width="52" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传人" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlD-wg-PMZ">
+                                                    <rect key="frame" x="5" y="97.5" width="52" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9张" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xO-mh-jna">
-                                                    <rect key="frame" x="111" y="97" width="28" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9张" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xO-mh-jna">
+                                                    <rect key="frame" x="111" y="97.5" width="28" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -115,22 +112,18 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="pJC-B9-DRN" firstAttribute="top" secondItem="q03-yW-Ddt" secondAttribute="top" id="3eL-lS-4ld"/>
-                                            <constraint firstItem="iPZ-NY-Axt" firstAttribute="top" secondItem="Gbq-M8-fwB" secondAttribute="top" id="77i-bb-Oe7"/>
-                                            <constraint firstItem="iPZ-NY-Axt" firstAttribute="leading" secondItem="Gbq-M8-fwB" secondAttribute="leading" id="ADJ-BK-0Wx"/>
-                                            <constraint firstItem="iPZ-NY-Axt" firstAttribute="trailing" secondItem="Gbq-M8-fwB" secondAttribute="trailing" id="Dp6-Er-Mei"/>
+                                            <constraint firstAttribute="bottom" secondItem="iPZ-NY-Axt" secondAttribute="bottom" id="6jE-OF-kcj"/>
+                                            <constraint firstItem="iPZ-NY-Axt" firstAttribute="leading" secondItem="q03-yW-Ddt" secondAttribute="leading" id="G1g-ZK-NxC"/>
                                             <constraint firstAttribute="bottom" secondItem="rlD-wg-PMZ" secondAttribute="bottom" constant="5" id="GBE-p5-5tp"/>
                                             <constraint firstAttribute="bottom" secondItem="5xO-mh-jna" secondAttribute="bottom" constant="5" id="I4R-cP-TPS"/>
                                             <constraint firstAttribute="trailing" secondItem="5xO-mh-jna" secondAttribute="trailing" constant="5" id="IrJ-oA-AXB"/>
-                                            <constraint firstAttribute="trailing" secondItem="pJC-B9-DRN" secondAttribute="trailing" id="Kgg-jk-j6N"/>
-                                            <constraint firstItem="pJC-B9-DRN" firstAttribute="top" secondItem="Gbq-M8-fwB" secondAttribute="top" id="LsW-Xg-G4s"/>
-                                            <constraint firstItem="pJC-B9-DRN" firstAttribute="leading" secondItem="q03-yW-Ddt" secondAttribute="leading" id="QWM-PZ-7pp"/>
-                                            <constraint firstItem="pJC-B9-DRN" firstAttribute="trailing" secondItem="Gbq-M8-fwB" secondAttribute="trailing" id="az0-RK-QxI"/>
-                                            <constraint firstItem="iPZ-NY-Axt" firstAttribute="bottom" secondItem="Gbq-M8-fwB" secondAttribute="bottom" id="be4-Lr-oCX"/>
+                                            <constraint firstAttribute="trailing" secondItem="iPZ-NY-Axt" secondAttribute="trailing" id="J1s-st-DmF"/>
+                                            <constraint firstAttribute="trailing" secondItem="Gbq-M8-fwB" secondAttribute="trailing" id="cSW-ic-dRU"/>
                                             <constraint firstItem="rlD-wg-PMZ" firstAttribute="leading" secondItem="q03-yW-Ddt" secondAttribute="leading" constant="5" id="dxl-pS-415"/>
-                                            <constraint firstAttribute="bottom" secondItem="pJC-B9-DRN" secondAttribute="bottom" id="e44-Cq-Byw"/>
-                                            <constraint firstItem="pJC-B9-DRN" firstAttribute="bottom" secondItem="Gbq-M8-fwB" secondAttribute="bottom" id="pM9-za-nxc"/>
-                                            <constraint firstItem="pJC-B9-DRN" firstAttribute="leading" secondItem="Gbq-M8-fwB" secondAttribute="leading" id="uvc-Fs-Vz7"/>
+                                            <constraint firstItem="iPZ-NY-Axt" firstAttribute="top" secondItem="q03-yW-Ddt" secondAttribute="top" id="j9o-gh-1DP"/>
+                                            <constraint firstItem="Gbq-M8-fwB" firstAttribute="leading" secondItem="q03-yW-Ddt" secondAttribute="leading" id="nlb-dy-OvW"/>
+                                            <constraint firstAttribute="bottom" secondItem="Gbq-M8-fwB" secondAttribute="bottom" id="yUg-JI-QOr"/>
+                                            <constraint firstItem="Gbq-M8-fwB" firstAttribute="top" secondItem="q03-yW-Ddt" secondAttribute="top" id="zgP-FO-fQY"/>
                                         </constraints>
                                     </collectionViewCell>
                                 </cells>
@@ -272,9 +265,6 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="FQO-D9-iOo" kind="show" id="5gD-co-yYp"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ZZn-6D-NZ8" imageView="qff-83-k5j" rowHeight="50" style="IBUITableViewCellStyleDefault" id="fJl-fX-xn2">
                                         <rect key="frame" x="0.0" y="252" width="375" height="50"/>
@@ -1021,11 +1011,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" distribution="fillEqually" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="frB-ap-GI8">
+                                    <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="frB-ap-GI8">
                                         <rect key="frame" x="20" y="33" width="335" height="95"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDg-KU-psI">
-                                                <rect key="frame" x="0.0" y="32.5" width="61.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="32.5" width="55" height="30"/>
                                                 <state key="normal" title="家人" backgroundImage="chuangjianxiangce_biaoqian2">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1038,7 +1028,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szu-Wa-tws">
-                                                <rect key="frame" x="91.5" y="32.5" width="61" height="30"/>
+                                                <rect key="frame" x="70" y="32.5" width="55" height="30"/>
                                                 <state key="normal" title="情侣" backgroundImage="chuangjianxiangce_biaoqian2">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1050,7 +1040,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpx-oa-dUK">
-                                                <rect key="frame" x="182.5" y="32.5" width="61.5" height="30"/>
+                                                <rect key="frame" x="140" y="32.5" width="55" height="30"/>
                                                 <state key="normal" title="同事" backgroundImage="chuangjianxiangce_biaoqian2">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1062,7 +1052,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zoq-Di-Hjt">
-                                                <rect key="frame" x="274" y="32.5" width="61" height="30"/>
+                                                <rect key="frame" x="210" y="32.5" width="55" height="30"/>
                                                 <state key="normal" title="朋友" backgroundImage="chuangjianxiangce_biaoqian2">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1072,6 +1062,11 @@
                                                 <connections>
                                                     <action selector="tagButtonClick:" destination="B1y-Ox-aWk" eventType="touchUpInside" id="KVr-X4-MsM"/>
                                                 </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuS-u3-tZm" userLabel="Btn5">
+                                                <rect key="frame" x="280" y="32.5" width="55" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="明星" backgroundImage="chuangjianxiangce_biaoqian2"/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -1161,6 +1156,7 @@
                         <outlet property="btn2" destination="szu-Wa-tws" id="SVO-LB-5yp"/>
                         <outlet property="btn3" destination="bpx-oa-dUK" id="nzW-WX-oHJ"/>
                         <outlet property="btn4" destination="Zoq-Di-Hjt" id="CVX-Xk-36q"/>
+                        <outlet property="btn5" destination="kuS-u3-tZm" id="EgQ-in-32C"/>
                         <outlet property="descriptionInput" destination="zNt-4T-gN3" id="Xxv-QS-1bI"/>
                         <outlet property="titleInput" destination="sLk-Op-2VG" id="cCX-H1-nGW"/>
                         <outlet property="usersCollectionView" destination="3Oq-C4-GIC" id="Md0-p7-H0V"/>
@@ -1596,12 +1592,10 @@
         <image name="加号" width="24" height="24"/>
         <image name="印迹开屏" width="375" height="667"/>
         <image name="图片" width="375" height="245"/>
-        <image name="瀑布流遮罩右" width="180" height="30"/>
-        <image name="瀑布流遮罩左" width="180" height="30"/>
+        <image name="瀑布流遮罩" width="144" height="30"/>
         <image name="登陆按钮" width="345" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5gD-co-yYp"/>
         <segue reference="jjZ-oN-LDc"/>
     </inferredMetricsTieBreakers>
 </document>
