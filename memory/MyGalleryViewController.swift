@@ -199,9 +199,6 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
         return datas.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 262
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let d = datas[indexPath.row]

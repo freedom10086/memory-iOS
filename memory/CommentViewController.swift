@@ -147,7 +147,7 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 85
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
