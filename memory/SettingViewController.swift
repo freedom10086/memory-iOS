@@ -8,10 +8,17 @@
 
 import UIKit
 
-class SettingViewController: UITableViewController {
-
+class SettingViewController: UIViewController {
+    
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var avaterImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        avaterImageView.clipsToBounds = true
+        avaterImageView.layer.cornerRadius = avaterImageView.frame.width / 2
+        if let avatar = Settings.avatar {
+            avaterImageView.kf.setImage(with: URL(string: avatar), placeholder: #imageLiteral(resourceName: "image_placeholder"))
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,15 +32,15 @@ class SettingViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
