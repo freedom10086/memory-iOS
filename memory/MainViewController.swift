@@ -10,7 +10,22 @@ import UIKit
 
 class MainViewController: UITabBarController, UITabBarControllerDelegate {
 
-    public static var unReadMessageCout = 0
+    private static var mytabBar: UITabBar?
+    public static var unReadMessageCout = 0 {
+        didSet {
+            DispatchQueue.main.async {
+                if let tabItems = mytabBar?.items as NSArray? {
+                    let tabItem = tabItems[2] as! UITabBarItem
+                    if unReadMessageCout == 0 {
+                        tabItem.badgeValue = nil
+                    } else {
+                        tabItem.badgeValue = "\(unReadMessageCout)"
+                    }
+                }
+            }
+        }
+    }
+    
     
     // 从邀请链接打开此值不为空
     public static var inviteCode: String?
@@ -19,6 +34,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        MainViewController.mytabBar = self.tabBar
         MainViewController.checkMessage()
     }
     
