@@ -149,7 +149,27 @@ class NewsViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("did select \(indexPath.row)")
+        clickPosition = indexPath.row
+        
+        let gvc = GalleryViewController(startIndex: 0, itemsDataSource: self, displacedViewsDataSource: self, vc: self)
+        gvc.updateLikeBlock = { image in
+            // 点赞回掉更新数据
+            Loop:
+                for (j,imageGroup) in self.datas.enumerated() {
+                    for (i,item) in (imageGroup.images ?? []).enumerated() {
+                        if item.id == image.id {
+                            self.datas[j].images![i] = image
+                            print("update like data")
+                            break Loop
+                        }
+                    }
+            }
+            
+        }
+        self.presentImageGallery(gvc)
     }
+    
+    private var clickPosition = 0
     
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let lastElement = datas.count - 1
@@ -172,5 +192,32 @@ extension NewsViewController: WaterFallLayoutDelegate {
         } else {
             return itemWidth
         }
+    }
+}
+
+// The GalleryItemsDataSource provides the items to show
+extension NewsViewController: GalleryItemsDataSource {
+    func itemCount() -> Int {
+        return datas[clickPosition].images?.count ?? 0
+    }
+    
+    func provideGalleryItem(_ index: Int) -> GalleryItem {
+        let image = datas[clickPosition].images![index]
+        return GalleryItem.image(fetchImageBlock: { (compete) in
+            ImageDownloader.default.downloadImage(with: URL(string: image.url)!, options: [], progressBlock: nil) {
+                (image, error, url, data) in
+                compete(image)
+            }
+        }, image: image)
+    }
+}
+
+extension NewsViewController: GalleryDisplacedViewsDataSource {
+    
+    func provideDisplacementItem(atIndex index: Int) -> DisplaceableView? {
+        if let cell =  collectionView.cellForItem(at: IndexPath(row: clickPosition, section: 0)) {
+            return (cell.viewWithTag(1) as! UIImageView)
+        }
+        return nil
     }
 }
