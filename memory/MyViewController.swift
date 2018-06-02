@@ -48,7 +48,8 @@ class MyViewController: UITableViewController {
             let dest = self.storyboard?.instantiateViewController(withIdentifier: "loginNavViewController")
             self.present(dest!, animated: true, completion: nil)
         } else {
-            if (Settings.lastCheckMessageTime?.timeIntervalSince1970 ?? -310) < -300 {
+            // 1min check messageCount
+            if (Settings.lastCheckMessageTime?.timeIntervalSince1970 ?? -70) < -60 {
                 print("time goes 300s check message")
                 MainViewController.checkMessage()
             }
