@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate, Q
         //邀请链接
         print("open app from \(url)")
         if let scheme = url.scheme, scheme == "memory" {
-            if let host = url.host,let query = url.query, host == "invitecode" {
+            if let host = url.host,let query = url.query, host == "invite" {
                 for kv in query.split(separator: Character("&")) {
                     if kv.split(separator: "=").count == 2 &&
                         kv.split(separator: "=")[0] == "invitecode" &&

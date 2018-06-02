@@ -14,8 +14,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     
     // 从邀请链接打开此值不为空
     public static var inviteCode: String?
-    
-    var isShowLogin = false
+    public var isShowLogin = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +23,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("========viewDidAppear=======")
         if let accessToken = Settings.accessToken {
             print("认证有效 过期:\(Settings.expiresIn)")
             

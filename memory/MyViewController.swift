@@ -17,11 +17,17 @@ class MyViewController: UITableViewController {
     @IBOutlet weak var userAvatarImage: UIImageView!
     @IBOutlet weak var messageDot: UIView!
     
-    
+    private var loadedUid = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         messageDot.layer.cornerRadius = messageDot.frame.width / 2
+        setupView()
+    }
+    
+    private func setupView() {
+        loadedUid = Settings.uid
         usernameLabel.text = Settings.username ?? "Unknown"
         
         userAvatarImage.clipsToBounds = true
@@ -29,19 +35,32 @@ class MyViewController: UITableViewController {
         if let avatar = Settings.avatar {
             userAvatarImage.kf.setImage(with: URL(string: avatar), placeholder: #imageLiteral(resourceName: "image_placeholder"))
         }
+        
+        self.messageDot.isHidden = (MainViewController.unReadMessageCout == 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
         self.messageDot.isHidden = (MainViewController.unReadMessageCout == 0)
         
-        if (Settings.lastCheckMessageTime?.timeIntervalSince1970 ?? -310) < -300 {
-            print("time goes 300s check message")
-            MainViewController.checkMessage()
+        if Settings.uid <= 0 {
+            //login
+            let dest = self.storyboard?.instantiateViewController(withIdentifier: "loginNavViewController")
+            self.present(dest!, animated: true, completion: nil)
+        } else {
+            if (Settings.lastCheckMessageTime?.timeIntervalSince1970 ?? -310) < -300 {
+                print("time goes 300s check message")
+                MainViewController.checkMessage()
+            }
+        }
+        
+        if loadedUid != Settings.uid {
+            setupView()
         }
     }
     
-    private func updateClick() {
+    
+    @IBAction func updateUserInfoClick(_ sender: Any) {
         let alert = UIAlertController(title: "修改资料", message: "请出入你的新昵称", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { (text) in
             text.placeholder = ""
@@ -57,13 +76,13 @@ class MyViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
     private func updateInfo(name: String) {
         Api.updateUsername(name: name) { (count, err) in
             DispatchQueue.main.async {
                 if let c = count {
                     print("===\(c)===")
                     self.usernameLabel.text = name
+                    Settings.username = name
                 } else {
                     self.showAlert(title: "错误", message: err)
                 }

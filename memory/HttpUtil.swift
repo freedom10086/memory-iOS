@@ -43,7 +43,7 @@ class HttpUtil {
         }
         
         let p = encodeParameters(ps)
-        if let q = p, (method == "GET" || method == "DELETE") {
+        if let q = p, (method == "GET" || method == "DELETE" || method == "PUT") {
             if url.contains("?") {
                 url = url + "&" + q
             } else {
