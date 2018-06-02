@@ -51,13 +51,7 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //TODO notworking
-        //navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //navigationController?.navigationBar.backgroundColor = UIColor.clear
-        //navigationController?.navigationBar.shadowImage = UIImage() //remove pesky 1 pixel line
-        //navigationController?.navigationBar.isTranslucent = true
-        
+
         tableView.dataSource = self
         tableView.delegate = self
         
