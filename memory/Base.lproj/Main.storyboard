@@ -186,6 +186,9 @@
                                     <state key="normal" title="点击编辑个人信息">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <connections>
+                                        <action selector="updateUserInfoClick:" destination="eTy-pQ-qar" eventType="touchUpInside" id="zen-JG-3ad"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1546,7 +1549,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOk-7n-PLW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="294" y="878"/>
+            <point key="canvasLocation" x="273" y="883"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oBi-Mk-ATs">

@@ -18,6 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate, Q
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.tencentAuth = TencentOAuth(appId: "1106849099", andDelegate: self)
+        
+        //状态栏颜色
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        //设置导航栏颜色
+        //let textAttributes = [NSAttributedStringKey.foregroundColor: theme.titleColor]
+        //UINavigationBar.appearance().titleTextAttributes = textAttributes //标题颜色
+        UINavigationBar.appearance().tintColor = UIColor(red: 102 / CGFloat(255), green: 102 / CGFloat(255), blue: 102 / CGFloat(255), alpha: 1.0) //按钮颜色
+        //UINavigationBar.appearance().barTintColor = theme.primaryColor //背景色
+        
         return true
     }
 
