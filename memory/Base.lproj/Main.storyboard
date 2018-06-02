@@ -272,6 +272,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="FQO-D9-iOo" kind="show" id="5gD-co-yYp"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ZZn-6D-NZ8" imageView="qff-83-k5j" rowHeight="50" style="IBUITableViewCellStyleDefault" id="fJl-fX-xn2">
                                         <rect key="frame" x="0.0" y="252" width="375" height="50"/>
@@ -1598,6 +1601,7 @@
         <image name="登陆按钮" width="345" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="5gD-co-yYp"/>
         <segue reference="jjZ-oN-LDc"/>
     </inferredMetricsTieBreakers>
 </document>
