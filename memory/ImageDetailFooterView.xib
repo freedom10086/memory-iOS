@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,6 +16,9 @@
             <rect key="frame" x="0.0" y="0.0" width="402" height="130"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="遮罩下" translatesAutoresizingMaskIntoConstraints="NO" id="WbS-KR-cZd">
+                    <rect key="frame" x="0.0" y="0.0" width="402" height="130"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="L0w-To-gn3">
                     <rect key="frame" x="15" y="22" width="44" height="44"/>
                     <constraints>
@@ -33,7 +36,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abg-Qh-7G4">
+                <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abg-Qh-7G4">
                     <rect key="frame" x="0.0" y="81" width="402" height="1"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
@@ -65,16 +68,18 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.30380458047945208" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="abg-Qh-7G4" secondAttribute="trailing" id="7z2-9F-lhV"/>
                 <constraint firstItem="abg-Qh-7G4" firstAttribute="top" secondItem="L0w-To-gn3" secondAttribute="bottom" constant="15" id="8fm-jZ-b5D"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Qjv-1b-7fc" secondAttribute="trailing" constant="15" id="Axc-B1-GOw"/>
+                <constraint firstItem="WbS-KR-cZd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="GOG-ic-INn"/>
                 <constraint firstItem="abg-Qh-7G4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="JBN-4a-eLe"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Qjv-1b-7fc" secondAttribute="bottom" constant="12" id="Kw6-jk-HJZ"/>
                 <constraint firstItem="47W-9L-Ncf" firstAttribute="top" secondItem="L0w-To-gn3" secondAttribute="top" id="OgC-QJ-JiD"/>
+                <constraint firstItem="WbS-KR-cZd" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="cPh-VR-80G"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nQf-Zh-o6h" secondAttribute="bottom" constant="15" id="d1G-HG-Q0u"/>
                 <constraint firstItem="L0w-To-gn3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="d31-Ok-HvB"/>
+                <constraint firstItem="WbS-KR-cZd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="eDa-cz-4RX"/>
                 <constraint firstItem="47W-9L-Ncf" firstAttribute="leading" secondItem="L0w-To-gn3" secondAttribute="trailing" constant="8" id="eOg-e3-nb5"/>
                 <constraint firstItem="r7O-bG-23b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nQf-Zh-o6h" secondAttribute="trailing" constant="10" id="nOL-mZ-Eb4"/>
                 <constraint firstItem="qaf-ZS-UTw" firstAttribute="leading" secondItem="47W-9L-Ncf" secondAttribute="leading" id="ocj-1f-d1a"/>
@@ -82,6 +87,7 @@
                 <constraint firstItem="Qjv-1b-7fc" firstAttribute="top" secondItem="abg-Qh-7G4" secondAttribute="bottom" constant="16" id="rM2-hU-TpZ"/>
                 <constraint firstItem="qaf-ZS-UTw" firstAttribute="top" secondItem="47W-9L-Ncf" secondAttribute="bottom" constant="2.5" id="trN-sj-QKq"/>
                 <constraint firstItem="Qjv-1b-7fc" firstAttribute="leading" secondItem="r7O-bG-23b" secondAttribute="trailing" constant="12" id="uPj-xT-g5Q"/>
+                <constraint firstItem="WbS-KR-cZd" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="xIO-cF-GE9"/>
                 <constraint firstItem="r7O-bG-23b" firstAttribute="centerY" secondItem="Qjv-1b-7fc" secondAttribute="centerY" id="xTv-7H-vqn"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -93,5 +99,6 @@
         <image name="image_placeholder" width="256" height="256"/>
         <image name="xiangcexiangqing_dianzan" width="17" height="16"/>
         <image name="xiangcexiangqing_pinglun" width="18" height="17"/>
+        <image name="遮罩下" width="375" height="103"/>
     </resources>
 </document>
