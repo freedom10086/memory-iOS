@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate, Q
     var loginDelegate: ((Bool) -> ())?
     var getUserInfoDelegate: ((APIResponse)->())?
 
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.tencentAuth = TencentOAuth(appId: "1106849099", andDelegate: self)
         
@@ -56,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate, Q
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         //memory://invite?invitecode=%s
         //邀请链接
-        print("open app from \(url)")
+        print("=== open app from \(url) ====")
         if let scheme = url.scheme, scheme == "memory" {
             if let host = url.host,let query = url.query, host == "invite" {
                 for kv in query.split(separator: Character("&")) {
@@ -68,6 +69,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate, Q
                         
                         print("open from invite link inviteCode is \(kv.split(separator: "=")[1])")
                         MainViewController.inviteCode = String(kv.split(separator: "=")[1])
+                        
+                        if Settings.accessToken == nil {
+                            print("==not login return==")
+                        }
+
+                        if let inviteCode = MainViewController.inviteCode {
+                            Api.checkInviteCode(inviteCode: inviteCode) { (gallery, err) in
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                                    if let g = gallery {
+                                        let alert = UIAlertController(title: "相册邀请", message: "\(g.creater!.name!) 邀请你加入相册 \(g.name) 是否同意邀请?", preferredStyle: .alert)
+                                        let action = UIAlertAction(title: "同意", style: .default, handler: { (ac) in
+                                            self.joinGallery(gallery: g, inviteCode: inviteCode)
+                                        })
+                                        alert.addAction(action)
+                                        alert.addAction(UIAlertAction(title: "不同意", style: .cancel, handler: { (ac) in
+                                            MainViewController.inviteCode = nil
+                                        }))
+                                        self.window?.rootViewController?.present(alert, animated: true)
+                                    } else {
+                                        let alert = UIAlertController(title: "加入邀请失败", message: err, preferredStyle: .alert)
+                                        let action = UIAlertAction(title: "好", style: .cancel)
+                                        alert.addAction(action)
+                                        self.window?.rootViewController?.present(alert, animated: true)
+                                    }
+                                })
+                            }
+                        }
                     }
                 }
             }
@@ -85,6 +113,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TencentSessionDelegate, Q
         }
         
         return true
+    }
+    
+    // accept invite join gallery
+    public func joinGallery(gallery: Gallery, inviteCode: String) {
+        Api.joinGallery(inviteCode: inviteCode) { (gallery, err) in
+            MainViewController.inviteCode = nil
+            DispatchQueue.main.async {
+                if let g = gallery {
+                    let alert = UIAlertController(title: "提示", message: "成功加入相册 \(g.name)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+                    self.window?.rootViewController?.present(alert, animated: true)
+                } else {
+                    let alert = UIAlertController(title: "加入邀请失败", message: err, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "好", style: .cancel)
+                    alert.addAction(action)
+                    self.window?.rootViewController?.present(alert, animated: true)
+                }
+            }
+        }
     }
     
     func tencentDidLogin() {

@@ -31,6 +31,7 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     public static var inviteCode: String?
     public var isShowLogin = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,9 +40,11 @@ class MainViewController: UITabBarController, UITabBarControllerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("========viewDidAppear=======")
+        print("viewDidAppear")
+        
+        print("========viewWillAppear=======")
         if let accessToken = Settings.accessToken {
-            print("认证有效 过期:\(Settings.expiresIn)")
+            print("认证有效 过期:\(Settings.expiresIn) \(Settings.accessToken)")
             
             if let inviteCode = MainViewController.inviteCode {
                 Api.checkInviteCode(inviteCode: inviteCode) { (gallery, err) in
