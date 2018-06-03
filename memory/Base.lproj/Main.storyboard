@@ -48,7 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1128.8" y="-1307.4962518740631"/>
+            <point key="canvasLocation" x="-838" y="-1513"/>
         </scene>
         <!--登陆-->
         <scene sceneID="3V7-DP-20n">
@@ -64,7 +64,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CnC-bz-xQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="294" y="-1273"/>
+            <point key="canvasLocation" x="-1604" y="-1513"/>
         </scene>
         <!--最新-->
         <scene sceneID="m4z-sM-Lsf">
@@ -120,8 +120,10 @@
                                             <constraint firstAttribute="trailing" secondItem="iPZ-NY-Axt" secondAttribute="trailing" id="J1s-st-DmF"/>
                                             <constraint firstAttribute="trailing" secondItem="Gbq-M8-fwB" secondAttribute="trailing" id="cSW-ic-dRU"/>
                                             <constraint firstItem="rlD-wg-PMZ" firstAttribute="leading" secondItem="q03-yW-Ddt" secondAttribute="leading" constant="5" id="dxl-pS-415"/>
+                                            <constraint firstItem="5xO-mh-jna" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="q03-yW-Ddt" secondAttribute="leading" symbolic="YES" id="ekD-2s-1VJ"/>
                                             <constraint firstItem="iPZ-NY-Axt" firstAttribute="top" secondItem="q03-yW-Ddt" secondAttribute="top" id="j9o-gh-1DP"/>
                                             <constraint firstItem="Gbq-M8-fwB" firstAttribute="leading" secondItem="q03-yW-Ddt" secondAttribute="leading" id="nlb-dy-OvW"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rlD-wg-PMZ" secondAttribute="trailing" symbolic="YES" id="y5M-Fx-FSd"/>
                                             <constraint firstAttribute="bottom" secondItem="Gbq-M8-fwB" secondAttribute="bottom" id="yUg-JI-QOr"/>
                                             <constraint firstItem="Gbq-M8-fwB" firstAttribute="top" secondItem="q03-yW-Ddt" secondAttribute="top" id="zgP-FO-fQY"/>
                                         </constraints>
@@ -145,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HGi-lK-REe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="116"/>
+            <point key="canvasLocation" x="953" y="-740"/>
         </scene>
         <!--我的-->
         <scene sceneID="kzd-Zv-Daz">
@@ -193,10 +195,13 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wLm-62-nD7" secondAttribute="trailing" constant="20" symbolic="YES" id="0hy-M5-3Dz"/>
                                 <constraint firstItem="wLm-62-nD7" firstAttribute="leading" secondItem="zxl-TH-Ea7" secondAttribute="leading" id="BP2-Gu-zyq"/>
                                 <constraint firstAttribute="trailing" secondItem="42S-K3-T3n" secondAttribute="trailing" constant="20" id="COB-ny-2KE"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zxl-TH-Ea7" secondAttribute="trailing" constant="20" symbolic="YES" id="GRA-3H-3v6"/>
                                 <constraint firstItem="zxl-TH-Ea7" firstAttribute="top" secondItem="i76-2p-fjv" secondAttribute="bottom" constant="16" id="Y6G-Ee-2wc"/>
                                 <constraint firstAttribute="bottom" secondItem="42S-K3-T3n" secondAttribute="bottom" constant="20" id="ZlQ-qu-CHJ"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="i76-2p-fjv" secondAttribute="trailing" constant="20" symbolic="YES" id="d9e-Wm-YX8"/>
                                 <constraint firstItem="wLm-62-nD7" firstAttribute="top" secondItem="zxl-TH-Ea7" secondAttribute="bottom" constant="8" symbolic="YES" id="kus-aZ-Xiv"/>
                                 <constraint firstItem="zxl-TH-Ea7" firstAttribute="leading" secondItem="i76-2p-fjv" secondAttribute="leading" id="qwA-LJ-TLw"/>
                                 <constraint firstItem="i76-2p-fjv" firstAttribute="leading" secondItem="ZOh-cX-fW0" secondAttribute="leading" constant="20" id="t1l-z5-atw"/>
@@ -335,7 +340,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6d-dl-Igd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="878"/>
+            <point key="canvasLocation" x="953" y="19"/>
         </scene>
         <!--设置-->
         <scene sceneID="rml-dC-fGa">
@@ -359,7 +364,6 @@
                                         <rect key="frame" x="14.5" y="136" width="345" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Zzu-FD-0lR"/>
-                                            <constraint firstAttribute="width" constant="345" id="rMv-KA-VIh"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                         <state key="normal" title="退出登陆" backgroundImage="Rectangle">
@@ -393,7 +397,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MsW-t0-7cn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3911" y="878"/>
+            <point key="canvasLocation" x="3366" y="18"/>
         </scene>
         <!--反馈-->
         <scene sceneID="frE-cj-AMb">
@@ -435,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b9c-Pg-IYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2865" y="883"/>
+            <point key="canvasLocation" x="2558" y="-336"/>
         </scene>
         <!--相册页列表视图-->
         <scene sceneID="lqh-2a-0Yo">
@@ -492,7 +496,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HVh-AT-VDU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="101"/>
+            <point key="canvasLocation" x="4146" y="-1209"/>
         </scene>
         <!--消息页面-->
         <scene sceneID="oj2-x2-ZdL">
@@ -553,6 +557,7 @@
                                         <constraint firstItem="01r-gt-E5X" firstAttribute="leading" secondItem="MNV-oC-E3o" secondAttribute="trailing" constant="12" id="PZf-vP-poV"/>
                                         <constraint firstItem="MNV-oC-E3o" firstAttribute="leading" secondItem="5Ab-RE-eZD" secondAttribute="trailing" constant="10" id="Rf8-B9-W45"/>
                                         <constraint firstItem="5Ab-RE-eZD" firstAttribute="top" secondItem="v9R-sN-2hU" secondAttribute="top" constant="12" id="Sne-Hi-GK9"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="b8D-Yy-g4z" secondAttribute="trailing" constant="20" symbolic="YES" id="sNM-AC-k9y"/>
                                         <constraint firstItem="MNV-oC-E3o" firstAttribute="top" secondItem="250-7l-lnz" secondAttribute="bottom" constant="6" id="wtR-xv-LDd"/>
                                         <constraint firstItem="5Ab-RE-eZD" firstAttribute="leading" secondItem="v9R-sN-2hU" secondAttribute="leading" constant="12" id="yRj-zh-fiR"/>
                                     </constraints>
@@ -567,7 +572,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15s-Yp-jLc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="878"/>
+            <point key="canvasLocation" x="2558" y="437"/>
         </scene>
         <!--相册列表-->
         <scene sceneID="Sh8-fP-qkY">
@@ -603,8 +608,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IKc-0n-8ni">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="“这里有一句淡淡的文案”" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmZ-ox-hJo">
-                                                    <rect key="frame" x="221.5" y="21.5" width="133.5" height="14.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="“留下你的印迹”" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmZ-ox-hJo">
+                                                    <rect key="frame" x="270.5" y="21.5" width="84.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -618,8 +623,10 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstItem="XmZ-ox-hJo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IKc-0n-8ni" secondAttribute="leading" constant="20" symbolic="YES" id="7AX-rK-BFd"/>
                                                 <constraint firstItem="SmH-yp-vrY" firstAttribute="leading" secondItem="IKc-0n-8ni" secondAttribute="leading" constant="20" id="Eh9-RX-cye"/>
                                                 <constraint firstAttribute="trailing" secondItem="XmZ-ox-hJo" secondAttribute="trailing" constant="20" id="aPg-V9-uXO"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SmH-yp-vrY" secondAttribute="trailing" constant="20" symbolic="YES" id="iaI-8e-dO9"/>
                                                 <constraint firstItem="SmH-yp-vrY" firstAttribute="centerY" secondItem="IKc-0n-8ni" secondAttribute="centerY" id="qjv-Hw-SpR"/>
                                                 <constraint firstItem="XmZ-ox-hJo" firstAttribute="centerY" secondItem="IKc-0n-8ni" secondAttribute="centerY" id="rXo-bk-hO2"/>
                                             </constraints>
@@ -637,6 +644,7 @@
                                         <constraint firstAttribute="trailing" secondItem="rNJ-So-3KY" secondAttribute="trailing" constant="77" id="j4O-5J-r5T"/>
                                         <constraint firstItem="IKc-0n-8ni" firstAttribute="centerX" secondItem="ZFy-pb-oAQ" secondAttribute="centerX" id="oir-Hd-U3r"/>
                                         <constraint firstItem="ZFy-pb-oAQ" firstAttribute="top" secondItem="jGe-5D-hLe" secondAttribute="top" constant="65" id="qtm-9H-0RK"/>
+                                        <constraint firstItem="rNJ-So-3KY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jGe-5D-hLe" secondAttribute="leading" constant="20" symbolic="YES" id="qxb-11-zY2"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -716,7 +724,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Osf-V9-bIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="-600"/>
+            <point key="canvasLocation" x="954" y="-1513"/>
         </scene>
         <!--相册图片列表-->
         <scene sceneID="8T6-bo-M49">
@@ -803,13 +811,18 @@
                                         <constraint firstItem="pav-eT-gj6" firstAttribute="top" secondItem="Nxl-el-37t" secondAttribute="top" id="ZXH-6a-vKH"/>
                                         <constraint firstItem="BJZ-1g-wL5" firstAttribute="leading" secondItem="Ap3-xB-E9E" secondAttribute="leading" id="acT-bD-W9V"/>
                                         <constraint firstItem="BO1-uh-tPi" firstAttribute="centerY" secondItem="8Ar-sP-FtC" secondAttribute="centerY" id="apX-9J-Qik"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BJZ-1g-wL5" secondAttribute="trailing" constant="20" symbolic="YES" id="bia-xG-KKv"/>
                                         <constraint firstAttribute="trailing" secondItem="umy-wL-KVj" secondAttribute="trailing" id="cJh-YI-o8D"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tCZ-lS-kz4" secondAttribute="trailing" constant="20" symbolic="YES" id="dPQ-w3-Kr5"/>
                                         <constraint firstItem="umy-wL-KVj" firstAttribute="leading" secondItem="Nxl-el-37t" secondAttribute="leading" id="eXT-HK-IGe"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Ar-sP-FtC" secondAttribute="trailing" constant="20" symbolic="YES" id="hG7-vg-bDX"/>
                                         <constraint firstItem="tCZ-lS-kz4" firstAttribute="top" secondItem="RBn-ZI-r8b" secondAttribute="bottom" constant="7" id="hqN-Gm-heM"/>
                                         <constraint firstItem="pav-eT-gj6" firstAttribute="leading" secondItem="Nxl-el-37t" secondAttribute="leading" id="jMh-00-zE9"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ap3-xB-E9E" secondAttribute="trailing" constant="20" symbolic="YES" id="mQF-ED-cMn"/>
                                         <constraint firstItem="tCZ-lS-kz4" firstAttribute="leading" secondItem="RBn-ZI-r8b" secondAttribute="leading" id="mpp-IP-GvZ"/>
                                         <constraint firstItem="Ap3-xB-E9E" firstAttribute="leading" secondItem="Nxl-el-37t" secondAttribute="leading" constant="20" id="oNn-xQ-8Ru"/>
                                         <constraint firstItem="Rt8-hk-tBb" firstAttribute="top" secondItem="pav-eT-gj6" secondAttribute="top" id="oVZ-cE-zAW"/>
+                                        <constraint firstItem="BO1-uh-tPi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Nxl-el-37t" secondAttribute="leading" constant="20" symbolic="YES" id="st9-4D-A4Y"/>
                                         <constraint firstItem="8Ar-sP-FtC" firstAttribute="bottom" secondItem="pav-eT-gj6" secondAttribute="bottom" constant="-8" id="u2m-aU-k9y"/>
                                         <constraint firstItem="Ap3-xB-E9E" firstAttribute="top" secondItem="Nxl-el-37t" secondAttribute="top" constant="67" id="wc4-b8-3sM"/>
                                         <constraint firstAttribute="bottom" secondItem="umy-wL-KVj" secondAttribute="bottom" id="y0H-X1-VYx"/>
@@ -891,11 +904,14 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="8NB-9E-m1Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eNc-66-FLC" secondAttribute="leading" constant="20" symbolic="YES" id="4x7-bL-gk8"/>
                                                 <constraint firstItem="l4u-DU-SPK" firstAttribute="top" secondItem="9xp-ia-m5E" secondAttribute="bottom" id="79b-yg-gCU"/>
                                                 <constraint firstItem="l4u-DU-SPK" firstAttribute="leading" secondItem="9xp-ia-m5E" secondAttribute="leading" id="9sZ-IC-5yg"/>
+                                                <constraint firstItem="z9f-jf-XSp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eNc-66-FLC" secondAttribute="leading" constant="20" symbolic="YES" id="9t9-AS-PrX"/>
                                                 <constraint firstItem="mVq-V9-d4q" firstAttribute="centerY" secondItem="cg9-Rr-ZiB" secondAttribute="centerY" id="AHc-QF-KG6"/>
                                                 <constraint firstItem="cg9-Rr-ZiB" firstAttribute="centerY" secondItem="H0L-RZ-8RK" secondAttribute="centerY" id="C7i-WY-ogF"/>
                                                 <constraint firstItem="8NB-9E-m1Z" firstAttribute="centerY" secondItem="PGe-CD-I4p" secondAttribute="centerY" id="EDI-jb-Tc9"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cg9-Rr-ZiB" secondAttribute="trailing" constant="20" symbolic="YES" id="JPw-w5-Kdi"/>
                                                 <constraint firstAttribute="trailing" secondItem="z2A-rd-NCf" secondAttribute="trailing" constant="12" id="JeR-d0-lcT"/>
                                                 <constraint firstItem="z2A-rd-NCf" firstAttribute="centerY" secondItem="8NB-9E-m1Z" secondAttribute="centerY" id="L5i-d5-b2b"/>
                                                 <constraint firstItem="9xp-ia-m5E" firstAttribute="leading" secondItem="eNc-66-FLC" secondAttribute="leading" id="Laa-VQ-R90"/>
@@ -905,10 +921,12 @@
                                                 <constraint firstItem="mxQ-P0-IXj" firstAttribute="top" secondItem="9xp-ia-m5E" secondAttribute="top" id="UoT-yu-ivf"/>
                                                 <constraint firstItem="mxQ-P0-IXj" firstAttribute="bottom" secondItem="9xp-ia-m5E" secondAttribute="bottom" id="VMo-Sm-3EN"/>
                                                 <constraint firstItem="9xp-ia-m5E" firstAttribute="top" secondItem="H0L-RZ-8RK" secondAttribute="bottom" constant="8" id="cWc-f8-z0n"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PGe-CD-I4p" secondAttribute="trailing" constant="20" symbolic="YES" id="cfP-Ob-WMl"/>
                                                 <constraint firstItem="cg9-Rr-ZiB" firstAttribute="leading" secondItem="H0L-RZ-8RK" secondAttribute="trailing" constant="8" id="d9I-Oc-XCS"/>
                                                 <constraint firstItem="H0L-RZ-8RK" firstAttribute="top" secondItem="eNc-66-FLC" secondAttribute="top" constant="10" id="f0T-Vh-8Ah"/>
                                                 <constraint firstAttribute="trailing" secondItem="mVq-V9-d4q" secondAttribute="trailing" constant="12" id="gys-2u-IRR"/>
                                                 <constraint firstAttribute="trailing" secondItem="z9f-jf-XSp" secondAttribute="trailing" constant="21" id="l8T-Nk-Ffo"/>
+                                                <constraint firstItem="mVq-V9-d4q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eNc-66-FLC" secondAttribute="leading" constant="20" symbolic="YES" id="lSL-PI-qG5"/>
                                                 <constraint firstItem="PGe-CD-I4p" firstAttribute="leading" secondItem="eNc-66-FLC" secondAttribute="leading" constant="12" id="oZJ-hZ-iAG"/>
                                                 <constraint firstItem="mxQ-P0-IXj" firstAttribute="leading" secondItem="9xp-ia-m5E" secondAttribute="leading" id="pPV-GX-ajf"/>
                                                 <constraint firstItem="l4u-DU-SPK" firstAttribute="trailing" secondItem="9xp-ia-m5E" secondAttribute="trailing" id="pne-u3-bTf"/>
@@ -957,7 +975,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wg0-Cu-VfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968.8" y="-600.44977511244383"/>
+            <point key="canvasLocation" x="1756" y="-1209"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="aEA-CI-Kcu">
@@ -995,7 +1013,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxM-8F-7Ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="294" y="116"/>
+            <point key="canvasLocation" x="142" y="-739"/>
         </scene>
         <!--创建相册-->
         <scene sceneID="llg-fh-8Il">
@@ -1117,6 +1135,7 @@
                                     <constraint firstItem="z5a-r8-KgQ" firstAttribute="top" secondItem="jvI-HI-WNU" secondAttribute="top" constant="8" id="23B-Xr-kW2"/>
                                     <constraint firstAttribute="trailing" secondItem="frB-ap-GI8" secondAttribute="trailing" constant="20" id="5x3-Pt-s9d"/>
                                     <constraint firstAttribute="bottom" secondItem="frB-ap-GI8" secondAttribute="bottom" id="8c0-vj-EaE"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="z5a-r8-KgQ" secondAttribute="trailing" constant="20" symbolic="YES" id="9J0-fB-iZK"/>
                                     <constraint firstItem="frB-ap-GI8" firstAttribute="leading" secondItem="jvI-HI-WNU" secondAttribute="leading" constant="20" id="Snu-1t-bNI"/>
                                     <constraint firstItem="frB-ap-GI8" firstAttribute="top" secondItem="z5a-r8-KgQ" secondAttribute="bottom" constant="8" id="VL4-Sh-jc2"/>
                                     <constraint firstItem="z5a-r8-KgQ" firstAttribute="leading" secondItem="jvI-HI-WNU" secondAttribute="leading" constant="8" id="fWi-RV-Ezo"/>
@@ -1205,7 +1224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A25-Fp-YQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="-1307"/>
+            <point key="canvasLocation" x="1756" y="-1884"/>
         </scene>
         <!--上传照片-->
         <scene sceneID="dmi-2u-4RK">
@@ -1310,6 +1329,7 @@
                                 <constraint firstItem="PPk-B0-Xln" firstAttribute="leading" secondItem="QtL-a7-h1z" secondAttribute="leading" id="EiV-4Z-rAu"/>
                                 <constraint firstItem="HIe-Sp-cMr" firstAttribute="top" secondItem="PPk-B0-Xln" secondAttribute="bottom" constant="12" id="Fhz-HL-pS5"/>
                                 <constraint firstItem="HIe-Sp-cMr" firstAttribute="leading" secondItem="QtL-a7-h1z" secondAttribute="leading" id="Igv-2x-2wf"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jh9-cE-ZEi" secondAttribute="trailing" constant="20" symbolic="YES" id="JEu-M5-pMR"/>
                                 <constraint firstItem="Jh9-cE-ZEi" firstAttribute="top" secondItem="HIe-Sp-cMr" secondAttribute="bottom" constant="15" id="WnI-Wo-rl8"/>
                                 <constraint firstItem="PPk-B0-Xln" firstAttribute="top" secondItem="QtL-a7-h1z" secondAttribute="top" constant="8" id="hYN-cs-GYs"/>
                             </constraints>
@@ -1340,6 +1360,7 @@
                                         <constraint firstItem="tBb-hA-y4w" firstAttribute="leading" secondItem="SXe-rS-iE6" secondAttribute="trailing" constant="16" id="2ZD-et-4DU"/>
                                         <constraint firstItem="tBb-hA-y4w" firstAttribute="centerY" secondItem="xNY-QL-JW0" secondAttribute="centerY" id="4oM-PH-Fen"/>
                                         <constraint firstItem="SXe-rS-iE6" firstAttribute="top" secondItem="xNY-QL-JW0" secondAttribute="top" constant="5" id="JBu-TY-Z0I"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tBb-hA-y4w" secondAttribute="trailing" constant="20" symbolic="YES" id="rBA-KF-SoI"/>
                                         <constraint firstItem="SXe-rS-iE6" firstAttribute="leading" secondItem="xNY-QL-JW0" secondAttribute="leading" constant="15" id="xDw-4u-lpl"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1367,7 +1388,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxc-ru-YYO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3516" y="-600"/>
+            <point key="canvasLocation" x="3260" y="-1209"/>
         </scene>
         <!--印迹-->
         <scene sceneID="S5E-wN-QP0">
@@ -1388,7 +1409,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AWW-Gc-iBE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="294" y="-600"/>
+            <point key="canvasLocation" x="142" y="-1513"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mzK-0z-cNk">
@@ -1406,7 +1427,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5E-oC-LXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2769" y="-600"/>
+            <point key="canvasLocation" x="2497" y="-1209"/>
         </scene>
         <!--评论-->
         <scene sceneID="vcN-8S-Gcu">
@@ -1435,8 +1456,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ng-Rz-8bu">
-                                            <rect key="frame" x="68" y="12" width="57" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ng-Rz-8bu">
+                                            <rect key="frame" x="68" y="12" width="35.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1474,11 +1495,14 @@
                                         <constraint firstAttribute="trailing" secondItem="3ID-1L-OSc" secondAttribute="trailing" constant="12" id="Ajk-N5-5Yl"/>
                                         <constraint firstAttribute="trailing" secondItem="RLo-ma-ryi" secondAttribute="trailing" constant="12" id="EDC-ug-dZK"/>
                                         <constraint firstItem="fT6-wg-6NA" firstAttribute="top" secondItem="RLo-ma-ryi" secondAttribute="bottom" constant="12" id="ExS-MR-2sZ"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Uya-2c-NuG" secondAttribute="trailing" constant="20" symbolic="YES" id="FMT-PA-eg8"/>
                                         <constraint firstItem="3ID-1L-OSc" firstAttribute="top" secondItem="4Ng-Rz-8bu" secondAttribute="top" id="Jv9-XR-1Im"/>
                                         <constraint firstItem="X0D-Hv-D8Q" firstAttribute="leading" secondItem="bc7-0H-Lb5" secondAttribute="leading" constant="12" id="KjF-yS-Sai"/>
                                         <constraint firstItem="Uya-2c-NuG" firstAttribute="top" secondItem="4Ng-Rz-8bu" secondAttribute="bottom" constant="5" id="SI0-o0-eL4"/>
                                         <constraint firstItem="4Ng-Rz-8bu" firstAttribute="top" secondItem="X0D-Hv-D8Q" secondAttribute="top" id="TWj-dK-5Ga"/>
+                                        <constraint firstItem="3ID-1L-OSc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bc7-0H-Lb5" secondAttribute="leading" constant="20" symbolic="YES" id="X0y-Uo-1oZ"/>
                                         <constraint firstItem="RLo-ma-ryi" firstAttribute="leading" secondItem="bc7-0H-Lb5" secondAttribute="leading" constant="12" id="d8N-xq-bQB"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Ng-Rz-8bu" secondAttribute="trailing" constant="20" symbolic="YES" id="goD-x9-Elw"/>
                                         <constraint firstItem="fT6-wg-6NA" firstAttribute="leading" secondItem="bc7-0H-Lb5" secondAttribute="leading" constant="12" id="hTg-il-5rF"/>
                                         <constraint firstItem="4Ng-Rz-8bu" firstAttribute="leading" secondItem="X0D-Hv-D8Q" secondAttribute="trailing" constant="12" id="uBZ-VA-d10"/>
                                         <constraint firstAttribute="trailing" secondItem="fT6-wg-6NA" secondAttribute="trailing" constant="12" id="ygq-kZ-gRN"/>
@@ -1525,11 +1549,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="VHY-fF-bz0" firstAttribute="leading" secondItem="Wh0-da-RgZ" secondAttribute="leading" id="1Jn-dY-tPH"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Wh0-da-RgZ" secondAttribute="trailing" constant="20" symbolic="YES" id="1UX-b5-3T7"/>
                                                 <constraint firstItem="Wh0-da-RgZ" firstAttribute="top" secondItem="m4Y-L2-h8c" secondAttribute="top" id="7c7-w7-rU7"/>
                                                 <constraint firstItem="VHY-fF-bz0" firstAttribute="trailing" secondItem="LNa-YQ-Rzv" secondAttribute="trailing" id="NH2-Fa-54f"/>
                                                 <constraint firstItem="VHY-fF-bz0" firstAttribute="top" secondItem="Wh0-da-RgZ" secondAttribute="bottom" constant="10" id="NV6-Ek-qYa"/>
                                                 <constraint firstItem="m4Y-L2-h8c" firstAttribute="top" secondItem="IkF-7n-NkA" secondAttribute="top" constant="12" id="Ng7-pk-FeX"/>
                                                 <constraint firstAttribute="trailing" secondItem="LNa-YQ-Rzv" secondAttribute="trailing" constant="12" id="VZq-Kk-4ts"/>
+                                                <constraint firstItem="LNa-YQ-Rzv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IkF-7n-NkA" secondAttribute="leading" constant="20" symbolic="YES" id="k7I-Pl-Hxs"/>
                                                 <constraint firstItem="LNa-YQ-Rzv" firstAttribute="top" secondItem="Wh0-da-RgZ" secondAttribute="top" id="sPU-UP-loE"/>
                                                 <constraint firstItem="m4Y-L2-h8c" firstAttribute="leading" secondItem="IkF-7n-NkA" secondAttribute="leading" constant="12" id="sSM-fK-sja"/>
                                                 <constraint firstItem="Wh0-da-RgZ" firstAttribute="leading" secondItem="m4Y-L2-h8c" secondAttribute="trailing" constant="12" id="xbY-QV-wdQ"/>
@@ -1578,7 +1604,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5kv-xy-Sx0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3516" y="-1307.4962518740631"/>
+            <point key="canvasLocation" x="3479" y="-1925"/>
         </scene>
         <!--我的-->
         <scene sceneID="t6y-9w-27g">
@@ -1597,7 +1623,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOk-7n-PLW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="273" y="883"/>
+            <point key="canvasLocation" x="142" y="20"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oBi-Mk-ATs">
@@ -1615,7 +1641,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="deK-Ex-lue" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2770" y="-1307"/>
+            <point key="canvasLocation" x="2711" y="-1924"/>
         </scene>
     </scenes>
     <resources>
