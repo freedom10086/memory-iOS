@@ -16,6 +16,7 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     public var gallery: Gallery?
     public var membersAndCode: GalleryUsersAndCode?
     public var deleteCallback: ((Int)->Void)?
+    public var updateCallback: ((Gallery)->Void)?
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navBgImageView: UIImageView!
@@ -24,6 +25,7 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var imagesCount: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var peoplesLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
     private var rsRefreshControl: RSRefreshControl!
     
     private var datas = [ImageGroup]()
@@ -159,6 +161,9 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     private func setNavView(gallery: Gallery) {
+        if gallery.exit {
+           self.addButton.isHidden = true
+        }
         Api.setGalleryCover(image: navBgImageView, url: nil, type: gallery.type)
         galleryType.text = "\(Api.getGalleryType(type: gallery.type) ?? "未指定")相册"
         galleryName.text = gallery.name
@@ -252,6 +257,12 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
         vc.memsAndCode = self.membersAndCode
         vc.title = "编辑相册"
         vc.gallery = self.gallery
+        vc.callback = { (gallery, create) in
+            if !create ,let g = gallery {
+                self.gallery = g
+                self.setNavView(gallery: g)
+            }
+        }
         self.show(vc, sender: self)
     }
     
@@ -276,18 +287,20 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
                 //TODO 管理员逻辑
             })
         } else {
-            sheet.addAction(UIAlertAction(title: "退出相册", style: .default) { action in
-                let alert2 = UIAlertController(title: "提示", message: "是否保留相册？不保留则删除相册", preferredStyle: .alert)
-                alert2.addAction(UIAlertAction(title: "是", style: .default, handler: { (ac) in
-                    self.deleteGallery(keep: true)
-                }))
-                
-                alert2.addAction(UIAlertAction(title: "删除", style: .destructive, handler: { (ac) in
-                    self.deleteGallery(keep: false)
-                }))
-                
-                self.present(alert2, animated: true, completion: nil)
-            })
+            if !(gallery?.exit ?? false) {
+                sheet.addAction(UIAlertAction(title: "退出相册", style: .default) { action in
+                    let alert2 = UIAlertController(title: "提示", message: "是否保留相册？不保留则删除相册", preferredStyle: .alert)
+                    alert2.addAction(UIAlertAction(title: "是", style: .default, handler: { (ac) in
+                        self.deleteGallery(keep: true)
+                    }))
+                    
+                    alert2.addAction(UIAlertAction(title: "删除", style: .destructive, handler: { (ac) in
+                        self.deleteGallery(keep: false)
+                    }))
+                    
+                    self.present(alert2, animated: true, completion: nil)
+                })
+            }
         }
         
         sheet.addAction(UIAlertAction(title: "关闭", style: .cancel, handler: nil))
@@ -303,6 +316,8 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
                         : "已成功删除相册")
                     if !keep {
                         self.deleteCallback?(self.galleryId)
+                    } else {
+                        self.updateCallback?(self.gallery!)
                     }
                 } else {
                     self.showAlert(title: "错误", message: err)

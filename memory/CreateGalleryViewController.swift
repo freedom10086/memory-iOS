@@ -40,26 +40,7 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
         if gallery == nil {
             usersCollectionView.isHidden = true
         } else {
-            titleInput.text = gallery!.name
-            descriptionInput.text = gallery!.description
-            type = gallery!.type
-            
-            var btn: UIButton?
-            if type == 1 {
-                btn = btn1
-            } else if type == 2 {
-                btn = btn2
-            } else if type == 3 {
-                btn = btn3
-            } else if type == 4 {
-                btn = btn4
-            } else if type == 5 {
-                btn = btn5
-            }
-            
-            btn?.setBackgroundImage(#imageLiteral(resourceName: "chuangjianxiangce_biaoqian"), for: .normal)
-            btn?.setTitleColor(UIColor.white, for: .normal)
-            
+            updateView()
             usersCollectionView.dataSource = self
             usersCollectionView.delegate = self
         }
@@ -69,6 +50,28 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
             self.usersCollectionView.isHidden = true
             loadMembersAndCode()
         }
+    }
+    
+    private func updateView() {
+        titleInput.text = gallery!.name
+        descriptionInput.text = gallery!.description
+        type = gallery!.type
+        
+        var btn: UIButton?
+        if type == 1 {
+            btn = btn1
+        } else if type == 2 {
+            btn = btn2
+        } else if type == 3 {
+            btn = btn3
+        } else if type == 4 {
+            btn = btn4
+        } else if type == 5 {
+            btn = btn5
+        }
+        
+        btn?.setBackgroundImage(#imageLiteral(resourceName: "chuangjianxiangce_biaoqian"), for: .normal)
+        btn?.setTitleColor(UIColor.white, for: .normal)
     }
     
     private func loadMembersAndCode() {
@@ -103,28 +106,41 @@ class CreateGalleryViewController: UIViewController, UICollectionViewDataSource,
         descriptionInput.resignFirstResponder()
         
         showLoadingView(title: "提交中", message: "请稍后...")
-        Api.createGallery(name: title!, description: des!, type: type) { [weak self] (gallery, err) in
-            DispatchQueue.main.async {
-                let alertVc: UIAlertController
-                if var g = gallery {
-                    alertVc = UIAlertController(title: "提示", message: (self?.gallery == nil ? "创建相册成功" : "保存相册成功"), preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
-                        g.images = 0
-                        g.users = 1
-                        g.creater = Settings.user
-                        self?.callback?(g,gallery == nil)
-                        self?.navigationController?.popViewController(animated: true)
-                    })
-                } else {
-                    alertVc = UIAlertController(title: "错误", message: err, preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
-                }
-                
-                // 取消loading
-                self?.dismiss(animated: true, completion: {
-                    self?.present(alertVc, animated: true)
-                })
+        if self.gallery == nil { //create
+            Api.createGallery(name: title!, description: des!, type: type) { [weak self] (gallery, err) in
+                self?.handleResult(create: true, gallery: gallery, err: err)
             }
+        } else {
+            Api.updateGallery(galleryId: self.gallery!.id, name: title!, description: des!, type: type) { [weak self] (gallery, err) in
+                self?.handleResult(create: false, gallery: gallery, err: err)
+            }
+        }
+    }
+    
+    private func handleResult(create: Bool, gallery: Gallery?, err: String) {
+        DispatchQueue.main.async { [weak self] in
+            let alertVc: UIAlertController
+            if var g = gallery {
+                if !create {
+                    self?.gallery = g
+                }
+                alertVc = UIAlertController(title: "提示", message: (create ? "创建相册成功" : "保存相册成功"), preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: "好", style: .cancel) { ac in
+                    g.images = 0
+                    g.users = 1
+                    g.creater = Settings.user
+                    self?.callback?(g, create)
+                    self?.navigationController?.popViewController(animated: true)
+                })
+            } else {
+                alertVc = UIAlertController(title: "错误", message: err, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: "好", style: .cancel, handler: nil))
+            }
+            
+            // 取消loading
+            self?.dismiss(animated: true, completion: {
+                self?.present(alertVc, animated: true)
+            })
         }
     }
     

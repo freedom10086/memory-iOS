@@ -51,6 +51,8 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        UIApplication.applicationWindow.windowLevel = UIWindowLevelNormal
         
         self.title = "评论"
         self.tableView.dataSource = self
@@ -106,6 +108,10 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @objc private func reloadData() {
         currentPage = 1
         loadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.applicationWindow.windowLevel = UIWindowLevelStatusBar + 1
     }
     
     private func loadData() {

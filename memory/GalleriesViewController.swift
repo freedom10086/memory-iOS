@@ -266,6 +266,16 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                 }
             }
+            
+            dest.updateCallback = { gallery in
+                for (k,item) in self.datas.enumerated() {
+                    if item.id == gallery.id {
+                        self.datas[k] = gallery
+                        self.tableView.reloadRows(at: [IndexPath(row: k, section: 0)], with: .automatic)
+                        break
+                    }
+                }
+            }
         } else if let dest = segue.destination as? CreateGalleryViewController {
             dest.callback = { gallery,isCreate in
                 if let g = gallery {
