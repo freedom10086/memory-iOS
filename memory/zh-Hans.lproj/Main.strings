@@ -101,8 +101,8 @@
 /* Class = "UIButton"; normalTitle = "登陆"; ObjectID = "XFE-ca-Tnb"; */
 "XFE-ca-Tnb.normalTitle" = "登陆";
 
-/* Class = "UILabel"; text = "“这里有一句淡淡的文案”"; ObjectID = "XmZ-ox-hJo"; */
-"XmZ-ox-hJo.text" = "“这里有一句淡淡的文案”";
+/* Class = "UILabel"; text = "“留下你的印迹”"; ObjectID = "XmZ-ox-hJo"; */
+"XmZ-ox-hJo.text" = "“留下你的印迹”";
 
 /* Class = "UITextField"; placeholder = "编辑描述"; ObjectID = "YGS-XB-13T"; */
 "YGS-XB-13T.placeholder" = "编辑描述";

@@ -175,13 +175,6 @@
                                         <constraint firstAttribute="height" constant="66" id="nFW-0d-dz7"/>
                                     </constraints>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i76-2p-fjv">
-                                    <rect key="frame" x="20" y="30" width="91" height="15"/>
-                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
-                                    <state key="normal" title="  深圳市宝安区" image="wode_weizhi">
-                                        <color key="titleColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLm-62-nD7">
                                     <rect key="frame" x="20" y="110" width="99" height="27"/>
                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
@@ -199,13 +192,10 @@
                                 <constraint firstItem="wLm-62-nD7" firstAttribute="leading" secondItem="zxl-TH-Ea7" secondAttribute="leading" id="BP2-Gu-zyq"/>
                                 <constraint firstAttribute="trailing" secondItem="42S-K3-T3n" secondAttribute="trailing" constant="20" id="COB-ny-2KE"/>
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zxl-TH-Ea7" secondAttribute="trailing" constant="20" symbolic="YES" id="GRA-3H-3v6"/>
-                                <constraint firstItem="zxl-TH-Ea7" firstAttribute="top" secondItem="i76-2p-fjv" secondAttribute="bottom" constant="16" id="Y6G-Ee-2wc"/>
                                 <constraint firstAttribute="bottom" secondItem="42S-K3-T3n" secondAttribute="bottom" constant="20" id="ZlQ-qu-CHJ"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="i76-2p-fjv" secondAttribute="trailing" constant="20" symbolic="YES" id="d9e-Wm-YX8"/>
+                                <constraint firstItem="zxl-TH-Ea7" firstAttribute="leading" secondItem="ZOh-cX-fW0" secondAttribute="leading" constant="20" id="ebe-hD-NKm"/>
                                 <constraint firstItem="wLm-62-nD7" firstAttribute="top" secondItem="zxl-TH-Ea7" secondAttribute="bottom" constant="8" symbolic="YES" id="kus-aZ-Xiv"/>
-                                <constraint firstItem="zxl-TH-Ea7" firstAttribute="leading" secondItem="i76-2p-fjv" secondAttribute="leading" id="qwA-LJ-TLw"/>
-                                <constraint firstItem="i76-2p-fjv" firstAttribute="leading" secondItem="ZOh-cX-fW0" secondAttribute="leading" constant="20" id="t1l-z5-atw"/>
-                                <constraint firstItem="i76-2p-fjv" firstAttribute="top" secondItem="ZOh-cX-fW0" secondAttribute="top" constant="30" id="ylb-It-zSf"/>
+                                <constraint firstItem="zxl-TH-Ea7" firstAttribute="top" secondItem="ZOh-cX-fW0" secondAttribute="top" constant="61" id="mDo-Bv-APm"/>
                             </constraints>
                         </view>
                         <sections>
@@ -332,7 +322,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="7eY-vB-wEx"/>
                     <connections>
-                        <outlet property="locationButton" destination="i76-2p-fjv" id="jo5-r1-azD"/>
                         <outlet property="messageDot" destination="xeN-2f-4v4" id="ZmM-Nd-FZO"/>
                         <outlet property="userAvatarImage" destination="42S-K3-T3n" id="GpY-cy-fSP"/>
                         <outlet property="usernameLabel" destination="zxl-TH-Ea7" id="6kS-tu-sk6"/>
@@ -1665,7 +1654,6 @@
         <image name="wode_renlian" width="18" height="19"/>
         <image name="wode_shezhi" width="21" height="22"/>
         <image name="wode_tongzhi" width="20" height="21"/>
-        <image name="wode_weizhi" width="10" height="14"/>
         <image name="xiangcexiangqing_dianzan" width="17" height="16"/>
         <image name="xiangcexiangqing_jiahao" width="52" height="52"/>
         <image name="xiangcexiangqing_pinglun" width="18" height="17"/>
