@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0460D13B20B93B8700699608 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D13A20B93B8700699608 /* User.swift */; };
 		0460D14320B985EC00699608 /* MyGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460D14220B985EC00699608 /* MyGalleryViewController.swift */; };
+		04B6A45A20C410B400C7AA52 /* FaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6A45920C410B400C7AA52 /* FaceViewController.swift */; };
+		04B6A45C20C410CF00C7AA52 /* FaceResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6A45B20C410CF00C7AA52 /* FaceResultViewController.swift */; };
 		2F128E1D20BC3FE800FB02A9 /* ImageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */; };
 		2F128E1F20BC40C800FB02A9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F128E1E20BC40C800FB02A9 /* Comment.swift */; };
 		2F1E424920C1351800802D40 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E424820C1351800802D40 /* Message.swift */; };
@@ -112,6 +114,8 @@
 /* Begin PBXFileReference section */
 		0460D13A20B93B8700699608 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0460D14220B985EC00699608 /* MyGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGalleryViewController.swift; sourceTree = "<group>"; };
+		04B6A45920C410B400C7AA52 /* FaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceViewController.swift; sourceTree = "<group>"; };
+		04B6A45B20C410CF00C7AA52 /* FaceResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceResultViewController.swift; sourceTree = "<group>"; };
 		28915CBAF37BA15A4B507C8E /* Pods-memory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memory.release.xcconfig"; path = "Pods/Target Support Files/Pods-memory/Pods-memory.release.xcconfig"; sourceTree = "<group>"; };
 		2F128E1C20BC3FE800FB02A9 /* ImageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGroup.swift; sourceTree = "<group>"; };
 		2F128E1E20BC40C800FB02A9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -416,6 +420,8 @@
 				2F36D86020BD37BF00CC8515 /* UploadViewController.swift */,
 				2FD2A82620BD8B3E00E70C85 /* CommentViewController.swift */,
 				2FBF696520BFE5AC0098C889 /* GridGalleryViewController.swift */,
+				04B6A45920C410B400C7AA52 /* FaceViewController.swift */,
+				04B6A45B20C410CF00C7AA52 /* FaceResultViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -606,6 +612,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B6A45C20C410CF00C7AA52 /* FaceResultViewController.swift in Sources */,
 				0460D14320B985EC00699608 /* MyGalleryViewController.swift in Sources */,
 				2FD2A89B20BD95EC00E70C85 /* CGRect.swift in Sources */,
 				2FD2A85520BD950B00E70C85 /* GalleryItem.swift in Sources */,
@@ -629,6 +636,7 @@
 				2FD2A89620BD95EC00E70C85 /* UISlider.swift in Sources */,
 				2F1E424920C1351800802D40 /* Message.swift in Sources */,
 				2FBF696620BFE5AC0098C889 /* GridGalleryViewController.swift in Sources */,
+				04B6A45A20C410B400C7AA52 /* FaceViewController.swift in Sources */,
 				2FD2A89E20BD95EC00E70C85 /* CAShapeLayer.swift in Sources */,
 				2FD2A83120BD8D0900E70C85 /* ImageAttachment.swift in Sources */,
 				2FBB32D320BB07D700A86D16 /* SettingViewController.swift in Sources */,
