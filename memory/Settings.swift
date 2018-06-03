@@ -91,6 +91,7 @@ public class Settings {
         }
 
         set {
+            print("set access token to \(newValue ?? "")")
             UserDefaults.standard.set(newValue, forKey: key_access_token)
         }
     }

@@ -120,11 +120,18 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        print("GalleriesViewController viewWillAppear")
+        
         if Settings.accessToken != nil && !haveLoaded {
             haveLoaded = true
             rsRefreshControl?.beginRefreshing()
             loadData()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("GalleriesViewController viewDidAppear")
     }
     
     @objc private func reloadData() {

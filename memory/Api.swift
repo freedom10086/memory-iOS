@@ -53,7 +53,7 @@ public class Api {
         } else if type == 4 {
             return #imageLiteral(resourceName: "pengyou")
         } else {
-            return #imageLiteral(resourceName: "4911528005124_.pic_hd.jpg")
+            return #imageLiteral(resourceName: "qita")
         }
     }
     
