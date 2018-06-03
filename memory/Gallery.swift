@@ -24,4 +24,6 @@ public struct Gallery: Codable {
     var groups: [ImageGroup]?
     var created: String
     var updated: String
+    
+    var exit: Bool = false
 }

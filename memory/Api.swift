@@ -14,8 +14,8 @@ import Foundation
 // 第一个参数为类型.self 如 User.self [User].self 分别表示单个用户 和 用户列表
 public class Api {
     
-    public static let host = "101.132.43.60:8080"
-//    public static let host = "127.0.0.1:8080"
+    //public static let host = "101.132.43.60:8080"
+    public static let host = "127.0.0.1:8080"
     
     public static let baseUrl = "http://\(host)"
     
@@ -36,6 +36,8 @@ public class Api {
             return "同事"
         } else if type == 4 {
             return "朋友"
+        } else if type == 5 {
+            return "明星"
         } else {
             return nil
         }
@@ -97,6 +99,12 @@ public class Api {
     public static func createGallery(name: String, description: String, type: Int = 0, callback: @escaping ((Gallery?, String))-> Void) {
         let parmas = ["name": name, "description": description, "type": "\(type)"]
         HttpUtil.REQUEST(Gallery.self, url: "/galleries/", method: "POST", params: parmas, callback: callback)
+    }
+    
+    // 编辑相册
+    public static func updateGallery(galleryId:Int, name: String, description: String, type: Int = 0, callback: @escaping ((Gallery?, String))-> Void) {
+        let parmas = ["name": name, "description": description, "type": "\(type)"]
+        HttpUtil.REQUEST(Gallery.self, url: "/galleries/\(galleryId)", method: "PUT", params: parmas, callback: callback)
     }
     
     // 查询单个相册信息并返回图片列表的指定页
