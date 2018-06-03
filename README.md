@@ -1,5 +1,4 @@
 # 印迹-iOS
-
 ——“记录你的印迹”
 
 Github : [印迹-iOS](https://github.com/freedom10086/memory-iOS/tree/master)
@@ -10,9 +9,9 @@ Github : [印迹-iOS](https://github.com/freedom10086/memory-iOS/tree/master)
 
 * Swift进行业务逻辑描述。
 
-##项目设计要点
+## 项目设计要点
 
-###网络异步通信：
+### 网络异步通信：
 
 1. URLSession发起GET、POST请求；
 2. 开源库Alamofire进行图片上传；
@@ -115,7 +114,7 @@ DispatchQueue.global(qos: .userInitiated).async {
         
 ```
 
-###图片压缩：
+### 图片压缩：
 本地图片压缩+服务器图片压缩：
 
 1. 本地图片压缩控制上传图片尺寸：限制图片width和maxSize；
@@ -169,11 +168,11 @@ DispatchQueue.global(qos: .userInitiated).async {
 
 ```
 
-###图片缓存：
+### 图片缓存：
 使用Kingfisher开源库，三级缓存思想，匿名共享内存使用
 
 
-###鉴权方式：
+### 鉴权方式：
 1. 使用QQ的SDK，从QQ服务器登录并获取openid,access_token,expires三个参数穿过服务器；
 2. 使用token进行安全的身份鉴定。
 
