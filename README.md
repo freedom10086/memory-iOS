@@ -2,6 +2,8 @@
 
 ——“记录你的印迹”
 
+Github : [印迹-iOS](https://github.com/freedom10086/memory-iOS/tree/master)
+
 一款共享类型的相册产品，包括“印迹”、“最新”、“我的”三个Scene
 
 * 使用StoryBoard+AutoLayout进行UI搭建；
@@ -13,8 +15,8 @@
 ###网络异步通信：
 
 1. URLSession发起GET、POST请求；
-2. 开源库
-3. 异步发起网络请求，主线程刷新UI显示
+2. 开源库Alamofire进行图片上传；
+3. 异步发起网络请求，主线程刷新UI显示。
 
 
 ``` swift
