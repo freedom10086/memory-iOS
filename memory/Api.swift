@@ -15,11 +15,11 @@ import Foundation
 public class Api {
     
     // 测试环境
-    public static let host = "101.132.43.60:8080"
+    //public static let host = "101.132.43.60:8080"
     // 开发环境
     //public static let host = "127.0.0.1:8080"
     // 正式环境
-    //public static let host = "193.112.239.195:80"
+    public static let host = "193.112.239.195:80"
     
     public static let baseUrl = "http://\(host)"
     

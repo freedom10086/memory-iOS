@@ -130,10 +130,6 @@ class GalleriesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("GalleriesViewController viewDidAppear")
-    }
-    
     @objc private func reloadData() {
         currentPage = 1
         loadData()
