@@ -300,6 +300,8 @@ class MyGalleryViewController: UIViewController, UITableViewDataSource, UITableV
                         self.deleteGallery(keep: false)
                     }))
                     
+                    alert2.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+                    
                     self.present(alert2, animated: true, completion: nil)
                 })
             }

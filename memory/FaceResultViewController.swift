@@ -182,7 +182,6 @@ class FaceResultViewController: UIViewController, UICollectionViewDataSource,
                         if let ac = alertVc {
                             self.present(ac, animated: true)
                         }
-                        
                     })
                 }
             }
