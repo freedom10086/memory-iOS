@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 // api工具类
 // 要添加Api支持添加新的函数在Constant.swift中添加url
@@ -147,7 +148,6 @@ public class Api {
                     callback(groups, err)
                 }
             }
-            
         }
     }
     
@@ -220,6 +220,46 @@ public class Api {
     public static func updateUsername(name: String, callback: @escaping((Int?,String)->Void)) {
         let params = ["name": name]
         HttpUtil.REQUEST(Int.self, url: "/users/", method: "PUT", params: params, callback: callback)
+    }
+    
+    // 人脸识别
+    public static func detectFace(image: String,images: [String], callback:  @escaping(([String.SubSequence]?, String) -> Void)) {
+        var imageListUrl = ""
+        for item in images {
+            imageListUrl += (item + ",")
+        }
+        
+        imageListUrl = imageListUrl.trimmingCharacters(in: CharacterSet(charactersIn: ","))
+        let url = URL(string: "http://203.195.129.198:5000/?user_img_url=\(image)&image_list_url=\(imageListUrl)")!
+        print("req url = \(url)")
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.timeoutInterval = 30
+        
+        Alamofire.request(urlRequest).responseString(completionHandler: { (response) in
+            switch response.result {
+            case .success :
+                if let r = response.result.value {
+                    //print("detect response: \(r)")
+                   let rs =  r.trimmingCharacters(in: CharacterSet(charactersIn: "]"))
+                    .trimmingCharacters(in: CharacterSet(charactersIn: "["))
+                    .trimmingCharacters(in: CharacterSet(charactersIn: "'"))
+                        .split(separator: Character(","))
+                    
+                    //print(rs)
+                    if rs.count == 0 {
+                        callback([], "无匹配结果")
+                    } else {
+                        callback(rs, "无匹配结果")
+                    }
+                } else {
+                    callback(nil, "服务端未响应")
+                }
+            case .failure :
+                callback(nil, response.result.error?.localizedDescription ?? "服务器错误")
+            }
+        })
+    
     }
     
     // TODO

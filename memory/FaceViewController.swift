@@ -15,11 +15,13 @@ class FaceViewController: UITableViewController {
     private var currentPage = 1
     private var pageSize = 100
     private var haveMore = true
+    private var noData = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backBarButtonItem =
+            UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
         loadData()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +37,7 @@ class FaceViewController: UITableViewController {
                     if self.currentPage == 1 {
                         self.datas = gs
                         self.tableView.reloadData()
+                        self.noData = (gs.count == 0)
                     } else {
                         var indexs = [IndexPath]()
                         for i in 0..<gs.count {
@@ -67,12 +70,13 @@ class FaceViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if noData {
+            return 1
+        }
         return self.datas.count
     }
     
@@ -81,22 +85,33 @@ class FaceViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let d = datas[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let albumImage = cell.viewWithTag(1) as! UIImageView
-        let name = cell.viewWithTag(2) as! UILabel
-        
-        name.text = d.name
-        
-        Api.setGalleryCover(image: albumImage,
-                            url: d.groups?[0].images?[0].url ?? d.cover, type: d.type)
+        let cell: UITableViewCell
+        if noData {
+            cell = tableView.dequeueReusableCell(withIdentifier: "no_cell", for: indexPath)
+            
+        } else {
+            let d = datas[indexPath.row]
+            cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            
+            let albumImage = cell.viewWithTag(1) as! UIImageView
+            let name = cell.viewWithTag(2) as! UILabel
+            name.text = d.name
+            Api.setGalleryCover(image: albumImage, url: d.cover, type: d.type)
+        }
         
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? FaceResultViewController {
+            let source = sender as! UITableViewCell
+            let index = self.tableView.indexPath(for: source)!
+            dest.galleryId = self.datas[index.row].id
+        }
+    }
 
-   
 }

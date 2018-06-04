@@ -491,16 +491,16 @@
             </objects>
             <point key="canvasLocation" x="4015" y="-1176"/>
         </scene>
-        <!--人脸识别结果-->
+        <!--识别-->
         <scene sceneID="wRZ-cr-S1e">
             <objects>
-                <viewController title="人脸识别结果" id="hW1-hi-aZk" customClass="FaceResultViewController" customModule="memory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="识别" id="hW1-hi-aZk" customClass="FaceResultViewController" customModule="memory" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ayK-hy-j0v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bUH-O2-SPL">
-                                <rect key="frame" x="0.0" y="104" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CXG-JQ-JqO">
                                     <size key="itemSize" width="50" height="50"/>
@@ -516,7 +516,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FVX-gP-CTx">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FVX-gP-CTx">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 </imageView>
                                             </subviews>
@@ -530,22 +530,12 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     人脸识别结果..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r15-4W-a1N">
-                                <rect key="frame" x="0.0" y="64" width="375" height="40"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="bUH-O2-SPL" firstAttribute="top" secondItem="r15-4W-a1N" secondAttribute="bottom" id="Btt-Xb-eoW"/>
-                            <constraint firstItem="r15-4W-a1N" firstAttribute="trailing" secondItem="mA9-3f-mcu" secondAttribute="trailing" id="EJ4-H9-7Lc"/>
-                            <constraint firstItem="r15-4W-a1N" firstAttribute="leading" secondItem="mA9-3f-mcu" secondAttribute="leading" id="WCV-dr-Eyi"/>
                             <constraint firstItem="bUH-O2-SPL" firstAttribute="bottom" secondItem="mA9-3f-mcu" secondAttribute="bottom" id="YQg-ZC-CL3"/>
                             <constraint firstItem="bUH-O2-SPL" firstAttribute="leading" secondItem="mA9-3f-mcu" secondAttribute="leading" id="jIp-pj-vlG"/>
-                            <constraint firstItem="bUH-O2-SPL" firstAttribute="top" secondItem="mA9-3f-mcu" secondAttribute="top" constant="40" id="skR-hm-8Ab"/>
-                            <constraint firstItem="r15-4W-a1N" firstAttribute="top" secondItem="mA9-3f-mcu" secondAttribute="top" id="syM-HR-eiC"/>
+                            <constraint firstItem="bUH-O2-SPL" firstAttribute="top" secondItem="mA9-3f-mcu" secondAttribute="top" id="skR-hm-8Ab"/>
                             <constraint firstItem="bUH-O2-SPL" firstAttribute="trailing" secondItem="mA9-3f-mcu" secondAttribute="trailing" id="uru-cJ-aUj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mA9-3f-mcu"/>
@@ -556,7 +546,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7rO-my-W1G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3052" y="1210.344827586207"/>
+            <point key="canvasLocation" x="1929" y="899"/>
         </scene>
         <!--人脸识别-->
         <scene sceneID="z8X-r8-OBX">
@@ -600,6 +590,26 @@
                                     <segue destination="hW1-hi-aZk" kind="show" id="NvU-PX-IOG"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="no_cell" rowHeight="67" id="9wb-XC-VGt">
+                                <rect key="frame" x="0.0" y="139.5" width="375" height="67"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9wb-XC-VGt" id="fb4-AG-v5X">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你还没有相册请创建或加入相册" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEL-98-Qdr">
+                                            <rect key="frame" x="73.5" y="23.5" width="228.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="oEL-98-Qdr" firstAttribute="centerX" secondItem="fb4-AG-v5X" secondAttribute="centerX" id="Fez-3M-ot9"/>
+                                        <constraint firstItem="oEL-98-Qdr" firstAttribute="centerY" secondItem="fb4-AG-v5X" secondAttribute="centerY" id="nBv-EG-t2l"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
@@ -607,11 +617,11 @@
                             <outlet property="delegate" destination="Kr2-iX-VcT" id="Vk8-AP-Pre"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="人脸识别" id="F2Z-n5-bE8"/>
+                    <navigationItem key="navigationItem" title="请选择相册" id="F2Z-n5-bE8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LV8-HU-Jhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1028" y="900"/>
+            <point key="canvasLocation" x="1028" y="899.10044977511257"/>
         </scene>
         <!--消息页面-->
         <scene sceneID="oj2-x2-ZdL">
