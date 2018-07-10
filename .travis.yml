@@ -1,5 +1,7 @@
 language: swift
 xcode_workspace: memory.xcworkspace
-xcode_scheme: memoryTests
 podfile: Podfile
 osx_image: xcode9.4
+
+script:
+  - "xctool -workspace memory.xcworkspace"
