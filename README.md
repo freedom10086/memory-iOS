@@ -1,4 +1,7 @@
 # 印迹-iOS
+
+[![Build Status](https://travis-ci.org/freedom10086/memory-iOS.svg?branch=master)](https://travis-ci.org/freedom10086/memory-iOS)
+
 ——“记录你的印迹”
 
 Github : [印迹-iOS](https://github.com/freedom10086/memory-iOS/tree/master)
